@@ -1,18 +1,9 @@
 FROM docker.io/library/debian:12.2-slim@sha256:b55e2651b71408015f8068dd74e1d04404a8fa607dd2cfe284b4824c11f4d9bd
 
-ARG CI_COMMIT_SHA
-# The version of this container itself.
-ARG VERSION_CONTAINER
 # Versions of core components.
 ARG VERSION_AWS_CLI
 ARG VERSION_PYTHON
 ARG VERSION_TERRAFORM
-
-LABEL org.opencontainers.image.description="AWS IaC Tooling"
-LABEL org.opencontainers.image.revision="${CI_COMMIT_SHA}"
-LABEL org.opencontainers.image.source="https://github.com/oliversalzburg/containers"
-LABEL org.opencontainers.image.title="infrastructure"
-LABEL org.opencontainers.image.version="${VERSION_CONTAINER}"
 
 WORKDIR /tmp
 

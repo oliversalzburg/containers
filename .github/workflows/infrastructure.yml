@@ -51,6 +51,12 @@ jobs:
         uses: docker/metadata-action@v5.0.0
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          labels: |
+            org.opencontainers.image.description="AWS IaC Tooling"
+            org.opencontainers.image.revision="${{ github.sha }}"
+            org.opencontainers.image.source="https://github.com/oliversalzburg/containers"
+            org.opencontainers.image.title="infrastructure"
+            org.opencontainers.image.version="${{ github.ref_name }}"
           tags: |
             type=edge,branch=main,suffix=_terraform-${{ matrix.VERSION_TERRAFORM }}_awcli-${{ matrix.VERSION_AWS_CLI }}_python-${{ matrix.VERSION_PYTHON }}
             type=ref,event=pr,suffix=_terraform-${{ matrix.VERSION_TERRAFORM }}_awcli-${{ matrix.VERSION_AWS_CLI }}_python-${{ matrix.VERSION_PYTHON }}
@@ -64,8 +70,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            CI_COMMIT_SHA=${{ github.sha }}
-            VERSION_CONTAINER=${{ github.ref_name }}
             VERSION_AWS_CLI=${{ matrix.VERSION_AWS_CLI }}
             VERSION_PYTHON=${{ matrix.VERSION_PYTHON }}
             VERSION_TERRAFORM=${{ matrix.VERSION_TERRAFORM }}
