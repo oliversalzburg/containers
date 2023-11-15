@@ -68,6 +68,7 @@ jobs:
             org.opencontainers.image.version=${{ github.ref_name }}
           tags: |
             type=edge,branch=main,suffix=_terraform-${{ matrix.VERSION_TERRAFORM }}_awcli-${{ matrix.VERSION_AWS_CLI }}_python-${{ matrix.VERSION_PYTHON }}
+            type=ref,event=branch,suffix=_terraform-${{ matrix.VERSION_TERRAFORM }}_awcli-${{ matrix.VERSION_AWS_CLI }}_python-${{ matrix.VERSION_PYTHON }}
             type=ref,event=pr,suffix=_terraform-${{ matrix.VERSION_TERRAFORM }}_awcli-${{ matrix.VERSION_AWS_CLI }}_python-${{ matrix.VERSION_PYTHON }}
             type=ref,event=tag,suffix=_terraform-${{ matrix.VERSION_TERRAFORM }}_awcli-${{ matrix.VERSION_AWS_CLI }}_python-${{ matrix.VERSION_PYTHON }}
 
