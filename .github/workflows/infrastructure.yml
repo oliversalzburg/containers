@@ -25,7 +25,7 @@ jobs:
         VERSION_AWS_CLI:
           - "2.12.7" # latest 2.12
           # renovate: datasource=github-tags depName=aws/aws-cli versioning=semver
-          - "2.13.26"
+          - "2.13.36"
         # https://devguide.python.org/versions/
         VERSION_PYTHON:
           - "3.9.18" # latest 3.9
