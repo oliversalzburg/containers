@@ -71,7 +71,7 @@ jobs:
             org.opencontainers.image.version=${{ github.ref_name }}
           tags: |
             type=edge,branch=main
-            type=ref,event=branch
+            type=ref,event=branch,enable=${{ github.ref_name != 'main' }}
             type=ref,event=pr
             type=ref,event=tag
 
