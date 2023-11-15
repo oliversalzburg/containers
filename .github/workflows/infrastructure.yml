@@ -30,7 +30,7 @@ jobs:
           # renovate: datasource=github-releases depName=hashicorp/terraform versioning=hashicorp
           - "1.6.0"
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     # Container needs to be able to read repo and publish packages.
     permissions:
       contents: read
@@ -75,7 +75,7 @@ jobs:
             VERSION_TERRAFORM=${{ matrix.VERSION_TERRAFORM }}
 
   qa-successful:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: qa
     if: always()
     steps:
@@ -87,7 +87,7 @@ jobs:
         run: exit 1
 
   delete-untagged:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: qa-successful
     if: github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') )
     permissions:
