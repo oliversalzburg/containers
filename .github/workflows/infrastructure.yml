@@ -1,0 +1,60 @@
+name: Infrastructure
+
+on:
+  push:
+
+env:
+  IMAGE_NAME: ${{ github.repository }}/infrastructure
+  REGISTRY: ghcr.io
+
+jobs:
+  qa:
+    name: Run QA
+    strategy:
+      matrix:
+        VERSION_AWS_CLI:
+          # renovate: datasource=github-releases depName=aws/aws-cli versioning=semver
+          - "2.13.26"
+        VERSION_PYTHON:
+          # renovate: datasource=docker depName=python versioning=semver
+          - "3.11.2"
+        VERSION_TERRAFORM:
+          # renovate: datasource=github-releases depName=hashicorp/terraform versioning=hashicorp
+          - "1.6.0"
+
+    runs-on: ubuntu-latest
+    # Container needs to be able to read repo and publish packages.
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+
+      - name: Log in to the container registry
+        uses: docker/login-action@master
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@master
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            latest
+
+      - name: Build and push container image
+        uses: docker/build-push-action@master
+        with:
+          context: contexts/infrastructure
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            VERSION_CONTAINER=${{ github.ref_name }}
+            VERSION_AWS_CLI=${{ matrix.VERSION_AWS_CLI }}
+            VERSION_PYTHON=${{ matrix.VERSION_PYTHON }}
+            VERSION_TERRAFORM=${{ matrix.VERSION_TERRAFORM }}
