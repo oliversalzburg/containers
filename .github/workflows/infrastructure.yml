@@ -64,6 +64,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
+            CI_COMMIT_SHA=${{ github.sha }}
             VERSION_CONTAINER=${{ github.ref_name }}
             VERSION_AWS_CLI=${{ matrix.VERSION_AWS_CLI }}
             VERSION_PYTHON=${{ matrix.VERSION_PYTHON }}
