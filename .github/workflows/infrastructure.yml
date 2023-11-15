@@ -50,7 +50,7 @@ jobs:
         uses: docker/build-push-action@master
         with:
           context: contexts/infrastructure
-          push: true
+          push: false
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
@@ -58,3 +58,15 @@ jobs:
             VERSION_AWS_CLI=${{ matrix.VERSION_AWS_CLI }}
             VERSION_PYTHON=${{ matrix.VERSION_PYTHON }}
             VERSION_TERRAFORM=${{ matrix.VERSION_TERRAFORM }}
+
+  qa-successful:
+    runs-on: ubuntu-latest
+    needs: qa
+    if: always()
+    steps:
+      - name: Success
+        if: ${{ !(contains(needs.*.result, 'failure')) }}
+        run: exit 0
+      - name: Failure
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1
