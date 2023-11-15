@@ -87,42 +87,42 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# AWS CLI
-RUN curl --silent "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${VERSION_AWS_CLI}.zip" --output "awscliv2.zip" \
-    # Quietly unzip
-    && unzip -q awscliv2.zip \
-    && ./aws/install \
-    # Delete temporary data
-    && rm -rf ./awscliv2.zip ./aws \
-    # Print installed version
-    && aws --version
-
-# Python
-# hadolint ignore=DL3003
-RUN curl --silent "https://www.python.org/ftp/python/${VERSION_PYTHON}/Python-${VERSION_PYTHON}.tgz" --output "python3.tgz" \
-    # Quietly untar
-    && tar xzf python3.tgz \
-    # Build and install
-    && cd "Python-${VERSION_PYTHON}" \
-    && ./configure --enable-optimizations --with-ensurepip=install \
-    && make --jobs 2 \
-    && make install \
-    # Register `pip3` as global `pip`
-    && ln -s /usr/bin/pip3 /usr/bin/pip \
-    && cd .. \
-    # Delete temporary data
-    && rm -rf ./python3.tgz "./Python-${VERSION_PYTHON}" \
-    # Print installed version
-    && python3 --version
-
-# Terraform
-RUN curl --silent "https://releases.hashicorp.com/terraform/${VERSION_TERRAFORM}/terraform_${VERSION_TERRAFORM}_linux_amd64.zip" --output "terraform.zip" && \
-    # Quietly unzip
-    unzip -q terraform.zip && \
-    mv terraform /usr/bin/terraform && \
-    # Delete temporary data
-    rm -rf ./terraform.zip && \
-    # Print installed version
-    terraform --version
+## AWS CLI
+#RUN curl --silent "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${VERSION_AWS_CLI}.zip" --output "awscliv2.zip" \
+#    # Quietly unzip
+#    && unzip -q awscliv2.zip \
+#    && ./aws/install \
+#    # Delete temporary data
+#    && rm -rf ./awscliv2.zip ./aws \
+#    # Print installed version
+#    && aws --version
+#
+## Python
+## hadolint ignore=DL3003
+#RUN curl --silent "https://www.python.org/ftp/python/${VERSION_PYTHON}/Python-${VERSION_PYTHON}.tgz" --output "python3.tgz" \
+#    # Quietly untar
+#    && tar xzf python3.tgz \
+#    # Build and install
+#    && cd "Python-${VERSION_PYTHON}" \
+#    && ./configure --enable-optimizations --with-ensurepip=install \
+#    && make --jobs 2 \
+#    && make install \
+#    # Register `pip3` as global `pip`
+#    && ln -s /usr/bin/pip3 /usr/bin/pip \
+#    && cd .. \
+#    # Delete temporary data
+#    && rm -rf ./python3.tgz "./Python-${VERSION_PYTHON}" \
+#    # Print installed version
+#    && python3 --version
+#
+## Terraform
+#RUN curl --silent "https://releases.hashicorp.com/terraform/${VERSION_TERRAFORM}/terraform_${VERSION_TERRAFORM}_linux_amd64.zip" --output "terraform.zip" && \
+#    # Quietly unzip
+#    unzip -q terraform.zip && \
+#    mv terraform /usr/bin/terraform && \
+#    # Delete temporary data
+#    rm -rf ./terraform.zip && \
+#    # Print installed version
+#    terraform --version
 
 WORKDIR /
