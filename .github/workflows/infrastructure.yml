@@ -3,10 +3,12 @@ name: Infrastructure
 on:
   push:
     branches:
+      - feat/*
+      - fix/*
       - main
       - renovate/*
     tags:
-      - v*
+      - "v*"
   pull_request:
     branches:
       - main
@@ -20,7 +22,7 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
-  qa:
+  build-publish:
     name: Run QA
     # We don't need to run this on Renovate PRs. We will already test the `renovate/foo` branch.
     if: github.event_name != 'pull_request' || github.actor != 'renovate[bot]'
@@ -95,7 +97,7 @@ jobs:
 
   qa-successful:
     runs-on: ubuntu-22.04
-    needs: qa
+    needs: build-publish
     if: always()
     steps:
       - name: Success
