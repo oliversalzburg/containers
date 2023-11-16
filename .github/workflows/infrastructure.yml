@@ -83,16 +83,18 @@ jobs:
             type=ref,event=tag
 
       - name: Build and push container image
-        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5
+        uses: int128/kaniko-action@v1
         with:
           context: contexts/infrastructure
-          push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             VERSION_AWS_CLI=${{ matrix.VERSION_AWS_CLI }}
             VERSION_PYTHON=${{ matrix.VERSION_PYTHON }}
             VERSION_TERRAFORM=${{ matrix.VERSION_TERRAFORM }}
+          cache: true
+          cache-repository: ${{ env.REGISTRY }}/${{ github.repository }}/cache
+          push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
+          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
 
   qa-successful:
     runs-on: ubuntu-22.04
