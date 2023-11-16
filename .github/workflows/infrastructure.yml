@@ -83,7 +83,7 @@ jobs:
             type=ref,event=tag
 
       - name: Build and push container image
-        uses: int128/kaniko-action@v1
+        uses: int128/kaniko-action@b470bb6ed8a38f9e92969f79f2361c37558cf370 # v1
         with:
           context: contexts/infrastructure
           build-args: |
