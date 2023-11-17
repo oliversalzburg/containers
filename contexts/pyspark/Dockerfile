@@ -2,8 +2,9 @@ FROM docker.io/library/debian:12.2-slim@sha256:6cc67f78e0e8295b4fbe055eba0356648
 
 WORKDIR /tmp
 
-ARG VERSION_PYSPARK="3.5.0"
-ARG VERSION_PYTEST="7.4.3"
+# Versions of core components.
+ARG VERSION_PYSPARK
+ARG VERSION_PYTEST
 
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive

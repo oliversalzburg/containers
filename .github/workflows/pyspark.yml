@@ -15,6 +15,7 @@ on:
   pull_request:
     branches:
       - main
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -30,6 +31,7 @@ jobs:
     strategy:
       matrix:
         VERSION_PYSPARK:
+          - "3.3.0"
           # renovate: datasource=pypi depName=pyspark versioning=pip
           - "3.5.0"
         VERSION_PYTEST:
@@ -77,9 +79,8 @@ jobs:
         with:
           context: contexts/pyspark
           build-args: |
-            VERSION_AWS_CLI=${{ matrix.VERSION_AWS_CLI }}
-            VERSION_PYTHON=${{ matrix.VERSION_PYTHON }}
-            VERSION_TERRAFORM=${{ matrix.VERSION_TERRAFORM }}
+            VERSION_PYSPARK=${{ matrix.VERSION_PYSPARK }}
+            VERSION_PYTEST=${{ matrix.VERSION_PYTEST }}
           cache: true
           cache-repository: ${{ env.REGISTRY }}/${{ github.repository }}/cache
           push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
