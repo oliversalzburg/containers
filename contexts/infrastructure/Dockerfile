@@ -52,68 +52,68 @@ ENV VERSION_ZLIB="1:1.2.13.dfsg-1"
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
-    && apt-get install --no-install-recommends --yes \
-    ca-certificates=${VERSION_CA_CERTIFICATES} \
-    curl=${VERSION_CURL} \
-    g++=${VERSION_GPP} \
-    gcc=${VERSION_GCC} \
-    git=${VERSION_GIT} \
-    libc6-dev=${VERSION_LIBC} \
-    libffi-dev=${VERSION_LIBFFI} \
-    libbz2-dev=${VERSION_LIBBZ2} \
-    libgdbm-dev=${VERSION_LIBGDBM} \
-    liblzma-dev=${VERSION_LIBLZMA} \
-    libncurses-dev=${VERSION_LIBNCURSES} \
-    libreadline-dev=${VERSION_LIBREADLINE} \
-    libsqlite3-dev=${VERSION_LIBSQLLITE3} \
-    libssl3=${VERSION_OPENSSL} \
-    libssl-dev=${VERSION_OPENSSL} \
-    make=${VERSION_MAKE} \
-    openssl=${VERSION_OPENSSL} \
-    sqlite3=${VERSION_SQLITE3} \
-    tk-dev=${VERSION_TK} \
-    unzip=${VERSION_UNZIP} \
-    uuid-dev=${VERSION_UUID} \
-    zlib1g-dev=${VERSION_ZLIB} \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+  && apt-get install --no-install-recommends --yes \
+  ca-certificates=${VERSION_CA_CERTIFICATES} \
+  curl=${VERSION_CURL} \
+  g++=${VERSION_GPP} \
+  gcc=${VERSION_GCC} \
+  git=${VERSION_GIT} \
+  libc6-dev=${VERSION_LIBC} \
+  libffi-dev=${VERSION_LIBFFI} \
+  libbz2-dev=${VERSION_LIBBZ2} \
+  libgdbm-dev=${VERSION_LIBGDBM} \
+  liblzma-dev=${VERSION_LIBLZMA} \
+  libncurses-dev=${VERSION_LIBNCURSES} \
+  libreadline-dev=${VERSION_LIBREADLINE} \
+  libsqlite3-dev=${VERSION_LIBSQLLITE3} \
+  libssl3=${VERSION_OPENSSL} \
+  libssl-dev=${VERSION_OPENSSL} \
+  make=${VERSION_MAKE} \
+  openssl=${VERSION_OPENSSL} \
+  sqlite3=${VERSION_SQLITE3} \
+  tk-dev=${VERSION_TK} \
+  unzip=${VERSION_UNZIP} \
+  uuid-dev=${VERSION_UUID} \
+  zlib1g-dev=${VERSION_ZLIB} \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 # AWS CLI
 RUN curl --silent "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${VERSION_AWS_CLI}.zip" --output "awscliv2.zip" \
-    # Quietly unzip
-    && unzip -q awscliv2.zip \
-    && ./aws/install \
-    # Delete temporary data
-    && rm -rf ./awscliv2.zip ./aws \
-    # Print installed version
-    && aws --version
+  # Quietly unzip
+  && unzip -q awscliv2.zip \
+  && ./aws/install \
+  # Delete temporary data
+  && rm -rf ./awscliv2.zip ./aws \
+  # Print installed version
+  && aws --version
 
 # Python
 # hadolint ignore=DL3003
 RUN curl --silent "https://www.python.org/ftp/python/${VERSION_PYTHON}/Python-${VERSION_PYTHON}.tgz" --output "python3.tgz" \
-    # Quietly untar
-    && tar xzf python3.tgz \
-    # Build and install
-    && cd "Python-${VERSION_PYTHON}" \
-    && ./configure --enable-optimizations --with-ensurepip=install \
-    && make --jobs 2 \
-    && make install \
-    # Register `pip3` as global `pip`
-    && ln -s /usr/bin/pip3 /usr/bin/pip \
-    && cd .. \
-    # Delete temporary data
-    && rm -rf ./python3.tgz "./Python-${VERSION_PYTHON}" \
-    # Print installed version
-    && python3 --version
+  # Quietly untar
+  && tar xzf python3.tgz \
+  # Build and install
+  && cd "Python-${VERSION_PYTHON}" \
+  && ./configure --enable-optimizations --with-ensurepip=install \
+  && make --jobs 2 \
+  && make install \
+  # Register `pip3` as global `pip`
+  && ln -s /usr/bin/pip3 /usr/bin/pip \
+  && cd .. \
+  # Delete temporary data
+  && rm -rf ./python3.tgz "./Python-${VERSION_PYTHON}" \
+  # Print installed version
+  && python3 --version
 
 # Terraform
 RUN curl --silent "https://releases.hashicorp.com/terraform/${VERSION_TERRAFORM}/terraform_${VERSION_TERRAFORM}_linux_amd64.zip" --output "terraform.zip" && \
-    # Quietly unzip
-    unzip -q terraform.zip && \
-    mv terraform /usr/bin/terraform && \
-    # Delete temporary data
-    rm -rf ./terraform.zip && \
-    # Print installed version
-    terraform --version
+  # Quietly unzip
+  unzip -q terraform.zip && \
+  mv terraform /usr/bin/terraform && \
+  # Delete temporary data
+  rm -rf ./terraform.zip && \
+  # Print installed version
+  terraform --version
 
 WORKDIR /
