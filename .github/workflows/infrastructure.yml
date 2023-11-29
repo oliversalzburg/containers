@@ -47,7 +47,7 @@ jobs:
           - "1.4.7" # latest 1.4
           - "1.5.7" # latest 1.5
           # renovate: datasource=github-releases depName=hashicorp/terraform versioning=hashicorp
-          - "1.6.4"
+          - "1.6.5"
 
     runs-on: ubuntu-22.04
     # Container needs to be able to read repo and publish packages.
