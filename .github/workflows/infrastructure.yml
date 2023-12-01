@@ -32,7 +32,7 @@ jobs:
       matrix:
         VERSION_AWS_CLI:
           # renovate: datasource=github-tags depName=aws/aws-cli versioning=semver
-          - "2.14.4"
+          - "2.14.5"
         # https://endoflife.date/python
         VERSION_PYTHON:
           - "3.8.18" # latest 3.8
