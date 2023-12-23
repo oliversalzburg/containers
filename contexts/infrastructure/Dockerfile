@@ -10,7 +10,7 @@ WORKDIR /tmp
 # renovate: datasource=repology depName=debian_12/ca-certificates versioning=loose
 ENV VERSION_CA_CERTIFICATES="20230311"
 # renovate: datasource=repology depName=debian_12/curl versioning=loose
-ENV VERSION_CURL="7.88.1-10+deb12u4"
+ENV VERSION_CURL="7.88.1-10+deb12u5"
 # renovate: datasource=repology depName=debian_12/g++ versioning=loose
 ENV VERSION_GPP="4:12.2.0-3"
 # renovate: datasource=repology depName=debian_12/gcc versioning=loose
