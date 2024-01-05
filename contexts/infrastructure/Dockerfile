@@ -17,6 +17,8 @@ ENV VERSION_GPP="4:12.2.0-3"
 ENV VERSION_GCC="4:12.2.0-3"
 # renovate: datasource=repology depName=debian_12/git versioning=loose
 ENV VERSION_GIT="1:2.39.2-1.1"
+# renovate: datasource=repology depName=debian_12/jq versioning=loose
+ENV VERSION_JQ="1.6-2.1"
 # renovate: datasource=repology depName=debian_12/glibc versioning=loose
 ENV VERSION_LIBC="2.36-9+deb12u3"
 # renovate: datasource=repology depName=debian_12/libffi-dev versioning=loose
@@ -58,6 +60,7 @@ RUN apt-get update \
   g++=${VERSION_GPP} \
   gcc=${VERSION_GCC} \
   git=${VERSION_GIT} \
+  jq=${VERSION_JQ} \
   libc6-dev=${VERSION_LIBC} \
   libffi-dev=${VERSION_LIBFFI} \
   libbz2-dev=${VERSION_LIBBZ2} \
