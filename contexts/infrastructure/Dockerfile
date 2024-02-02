@@ -20,7 +20,7 @@ ENV VERSION_GIT="1:2.39.2-1.1"
 # renovate: datasource=repology depName=debian_12/jq versioning=loose
 ENV VERSION_JQ="1.6-2.1"
 # renovate: datasource=repology depName=debian_12/glibc versioning=loose
-ENV VERSION_LIBC="2.36-9+deb12u3"
+ENV VERSION_LIBC="2.36-9+deb12u4"
 # renovate: datasource=repology depName=debian_12/libffi-dev versioning=loose
 ENV VERSION_LIBFFI="3.4.4-1"
 # renovate: datasource=repology depName=debian_12/libbz2-dev versioning=loose
