@@ -75,7 +75,7 @@ jobs:
             type=ref,event=tag
 
       - name: Build and push container image
-        uses: int128/kaniko-action@6ad40c562ffcbd01796a526d19ef65339e6d5ac0 # v1
+        uses: int128/kaniko-action@e14548712f2c9db743e6f58793af373c40c6e534 # v1
         with:
           context: contexts/pyspark
           build-args: |
