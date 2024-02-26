@@ -33,7 +33,7 @@ jobs:
         VERSION_PYSPARK:
           - "3.3.0"
           # renovate: datasource=pypi depName=pyspark versioning=pip
-          - "3.5.0"
+          - "3.5.1"
         VERSION_PYTEST:
           # renovate: datasource=pypi depName=pytest versioning=pip
           - "8.0.2"
