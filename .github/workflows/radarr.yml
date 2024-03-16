@@ -1,0 +1,113 @@
+name: Radarr
+
+on:
+  push:
+    branches:
+      - feat/*
+      - fix/*
+      - main
+      - renovate/*
+    paths:
+      - .github/workflows/*
+      - contexts/radarr/*
+    tags:
+      - "v*"
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  IMAGE_NAME: ${{ github.repository }}/radarr
+  REGISTRY: ghcr.io
+
+jobs:
+  build-publish:
+    # We don't need to run this on Renovate PRs. We will already test the `renovate/foo` branch.
+    if: github.event_name != 'pull_request' || github.actor != 'renovate[bot]'
+    strategy:
+      matrix:
+        VERSION_RADARR:
+          # renovate: datasource=github-releases depName=Radarr/Radarr versioning=semver
+          - "5.3.6.8612"
+
+    runs-on: ubuntu-22.04
+    # Container needs to be able to read repo and publish packages.
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+
+      - name: Log in to the container registry
+        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          flavor: |
+            latest=false
+            suffix=-${{ matrix.VERSION_RADARR }}
+          labels: |
+            org.opencontainers.image.description=Radarr
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.source=https://github.com/oliversalzburg/containers
+            org.opencontainers.image.title=radarr
+            org.opencontainers.image.version=${{ github.ref_name }}
+          tags: |
+            type=edge,branch=main
+            type=ref,event=branch,enable=${{ github.ref_name != 'main' }}
+            type=ref,event=pr
+            type=ref,event=tag
+
+      - name: Build and push container image
+        uses: int128/kaniko-action@e14548712f2c9db743e6f58793af373c40c6e534 # v1
+        with:
+          context: contexts/radarr
+          build-args: |
+            VERSION_RADARR=${{ matrix.VERSION_RADARR }}
+          cache: true
+          cache-repository: ${{ env.REGISTRY }}/${{ github.repository }}/cache
+          push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
+          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+
+  qa-successful:
+    runs-on: ubuntu-22.04
+    needs: build-publish
+    if: always()
+    steps:
+      - name: Success
+        if: ${{ !(contains(needs.*.result, 'failure')) }}
+        run: exit 0
+      - name: Failure
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1
+
+  delete-untagged:
+    runs-on: ubuntu-22.04
+    needs: qa-successful
+    if: github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') )
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Delete all containers from package without tags
+        uses: Chizkiyahu/delete-untagged-ghcr-action@bbbab219998078a91c9b283dac9389b825894603 # v3
+        with:
+            token: ${{ github.token }}
+            repository_owner: ${{ github.repository_owner }}
+            repository: ${{ github.repository }}
+            package_name: containers/radarr
+            untagged_only: true
+            owner_type: user
