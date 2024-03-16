@@ -8,13 +8,16 @@ on:
       - main
       - renovate/*
     paths:
-      - .github/workflows/*
+      - .github/workflows/pyspark.yml
       - contexts/pyspark/*
     tags:
       - "v*"
   pull_request:
     branches:
       - main
+    paths:
+      - .github/workflows/pyspark.yml
+      - contexts/pyspark/*
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}

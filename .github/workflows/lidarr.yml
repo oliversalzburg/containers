@@ -8,13 +8,16 @@ on:
       - main
       - renovate/*
     paths:
-      - .github/workflows/*
+      - .github/workflows/lidarr.yml
       - contexts/lidarr/*
     tags:
       - "v*"
   pull_request:
     branches:
       - main
+    paths:
+      - .github/workflows/lidarr.yml
+      - contexts/lidarr/*
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
