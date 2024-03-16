@@ -4,6 +4,7 @@ FROM docker.io/library/debian:12.5-slim@sha256:d02c76d82364cedca16ba3ed6f9102406
 ARG VERSION_AWS_CLI
 ARG VERSION_PYTHON
 ARG VERSION_TERRAFORM
+ARG JOBS=2
 
 WORKDIR /tmp
 
@@ -25,7 +26,7 @@ ENV VERSION_LIBC="2.36-9+deb12u4"
 ENV VERSION_LIBFFI="3.4.4-1"
 # renovate: datasource=repology depName=debian_12/libbz2-dev versioning=loose
 ENV VERSION_LIBBZ2="1.0.8-5+b1"
-# renovate: datasource=repology depName=debian_12/libgdbm-dev versioning=loose
+# renovate: datasource=repology depName=debian_12/libgdbm-compat-dev versioning=loose
 ENV VERSION_LIBGDBM="1.23-3"
 # renovate: datasource=repology depName=debian_12/liblzma-dev versioning=loose
 ENV VERSION_LIBLZMA="5.4.1-0.2"
@@ -64,7 +65,7 @@ RUN apt-get update \
   libc6-dev=${VERSION_LIBC} \
   libffi-dev=${VERSION_LIBFFI} \
   libbz2-dev=${VERSION_LIBBZ2} \
-  libgdbm-dev=${VERSION_LIBGDBM} \
+  libgdbm-compat-dev=${VERSION_LIBGDBM} \
   liblzma-dev=${VERSION_LIBLZMA} \
   libncurses-dev=${VERSION_LIBNCURSES} \
   libreadline-dev=${VERSION_LIBREADLINE} \
@@ -99,15 +100,16 @@ RUN curl --silent "https://www.python.org/ftp/python/${VERSION_PYTHON}/Python-${
   # Build and install
   && cd "Python-${VERSION_PYTHON}" \
   && ./configure --enable-optimizations --with-ensurepip=install \
-  && make --jobs 2 \
+  && make --jobs ${JOBS} \
   && make install \
   # Register `pip3` as global `pip`
-  && ln -s /usr/bin/pip3 /usr/bin/pip \
+  && ln -s /usr/local/bin/pip3 /usr/local/bin/pip \
   && cd .. \
   # Delete temporary data
   && rm -rf ./python3.tgz "./Python-${VERSION_PYTHON}" \
   # Print installed version
-  && python3 --version
+  && python3 --version \
+  && pip --version
 
 # Terraform
 RUN curl --silent "https://releases.hashicorp.com/terraform/${VERSION_TERRAFORM}/terraform_${VERSION_TERRAFORM}_linux_amd64.zip" --output "terraform.zip" && \
