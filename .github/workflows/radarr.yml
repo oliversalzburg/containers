@@ -8,13 +8,16 @@ on:
       - main
       - renovate/*
     paths:
-      - .github/workflows/*
+      - .github/workflows/radarr.yml
       - contexts/radarr/*
     tags:
       - "v*"
   pull_request:
     branches:
       - main
+    paths:
+      - .github/workflows/radarr.yml
+      - contexts/radarr/*
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}

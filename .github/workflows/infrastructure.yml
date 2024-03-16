@@ -8,7 +8,7 @@ on:
       - main
       - renovate/*
     paths:
-      - .github/workflows/*
+      - .github/workflows/infrastructure.yml
       - contexts/infrastructure/*
     tags:
       - "v*"
