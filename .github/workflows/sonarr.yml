@@ -108,9 +108,9 @@ jobs:
       - name: Delete all containers from package without tags
         uses: Chizkiyahu/delete-untagged-ghcr-action@bbbab219998078a91c9b283dac9389b825894603 # v3
         with:
-            token: ${{ github.token }}
-            repository_owner: ${{ github.repository_owner }}
-            repository: ${{ github.repository }}
-            package_name: containers/sonarr
-            untagged_only: true
-            owner_type: user
+          token: ${{ github.token }}
+          repository_owner: ${{ github.repository_owner }}
+          repository: ${{ github.repository }}
+          package_name: containers/sonarr
+          untagged_only: true
+          owner_type: user

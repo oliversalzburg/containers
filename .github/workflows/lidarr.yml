@@ -36,7 +36,7 @@ jobs:
         VERSION_LIDARR:
           # renovate: datasource=github-releases depName=Lidarr/Lidarr versioning=semver
           - "2.1.7.4030"
-        
+
     runs-on: ubuntu-22.04
     # Container needs to be able to read repo and publish packages.
     permissions:
@@ -108,9 +108,9 @@ jobs:
       - name: Delete all containers from package without tags
         uses: Chizkiyahu/delete-untagged-ghcr-action@bbbab219998078a91c9b283dac9389b825894603 # v3
         with:
-            token: ${{ github.token }}
-            repository_owner: ${{ github.repository_owner }}
-            repository: ${{ github.repository }}
-            package_name: containers/lidarr
-            untagged_only: true
-            owner_type: user
+          token: ${{ github.token }}
+          repository_owner: ${{ github.repository_owner }}
+          repository: ${{ github.repository }}
+          package_name: containers/lidarr
+          untagged_only: true
+          owner_type: user
