@@ -122,7 +122,7 @@ jobs:
       packages: write
     steps:
       - name: Delete all containers from package without tags
-        uses: Chizkiyahu/delete-untagged-ghcr-action@bbbab219998078a91c9b283dac9389b825894603 # v3
+        uses: Chizkiyahu/delete-untagged-ghcr-action@e8c780ca2d589797e657691fc16bffe066714890 # v4
         with:
           token: ${{ github.token }}
           repository_owner: ${{ github.repository_owner }}
