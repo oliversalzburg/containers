@@ -43,7 +43,7 @@ jobs:
           - "3.10.13" # latest 3.10
           - "3.11.6" # latest 3.11
           # renovate: datasource=github-tags depName=python/cpython versioning=semver-coerced
-          - "3.12.2"
+          - "3.12.3"
         # https://endoflife.date/terraform
         VERSION_TERRAFORM:
           - "1.5.7" # latest 1.5
