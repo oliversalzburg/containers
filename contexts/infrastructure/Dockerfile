@@ -4,7 +4,6 @@ FROM docker.io/library/debian:12.5-slim@sha256:3d5df92588469a4c503adbead0e4129ef
 ARG VERSION_AWS_CLI
 ARG VERSION_PYTHON
 ARG VERSION_TERRAFORM
-ARG JOBS=2
 
 WORKDIR /tmp
 
@@ -100,7 +99,7 @@ RUN curl --silent "https://www.python.org/ftp/python/${VERSION_PYTHON}/Python-${
   # Build and install
   && cd "Python-${VERSION_PYTHON}" \
   && ./configure --enable-optimizations --with-ensurepip=install \
-  && make --jobs ${JOBS} \
+  && make --jobs $(nproc --all) \
   && make install \
   # Register `pip3` as global `pip`
   && ln -s /usr/local/bin/pip3 /usr/local/bin/pip \
