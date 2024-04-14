@@ -17,8 +17,6 @@ ENV VERSION_OPENSSL="3.0.11-1~deb12u2"
 ENV VERSION_PYTHON3="3.11.2-1+b1"
 # renovate: datasource=repology depName=debian_12/python-pip versioning=loose
 ENV VERSION_PYTHON3_PIP="23.0.1+dfsg-1"
-# renovate: datasource=repology depName=debian_12/python-pipx versioning=loose
-ENV VERSION_PYTHON3_PIPX="1.1.0-1"
 
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
@@ -29,17 +27,16 @@ RUN apt-get update \
   curl=${VERSION_CURL} \
   ffmpeg=${VERSION_FFMPEG} \
   openssl=${VERSION_OPENSSL} \
-  pipx=${VERSION_PYTHON3_PIPX} \
   python3=${VERSION_PYTHON3} \
   python3-pip=${VERSION_PYTHON3_PIP} \
+  sudo \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
 # ytdl-sub
-RUN pipx install ytdl-sub==${VERSION_YTDLSUB} \
-  && pipx ensurepath
+RUN python3 -m pip install -U --break-system-packages ytdl-sub==${VERSION_YTDLSUB}
 
-WORKDIR /opt
+WORKDIR /config
 
 CMD ["--help"]
-ENTRYPOINT ["/root/.local/bin/ytdl-sub"]
+ENTRYPOINT ["/usr/local/bin/ytdl-sub"]
