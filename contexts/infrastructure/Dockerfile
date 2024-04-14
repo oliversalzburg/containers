@@ -47,7 +47,7 @@ ENV VERSION_TK="8.6.13"
 # renovate: datasource=repology depName=debian_12/unzip versioning=loose
 ENV VERSION_UNZIP="6.0-28"
 # renovate: datasource=repology depName=debian_12/util-linux versioning=loose
-ENV VERSION_UUID="2.38.1-5+b1"
+ENV VERSION_UUID="2.38.1-5+deb12u1"
 # renovate: datasource=repology depName=debian_12/zlib versioning=loose
 ENV VERSION_ZLIB="1:1.2.13.dfsg-1"
 
