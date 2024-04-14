@@ -40,3 +40,6 @@ RUN pipx install ytdl-sub==${VERSION_YTDLSUB} \
   && pipx ensurepath
 
 WORKDIR /opt
+
+CMD ["--help"]
+ENTRYPOINT ["/root/.local/bin/ytdl-sub"]
