@@ -38,18 +38,17 @@ jobs:
           - "2.15.33"
         # https://endoflife.date/python
         VERSION_PYTHON:
-          - "3.8.18" # latest 3.8
-          - "3.9.18" # latest 3.9
-          - "3.10.13" # latest 3.10
-          - "3.11.6" # latest 3.11
+          - "3.8.19" # latest 3.8
+          - "3.9.19" # latest 3.9
+          - "3.10.14" # latest 3.10
+          - "3.11.9" # latest 3.11
           # renovate: datasource=github-tags depName=python/cpython versioning=semver-coerced
           - "3.12.3"
         # https://endoflife.date/terraform
         VERSION_TERRAFORM:
-          - "1.5.7" # latest 1.5
-          - "1.6.6" # latest 1.6
-          # renovate: datasource=github-releases depName=hashicorp/terraform versioning=hashicorp
           - "1.7.5"
+          # renovate: datasource=github-releases depName=hashicorp/terraform versioning=hashicorp
+          - "1.8.0"
 
     runs-on: ubuntu-22.04
     # Container needs to be able to read repo and publish packages.
