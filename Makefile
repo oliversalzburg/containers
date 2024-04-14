@@ -21,3 +21,9 @@ sonarr:
 	cd contexts/sonarr; podman build \
 		--build-arg VERSION_SONARR=4.0.2.1183 \
 		.
+
+ytdl-sub:
+	cd contexts/ytdl-sub; podman build \
+		--build-arg VERSION_YTDLSUB=2024.4.3 \
+		--tag ytdl-sub \
+		.
