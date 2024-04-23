@@ -14,7 +14,7 @@ ENV VERSION_CA_CERTIFICATES="20230311"
 # renovate: datasource=repology depName=debian_12/git versioning=loose
 ENV VERSION_GIT="1:2.39.2-1.1"
 # renovate: datasource=repology depName=debian_12/openjdk-17 versioning=loose
-ENV VERSION_OPEN_JDK="17.0.10+7-1~deb12u1"
+ENV VERSION_OPEN_JDK="17.0.11+9-1~deb12u1"
 # renovate: datasource=repology depName=debian_12/python3-defaults versioning=loose
 ENV VERSION_PYTHON3="3.11.2-1+b1"
 # renovate: datasource=repology depName=debian_12/pandas versioning=loose
