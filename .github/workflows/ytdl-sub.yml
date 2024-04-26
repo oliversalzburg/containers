@@ -35,7 +35,7 @@ jobs:
       matrix:
         VERSION_YTDLSUB:
           # renovate: datasource=github-releases depName=jmbannon/ytdl-sub versioning=loose
-          - "2024.04.03"
+          - "2024.04.26.post1"
 
     runs-on: ubuntu-22.04
     # Container needs to be able to read repo and publish packages.
