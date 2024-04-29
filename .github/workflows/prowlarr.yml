@@ -35,7 +35,7 @@ jobs:
       matrix:
         VERSION_PROWLARR:
           # renovate: datasource=github-releases depName=Prowlarr/Prowlarr versioning=loose
-          - "1.13.3.4273"
+          - "1.16.2.4435"
 
     runs-on: ubuntu-22.04
     # Container needs to be able to read repo and publish packages.
