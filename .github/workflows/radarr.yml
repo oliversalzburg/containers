@@ -35,7 +35,7 @@ jobs:
       matrix:
         VERSION_RADARR:
           # renovate: datasource=github-releases depName=Radarr/Radarr versioning=loose
-          - "5.3.6.8612"
+          - "5.4.6.8723"
 
     runs-on: ubuntu-22.04
     # Container needs to be able to read repo and publish packages.
