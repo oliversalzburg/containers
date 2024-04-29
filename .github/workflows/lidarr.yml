@@ -35,7 +35,7 @@ jobs:
       matrix:
         VERSION_LIDARR:
           # renovate: datasource=github-releases depName=Lidarr/Lidarr versioning=loose
-          - "2.1.7.4030"
+          - "2.2.5.4141"
 
     runs-on: ubuntu-22.04
     # Container needs to be able to read repo and publish packages.
