@@ -34,7 +34,7 @@ jobs:
     strategy:
       matrix:
         VERSION_RADARR:
-          # renovate: datasource=github-releases depName=Radarr/Radarr versioning=semver
+          # renovate: datasource=github-releases depName=Radarr/Radarr versioning=loose
           - "5.3.6.8612"
 
     runs-on: ubuntu-22.04

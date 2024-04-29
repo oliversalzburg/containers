@@ -34,7 +34,7 @@ jobs:
     strategy:
       matrix:
         VERSION_SONARR:
-          # renovate: datasource=github-releases depName=Sonarr/Sonarr versioning=semver
+          # renovate: datasource=github-releases depName=Sonarr/Sonarr versioning=loose
           - "4.0.2.1183"
 
     runs-on: ubuntu-22.04
