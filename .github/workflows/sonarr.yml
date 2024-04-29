@@ -35,7 +35,7 @@ jobs:
       matrix:
         VERSION_SONARR:
           # renovate: datasource=github-releases depName=Sonarr/Sonarr versioning=loose
-          - "4.0.2.1183"
+          - "4.0.4.1491"
 
     runs-on: ubuntu-22.04
     # Container needs to be able to read repo and publish packages.
