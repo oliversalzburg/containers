@@ -31,4 +31,4 @@ RUN curl --location --silent "https://github.com/Radarr/Radarr/releases/download
 
 WORKDIR /opt/radarr
 
-ENTRYPOINT [ "/opt/radarr", "-nobrowser", "-data=/var/lib/radarr/" ]
+ENTRYPOINT [ "/opt/radarr/Radarr", "-nobrowser", "-data=/var/lib/radarr/" ]

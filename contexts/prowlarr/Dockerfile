@@ -31,4 +31,4 @@ RUN curl --location --silent "https://github.com/Prowlarr/Prowlarr/releases/down
 
 WORKDIR /opt/prowlarr
 
-ENTRYPOINT [ "/opt/prowlarr" "-nobrowser", "-data=/var/lib/prowlarr/" ]
+ENTRYPOINT [ "/opt/prowlarr/Prowlarr", "-nobrowser", "-data=/var/lib/prowlarr/" ]

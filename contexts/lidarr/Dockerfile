@@ -31,6 +31,6 @@ RUN curl --location --silent "https://github.com/Lidarr/Lidarr/releases/download
 
 WORKDIR /opt/lidarr
 
-ENTRYPOINT [ "/opt/lidarr", "-nobrowser", "-data=/var/lib/lidarr/" ]
+ENTRYPOINT [ "/opt/lidarr/Lidarr", "-nobrowser", "-data=/var/lib/lidarr/" ]
 
 

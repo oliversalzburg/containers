@@ -8,18 +8,22 @@ infrastructure:
 lidarr:
 	cd contexts/lidarr; podman build \
 		--build-arg VERSION_LIDARR=2.1.7.4030 \
+		--tag lidarr \
 		.
 prowlarr:
 	cd contexts/prowlarr; podman build \
 		--build-arg VERSION_PROWLARR=1.13.3.4273 \
+		--tag prowlarr \
 		.
 radarr:
 	cd contexts/radarr; podman build \
 		--build-arg VERSION_RADARR=5.3.6.8612 \
+		--tag radarr \
 		.
 sonarr:
 	cd contexts/sonarr; podman build \
 		--build-arg VERSION_SONARR=4.0.2.1183 \
+		--tag sonarr \
 		.
 
 ytdl-sub:

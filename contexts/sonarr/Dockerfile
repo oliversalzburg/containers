@@ -31,4 +31,4 @@ RUN curl --location --silent "https://github.com/Sonarr/Sonarr/releases/download
 
 WORKDIR /opt/sonarr
 
-ENTRYPOINT [ "/opt/sonarr" "-nobrowser", "-data=/var/lib/sonarr/" ]
+ENTRYPOINT [ "/opt/sonarr/Sonarr", "-nobrowser", "-data=/var/lib/sonarr/" ]
