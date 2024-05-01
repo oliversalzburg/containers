@@ -15,6 +15,11 @@ prowlarr:
 		--build-arg VERSION_PROWLARR=1.13.3.4273 \
 		--tag prowlarr \
 		.
+qbittorrent:
+	cd contexts/qbittorrent; podman build \
+		--build-arg VERSION_QBITTORRENT=4.5.5 \
+		--tag qbittorrent \
+		.
 radarr:
 	cd contexts/radarr; podman build \
 		--build-arg VERSION_RADARR=5.3.6.8612 \

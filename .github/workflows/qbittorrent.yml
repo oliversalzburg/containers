@@ -1,0 +1,106 @@
+name: qBittorrent
+
+on:
+  push:
+    branches:
+      - feat/*
+      - fix/*
+      - main
+      - renovate/*
+    paths:
+      - .github/workflows/qbittorrent.yml
+      - contexts/qbittorrent/*
+    tags:
+      - "v*"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/qbittorrent.yml
+      - contexts/qbittorrent/*
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  IMAGE_NAME: ${{ github.repository }}/qbittorrent
+  REGISTRY: ghcr.io
+  # renovate: datasource=github-tags depName=qbittorrent/qBittorrent versioning=semver-coerced
+  VERSION_QBITTORRENT: "4.5.5"
+
+jobs:
+  build-publish:
+    # We don't need to run this on Renovate PRs. We will already test the `renovate/foo` branch.
+    if: github.event_name != 'pull_request' || github.actor != 'renovate[bot]'
+    runs-on: ubuntu-22.04
+    # Container needs to be able to read repo and publish packages.
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
+
+      - name: Log in to the container registry
+        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          labels: |
+            org.opencontainers.image.description=qBittorrent
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.source=https://github.com/oliversalzburg/containers
+            org.opencontainers.image.title=qbittorrent
+            org.opencontainers.image.version=${{ github.ref_name }}
+          tags: |
+            type=raw,value=${{ env.VERSION_QBITTORRENT }}
+
+      - name: Build and push container image
+        uses: int128/kaniko-action@a11cadbd6e2142b1f59544ef8c3d8eec065be6e8 # v1
+        with:
+          context: contexts/qbittorrent
+          build-args: |
+            VERSION_QBITTORRENT=${{ env.VERSION_QBITTORRENT }}
+          cache: true
+          cache-repository: ${{ env.REGISTRY }}/${{ github.repository }}/cache
+          push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
+          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+
+  qa-successful:
+    runs-on: ubuntu-22.04
+    needs: build-publish
+    if: always()
+    steps:
+      - name: Success
+        if: ${{ !(contains(needs.*.result, 'failure')) }}
+        run: exit 0
+      - name: Failure
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1
+
+  delete-untagged:
+    runs-on: ubuntu-22.04
+    needs: qa-successful
+    if: github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') )
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Delete all containers from package without tags
+        uses: Chizkiyahu/delete-untagged-ghcr-action@e8c780ca2d589797e657691fc16bffe066714890 # v4
+        with:
+          token: ${{ github.token }}
+          repository_owner: ${{ github.repository_owner }}
+          repository: ${{ github.repository }}
+          package_name: containers/qbittorrent
+          untagged_only: true
+          owner_type: user
