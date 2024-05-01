@@ -26,17 +26,13 @@ concurrency:
 env:
   IMAGE_NAME: ${{ github.repository }}/radarr
   REGISTRY: ghcr.io
+  # renovate: datasource=github-releases depName=Radarr/Radarr versioning=loose
+  VERSION_RADARR: "5.4.6.8723"
 
 jobs:
   build-publish:
     # We don't need to run this on Renovate PRs. We will already test the `renovate/foo` branch.
     if: github.event_name != 'pull_request' || github.actor != 'renovate[bot]'
-    strategy:
-      matrix:
-        VERSION_RADARR:
-          # renovate: datasource=github-releases depName=Radarr/Radarr versioning=loose
-          - "5.4.6.8723"
-
     runs-on: ubuntu-22.04
     # Container needs to be able to read repo and publish packages.
     permissions:
@@ -58,9 +54,6 @@ jobs:
         uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          flavor: |
-            latest=false
-            suffix=-${{ matrix.VERSION_RADARR }}
           labels: |
             org.opencontainers.image.description=Radarr
             org.opencontainers.image.revision=${{ github.sha }}
@@ -68,17 +61,14 @@ jobs:
             org.opencontainers.image.title=radarr
             org.opencontainers.image.version=${{ github.ref_name }}
           tags: |
-            type=edge,branch=main
-            type=ref,event=branch,enable=${{ github.ref_name != 'main' }}
-            type=ref,event=pr
-            type=ref,event=tag
+            type=raw,value=${{ env.VERSION_RADARR }}
 
       - name: Build and push container image
         uses: int128/kaniko-action@a11cadbd6e2142b1f59544ef8c3d8eec065be6e8 # v1
         with:
           context: contexts/radarr
           build-args: |
-            VERSION_RADARR=${{ matrix.VERSION_RADARR }}
+            VERSION_RADARR=${{ env.VERSION_RADARR }}
           cache: true
           cache-repository: ${{ env.REGISTRY }}/${{ github.repository }}/cache
           push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
