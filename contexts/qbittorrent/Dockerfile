@@ -61,7 +61,8 @@ RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive
   && cmake -B build -DCMAKE_BUILD_TYPE=Release -DGUI=OFF \
   && cmake --build build --parallel \
   && cmake --install build \
-  && rm -rf /tmp/*
+  && rm -rf /tmp/* \
+  && ln --symbolic --no-target-directory /dev/stdout /tmp/qbittorrent.log
 
 WORKDIR /config
 
