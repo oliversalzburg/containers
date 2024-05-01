@@ -27,7 +27,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}/qbittorrent
   REGISTRY: ghcr.io
   # renovate: datasource=github-tags depName=qbittorrent/qBittorrent versioning=semver-coerced
-  VERSION_QBITTORRENT: "4.5.5"
+  VERSION_QBITTORRENT: "release-4.5.5"
 
 jobs:
   build-publish:

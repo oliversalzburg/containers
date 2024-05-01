@@ -53,11 +53,11 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 # qBittorrent
-RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive/refs/tags/release-${VERSION_QBITTORRENT}.tar.gz" --output "qbittorrent.tar.gz" \
+RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive/refs/tags/${VERSION_QBITTORRENT}.tar.gz" --output "qbittorrent.tar.gz" \
   # Quietly unpack
   && tar xzf qbittorrent.tar.gz \
   # Build qBittorrent
-  && cd "qBittorrent-release-${VERSION_QBITTORRENT}" \
+  && cd "qBittorrent-${VERSION_QBITTORRENT}" \
   && cmake -B build -DCMAKE_BUILD_TYPE=Release -DGUI=OFF \
   && cmake --build build --parallel \
   && cmake --install build \
