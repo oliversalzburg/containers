@@ -11,7 +11,7 @@ ENV VERSION_CA_CERTIFICATES="20230311"
 ENV VERSION_CURL="7.88.1-10+deb12u5"
 # renovate: datasource=repology depName=debian_12/icu versioning=loose
 ENV VERSION_ICU="72.1-3"
-# renovate: datasource=repology depName=debian_12/icu versioning=loose
+# renovate: datasource=repology depName=debian_12/sqlite3 versioning=loose
 ENV VERSION_LIBSQLITE="3.40.1-2"
 # renovate: datasource=repology depName=debian_12/openssl versioning=loose
 ENV VERSION_OPENSSL="3.0.11-1~deb12u2"
