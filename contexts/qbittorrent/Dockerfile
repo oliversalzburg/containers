@@ -52,7 +52,7 @@ RUN apt-get update \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-# Radarr
+# qBittorrent
 RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive/refs/tags/release-${VERSION_QBITTORRENT}.tar.gz" --output "qbittorrent.tar.gz" \
   # Quietly unpack
   && tar xzf qbittorrent.tar.gz \
@@ -60,8 +60,9 @@ RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive
   && cd "qBittorrent-release-${VERSION_QBITTORRENT}" \
   && cmake -B build -DCMAKE_BUILD_TYPE=Release -DGUI=OFF \
   && cmake --build build --parallel \
-  && cmake --install build
+  && cmake --install build \
+  && rm -rf /tmp/*
 
-WORKDIR /tmp
+WORKDIR /config
 
-ENTRYPOINT [ "/usr/local/bin/qbittorrent-nox" ]
+ENTRYPOINT [ "/usr/local/bin/qbittorrent-nox", "--profile=/config", "--relative-fastresume" ]
