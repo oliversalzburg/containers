@@ -7,13 +7,13 @@ ARG TERRAFORM_VERSION
 
 WORKDIR /tmp
 
-# renovate: datasource=repology depName=debian_12/ca-certificates
+# renovate: datasource=custom.apt depName=debian/bookworm/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20230311"
-# renovate: datasource=repology depName=debian_12/curl versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/curl versioning=deb
 ENV CURL_VERSION="7.88.1-10+deb12u5"
-# renovate: datasource=repology depName=debian_12/g++ versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/g++ versioning=deb
 ENV GPP_VERSION="4:12.2.0-3"
-# renovate: datasource=repology depName=debian_12/gcc versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/gcc versioning=deb
 ENV GCC_VERSION="4:12.2.0-3"
 # renovate: datasource=repology depName=debian_12/git versioning=deb
 ENV GIT_VERSION="1:2.39.2-1.1"
