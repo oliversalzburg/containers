@@ -1,40 +1,40 @@
 FROM docker.io/library/debian:12.5-slim@sha256:155280b00ee0133250f7159b567a07d7cd03b1645714c3a7458b2287b0ca83cb
 
 # Versions of core components.
-ARG VERSION_YTDLSUB
+ARG YTDLSUB_VERSION
 
 WORKDIR /tmp
 
-# renovate: datasource=repology depName=debian_12/ca-certificates versioning=loose
-ENV VERSION_CA_CERTIFICATES="20230311"
-# renovate: datasource=repology depName=debian_12/curl versioning=loose
-ENV VERSION_CURL="7.88.1-10+deb12u5"
-# renovate: datasource=repology depName=debian_12/ffmpeg versioning=loose
-ENV VERSION_FFMPEG="7:5.1.4-0+deb12u1"
-# renovate: datasource=repology depName=debian_12/openssl versioning=loose
-ENV VERSION_OPENSSL="3.0.11-1~deb12u2"
-# renovate: datasource=repology depName=debian_12/python3-defaults versioning=loose
-ENV VERSION_PYTHON3="3.11.2-1+b1"
-# renovate: datasource=repology depName=debian_12/python-pip versioning=loose
-ENV VERSION_PYTHON3_PIP="23.0.1+dfsg-1"
+# renovate: datasource=repology depName=debian_12/ca-certificates
+ENV CA_CERTIFICATES_VERSION="20230311"
+# renovate: datasource=repology depName=debian_12/curl versioning=deb
+ENV CURL_VERSION="7.88.1-10+deb12u5"
+# renovate: datasource=repology depName=debian_12/ffmpeg versioning=deb
+ENV FFMPEG_VERSION="7:5.1.4-0+deb12u1"
+# renovate: datasource=repology depName=debian_12/openssl versioning=deb
+ENV OPENSSL_VERSION="3.0.11-1~deb12u2"
+# renovate: datasource=repology depName=debian_12/python3 versioning=deb
+ENV PYTHON3_VERSION="3.11.2-1+b1"
+# renovate: datasource=repology depName=debian_12/python3-pip versioning=deb
+ENV PYTHON3_PIP_VERSION="23.0.1+dfsg-1"
 
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
   && apt-get install --no-install-recommends --yes \
-  ca-certificates=${VERSION_CA_CERTIFICATES} \
-  curl=${VERSION_CURL} \
-  ffmpeg=${VERSION_FFMPEG} \
-  openssl=${VERSION_OPENSSL} \
-  python3=${VERSION_PYTHON3} \
-  python3-pip=${VERSION_PYTHON3_PIP} \
+  ca-certificates=${CA_CERTIFICATES_VERSION} \
+  curl=${CURL_VERSION} \
+  ffmpeg=${FFMPEG_VERSION} \
+  openssl=${OPENSSL_VERSION} \
+  python3=${PYTHON3_VERSION} \
+  python3-pip=${PYTHON3_PIP_VERSION} \
   sudo \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
 # ytdl-sub
-RUN python3 -m pip install -U --break-system-packages ytdl-sub==${VERSION_YTDLSUB}
+RUN python3 -m pip install -U --break-system-packages ytdl-sub==${YTDLSUB_VERSION}
 
 WORKDIR /config
 

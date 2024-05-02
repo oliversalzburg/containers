@@ -27,7 +27,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}/radarr
   REGISTRY: ghcr.io
   # renovate: datasource=github-releases depName=Radarr/Radarr versioning=loose
-  VERSION_RADARR: "5.4.6.8723"
+  RADARR_VERSION: "5.4.6.8723"
 
 jobs:
   build-publish:
@@ -61,14 +61,14 @@ jobs:
             org.opencontainers.image.title=radarr
             org.opencontainers.image.version=${{ github.ref_name }}
           tags: |
-            type=raw,value=${{ env.VERSION_RADARR }}
+            type=raw,value=${{ env.RADARR_VERSION }}
 
       - name: Build and push container image
         uses: int128/kaniko-action@a11cadbd6e2142b1f59544ef8c3d8eec065be6e8 # v1
         with:
           context: contexts/radarr
           build-args: |
-            VERSION_RADARR=${{ env.VERSION_RADARR }}
+            RADARR_VERSION=${{ env.RADARR_VERSION }}
           cache: true
           cache-repository: ${{ env.REGISTRY }}/${{ github.repository }}/cache
           push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}

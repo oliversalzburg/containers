@@ -27,7 +27,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}/sonarr
   REGISTRY: ghcr.io
   # renovate: datasource=github-releases depName=Sonarr/Sonarr versioning=loose
-  VERSION_SONARR: "4.0.4.1491"
+  SONARR_VERSION: "4.0.4.1491"
 
 jobs:
   build-publish:
@@ -61,14 +61,14 @@ jobs:
             org.opencontainers.image.title=sonarr
             org.opencontainers.image.version=${{ github.ref_name }}
           tags: |
-            type=raw,value=${{ env.VERSION_SONARR }}
+            type=raw,value=${{ env.SONARR_VERSION }}
 
       - name: Build and push container image
         uses: int128/kaniko-action@a11cadbd6e2142b1f59544ef8c3d8eec065be6e8 # v1
         with:
           context: contexts/sonarr
           build-args: |
-            VERSION_SONARR=${{ env.VERSION_SONARR }}
+            SONARR_VERSION=${{ env.SONARR_VERSION }}
           cache: true
           cache-repository: ${{ env.REGISTRY }}/${{ github.repository }}/cache
           push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}

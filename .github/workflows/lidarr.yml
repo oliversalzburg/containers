@@ -27,7 +27,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}/lidarr
   REGISTRY: ghcr.io
   # renovate: datasource=github-releases depName=Lidarr/Lidarr versioning=loose
-  VERSION_LIDARR: "2.2.5.4141"
+  LIDARR_VERSION: "2.2.5.4141"
 
 jobs:
   build-publish:
@@ -61,14 +61,14 @@ jobs:
             org.opencontainers.image.title=lidarr
             org.opencontainers.image.version=${{ github.ref_name }}
           tags: |
-            type=raw,value=${{ env.VERSION_LIDARR }}
+            type=raw,value=${{ env.LIDARR_VERSION }}
 
       - name: Build and push container image
         uses: int128/kaniko-action@a11cadbd6e2142b1f59544ef8c3d8eec065be6e8 # v1
         with:
           context: contexts/lidarr
           build-args: |
-            VERSION_LIDARR=${{ env.VERSION_LIDARR }}
+            LIDARR_VERSION=${{ env.LIDARR_VERSION }}
           cache: true
           cache-repository: ${{ env.REGISTRY }}/${{ github.repository }}/cache
           push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}

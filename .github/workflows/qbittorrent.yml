@@ -26,8 +26,8 @@ concurrency:
 env:
   IMAGE_NAME: ${{ github.repository }}/qbittorrent
   REGISTRY: ghcr.io
-  # renovate: datasource=github-tags depName=qbittorrent/qBittorrent versioning=semver-coerced
-  VERSION_QBITTORRENT: "release-4.5.5"
+  # renovate: datasource=github-tags depName=qbittorrent/qBittorrent extractVersion=^release-(?<version>.*)$
+  QBITTORRENT_VERSION: "4.5.5"
 
 jobs:
   build-publish:
@@ -61,14 +61,14 @@ jobs:
             org.opencontainers.image.title=qbittorrent
             org.opencontainers.image.version=${{ github.ref_name }}
           tags: |
-            type=raw,value=${{ env.VERSION_QBITTORRENT }}
+            type=raw,value=${{ env.QBITTORRENT_VERSION }}
 
       - name: Build and push container image
         uses: int128/kaniko-action@a11cadbd6e2142b1f59544ef8c3d8eec065be6e8 # v1
         with:
           context: contexts/qbittorrent
           build-args: |
-            VERSION_QBITTORRENT=${{ env.VERSION_QBITTORRENT }}
+            QBITTORRENT_VERSION=${{ env.QBITTORRENT_VERSION }}
           cache: true
           cache-repository: ${{ env.REGISTRY }}/${{ github.repository }}/cache
           push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}

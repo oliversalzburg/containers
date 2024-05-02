@@ -1,88 +1,88 @@
 FROM docker.io/library/debian:12.5-slim@sha256:155280b00ee0133250f7159b567a07d7cd03b1645714c3a7458b2287b0ca83cb
 
 # Versions of core components.
-ARG VERSION_AWS_CLI
-ARG VERSION_PYTHON
-ARG VERSION_TERRAFORM
+ARG AWS_CLI_VERSION
+ARG PYTHON_VERSION
+ARG TERRAFORM_VERSION
 
 WORKDIR /tmp
 
-# renovate: datasource=repology depName=debian_12/ca-certificates versioning=loose
-ENV VERSION_CA_CERTIFICATES="20230311"
-# renovate: datasource=repology depName=debian_12/curl versioning=loose
-ENV VERSION_CURL="7.88.1-10+deb12u5"
-# renovate: datasource=repology depName=debian_12/g++ versioning=loose
-ENV VERSION_GPP="4:12.2.0-3"
-# renovate: datasource=repology depName=debian_12/gcc versioning=loose
-ENV VERSION_GCC="4:12.2.0-3"
-# renovate: datasource=repology depName=debian_12/git versioning=loose
-ENV VERSION_GIT="1:2.39.2-1.1"
-# renovate: datasource=repology depName=debian_12/jq versioning=loose
-ENV VERSION_JQ="1.6-2.1"
-# renovate: datasource=repology depName=debian_12/glibc versioning=loose
-ENV VERSION_LIBC="2.36-9+deb12u6"
-# renovate: datasource=repology depName=debian_12/libffi-dev versioning=loose
-ENV VERSION_LIBFFI="3.4.4-1"
-# renovate: datasource=repology depName=debian_12/libbz2-dev versioning=loose
-ENV VERSION_LIBBZ2="1.0.8-5+b1"
-# renovate: datasource=repology depName=debian_12/libgdbm-compat-dev versioning=loose
-ENV VERSION_LIBGDBM="1.23-3"
-# renovate: datasource=repology depName=debian_12/liblzma-dev versioning=loose
-ENV VERSION_LIBLZMA="5.4.1-0.2"
-# renovate: datasource=repology depName=debian_12/libncurses-dev versioning=loose
-ENV VERSION_LIBNCURSES="6.4-4"
-# renovate: datasource=repology depName=debian_12/libreadline-dev versioning=loose
-ENV VERSION_LIBREADLINE="8.2-1.3"
-# renovate: datasource=repology depName=debian_12/libsqlite3-dev versioning=loose
-ENV VERSION_LIBSQLLITE3="3.40.1-2"
-# renovate: datasource=repology depName=debian_12/make-dfsg versioning=loose
-ENV VERSION_MAKE="4.3-4.1"
-# renovate: datasource=repology depName=debian_12/openssl versioning=loose
-ENV VERSION_OPENSSL="3.0.11-1~deb12u2"
-# renovate: datasource=repology depName=debian_12/sqlite3 versioning=loose
-ENV VERSION_SQLITE3="3.40.1-2"
-# renovate: datasource=repology depName=debian_12/tk-dev versioning=loose
-ENV VERSION_TK="8.6.13"
-# renovate: datasource=repology depName=debian_12/unzip versioning=loose
-ENV VERSION_UNZIP="6.0-28"
-# renovate: datasource=repology depName=debian_12/util-linux versioning=loose
-ENV VERSION_UUID="2.38.1-5+deb12u1"
-# renovate: datasource=repology depName=debian_12/zlib versioning=loose
-ENV VERSION_ZLIB="1:1.2.13.dfsg-1"
+# renovate: datasource=repology depName=debian_12/ca-certificates
+ENV CA_CERTIFICATES_VERSION="20230311"
+# renovate: datasource=repology depName=debian_12/curl versioning=deb
+ENV CURL_VERSION="7.88.1-10+deb12u5"
+# renovate: datasource=repology depName=debian_12/g++ versioning=deb
+ENV GPP_VERSION="4:12.2.0-3"
+# renovate: datasource=repology depName=debian_12/gcc versioning=deb
+ENV GCC_VERSION="4:12.2.0-3"
+# renovate: datasource=repology depName=debian_12/git versioning=deb
+ENV GIT_VERSION="1:2.39.2-1.1"
+# renovate: datasource=repology depName=debian_12/jq versioning=deb
+ENV JQ_VERSION="1.6-2.1"
+# renovate: datasource=repology depName=debian_12/glibc versioning=deb
+ENV LIBC_VERSION="2.36-9+deb12u6"
+# renovate: datasource=repology depName=debian_12/libffi-dev versioning=deb
+ENV LIBFFI_VERSION="3.4.4-1"
+# renovate: datasource=repology depName=debian_12/libbz2-dev versioning=deb
+ENV LIBBZ2_VERSION="1.0.8-5+b1"
+# renovate: datasource=repology depName=debian_12/libgdbm-compat-dev versioning=deb
+ENV LIBGDBM_VERSION="1.23-3"
+# renovate: datasource=repology depName=debian_12/liblzma-dev versioning=deb
+ENV LIBLZMA_VERSION="5.4.1-0.2"
+# renovate: datasource=repology depName=debian_12/libncurses-dev versioning=deb
+ENV LIBNCURSES_VERSION="6.4-4"
+# renovate: datasource=repology depName=debian_12/libreadline-dev versioning=deb
+ENV LIBREADLINE_VERSION="8.2-1.3"
+# renovate: datasource=repology depName=debian_12/libsqlite3-dev versioning=deb
+ENV LIBSQLLITE3_VERSION="3.40.1-2"
+# renovate: datasource=repology depName=debian_12/make-dfsg versioning=deb
+ENV MAKE_VERSION="4.3-4.1"
+# renovate: datasource=repology depName=debian_12/openssl versioning=deb
+ENV OPENSSL_VERSION="3.0.11-1~deb12u2"
+# renovate: datasource=repology depName=debian_12/sqlite3 versioning=deb
+ENV SQLITE3_VERSION="3.40.1-2"
+# renovate: datasource=repology depName=debian_12/tk-dev versioning=deb
+ENV TK_VERSION="8.6.13"
+# renovate: datasource=repology depName=debian_12/unzip versioning=deb
+ENV UNZIP_VERSION="6.0-28"
+# renovate: datasource=repology depName=debian_12/util-linux versioning=deb
+ENV UUID_VERSION="2.38.1-5+deb12u1"
+# renovate: datasource=repology depName=debian_12/zlib versioning=deb
+ENV ZLIB_VERSION="1:1.2.13.dfsg-1"
 
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
   && apt-get install --no-install-recommends --yes \
-  ca-certificates=${VERSION_CA_CERTIFICATES} \
-  curl=${VERSION_CURL} \
-  g++=${VERSION_GPP} \
-  gcc=${VERSION_GCC} \
-  git=${VERSION_GIT} \
-  jq=${VERSION_JQ} \
-  libc6-dev=${VERSION_LIBC} \
-  libffi-dev=${VERSION_LIBFFI} \
-  libbz2-dev=${VERSION_LIBBZ2} \
-  libgdbm-compat-dev=${VERSION_LIBGDBM} \
-  liblzma-dev=${VERSION_LIBLZMA} \
-  libncurses-dev=${VERSION_LIBNCURSES} \
-  libreadline-dev=${VERSION_LIBREADLINE} \
-  libsqlite3-dev=${VERSION_LIBSQLLITE3} \
-  libssl3=${VERSION_OPENSSL} \
-  libssl-dev=${VERSION_OPENSSL} \
-  make=${VERSION_MAKE} \
-  openssl=${VERSION_OPENSSL} \
-  sqlite3=${VERSION_SQLITE3} \
-  tk-dev=${VERSION_TK} \
-  unzip=${VERSION_UNZIP} \
-  uuid-dev=${VERSION_UUID} \
-  zlib1g-dev=${VERSION_ZLIB} \
+  ca-certificates=${CA_CERTIFICATES_VERSION} \
+  curl=${CURL_VERSION} \
+  g++=${GPP_VERSION} \
+  gcc=${GCC_VERSION} \
+  git=${GIT_VERSION} \
+  jq=${JQ_VERSION} \
+  libc6-dev=${LIBC_VERSION} \
+  libffi-dev=${LIBFFI_VERSION} \
+  libbz2-dev=${LIBBZ2_VERSION} \
+  libgdbm-compat-dev=${LIBGDBM_VERSION} \
+  liblzma-dev=${LIBLZMA_VERSION} \
+  libncurses-dev=${LIBNCURSES_VERSION} \
+  libreadline-dev=${LIBREADLINE_VERSION} \
+  libsqlite3-dev=${LIBSQLLITE3_VERSION} \
+  libssl3=${OPENSSL_VERSION} \
+  libssl-dev=${OPENSSL_VERSION} \
+  make=${MAKE_VERSION} \
+  openssl=${OPENSSL_VERSION} \
+  sqlite3=${SQLITE3_VERSION} \
+  tk-dev=${TK_VERSION} \
+  unzip=${UNZIP_VERSION} \
+  uuid-dev=${UUID_VERSION} \
+  zlib1g-dev=${ZLIB_VERSION} \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
 # AWS CLI
-RUN curl --silent "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${VERSION_AWS_CLI}.zip" --output "awscliv2.zip" \
+RUN curl --silent "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWS_CLI_VERSION}.zip" --output "awscliv2.zip" \
   # Quietly unzip
   && unzip -q awscliv2.zip \
   && ./aws/install \
@@ -93,11 +93,11 @@ RUN curl --silent "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${VERSIO
 
 # Python
 # hadolint ignore=DL3003
-RUN curl --silent "https://www.python.org/ftp/python/${VERSION_PYTHON}/Python-${VERSION_PYTHON}.tgz" --output "python3.tgz" \
+RUN curl --silent "https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz" --output "python3.tgz" \
   # Quietly untar
   && tar xzf python3.tgz \
   # Build and install
-  && cd "Python-${VERSION_PYTHON}" \
+  && cd "Python-${PYTHON_VERSION}" \
   && ./configure --enable-optimizations --with-ensurepip=install \
   && make --jobs $(nproc --all) \
   && make install \
@@ -105,13 +105,13 @@ RUN curl --silent "https://www.python.org/ftp/python/${VERSION_PYTHON}/Python-${
   && ln -s /usr/local/bin/pip3 /usr/local/bin/pip \
   && cd .. \
   # Delete temporary data
-  && rm -rf ./python3.tgz "./Python-${VERSION_PYTHON}" \
+  && rm -rf ./python3.tgz "./Python-${PYTHON_VERSION}" \
   # Print installed version
   && python3 --version \
   && pip --version
 
 # Terraform
-RUN curl --silent "https://releases.hashicorp.com/terraform/${VERSION_TERRAFORM}/terraform_${VERSION_TERRAFORM}_linux_amd64.zip" --output "terraform.zip" && \
+RUN curl --silent "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" --output "terraform.zip" && \
   # Quietly unzip
   unzip -q terraform.zip && \
   mv terraform /usr/bin/terraform && \

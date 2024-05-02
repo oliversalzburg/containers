@@ -33,12 +33,12 @@ jobs:
     if: github.event_name != 'pull_request' || github.actor != 'renovate[bot]'
     strategy:
       matrix:
-        VERSION_PYSPARK:
+        PYSPARK_VERSION:
           - "3.3.0"
-          # renovate: datasource=pypi depName=pyspark versioning=pep440
+          # renovate: datasource=pypi depName=pyspark versioning=semver
           - "3.5.1"
-        VERSION_PYTEST:
-          # renovate: datasource=pypi depName=pytest versioning=pep440
+        PYTEST_VERSION:
+          # renovate: datasource=pypi depName=pytest versioning=semver
           - "8.2.0"
 
     runs-on: ubuntu-22.04
@@ -64,7 +64,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           flavor: |
             latest=false
-            suffix=_pyspark-${{ matrix.VERSION_PYSPARK }}_pytest-${{ matrix.VERSION_PYTEST }}
+            suffix=_pyspark-${{ matrix.PYSPARK_VERSION }}_pytest-${{ matrix.PYTEST_VERSION }}
           labels: |
             org.opencontainers.image.description=PySpark Unit Testing
             org.opencontainers.image.revision=${{ github.sha }}
@@ -82,8 +82,8 @@ jobs:
         with:
           context: contexts/pyspark
           build-args: |
-            VERSION_PYSPARK=${{ matrix.VERSION_PYSPARK }}
-            VERSION_PYTEST=${{ matrix.VERSION_PYTEST }}
+            PYSPARK_VERSION=${{ matrix.PYSPARK_VERSION }}
+            PYTEST_VERSION=${{ matrix.PYTEST_VERSION }}
           cache: true
           cache-repository: ${{ env.REGISTRY }}/${{ github.repository }}/cache
           push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}

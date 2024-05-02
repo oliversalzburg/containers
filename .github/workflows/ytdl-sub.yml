@@ -27,7 +27,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}/ytdl-sub
   REGISTRY: ghcr.io
   # renovate: datasource=github-releases depName=jmbannon/ytdl-sub versioning=loose
-  VERSION_YTDLSUB: "2024.04.28"
+  YTDLSUB_VERSION: "2024.04.28"
 
 jobs:
   build-publish:
@@ -61,14 +61,14 @@ jobs:
             org.opencontainers.image.title=ytdl-sub
             org.opencontainers.image.version=${{ github.ref_name }}
           tags: |
-            type=raw,value=${{ env.VERSION_YTDLSUB }}
+            type=raw,value=${{ env.YTDLSUB_VERSION }}
 
       - name: Build and push container image
         uses: int128/kaniko-action@a11cadbd6e2142b1f59544ef8c3d8eec065be6e8 # v1
         with:
           context: contexts/ytdl-sub
           build-args: |
-            VERSION_YTDLSUB=${{ env.VERSION_YTDLSUB }}
+            YTDLSUB_VERSION=${{ env.YTDLSUB_VERSION }}
           cache: true
           cache-repository: ${{ env.REGISTRY }}/${{ github.repository }}/cache
           push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
