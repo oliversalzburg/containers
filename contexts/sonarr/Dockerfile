@@ -5,15 +5,15 @@ ARG VERSION_SONARR
 
 WORKDIR /tmp
 
-# renovate: datasource=repology depName=debian_12/ca-certificates versioning=loose
+# renovate: datasource=repology depName=debian_12/ca-certificates versioning=deb
 ENV VERSION_CA_CERTIFICATES="20230311"
-# renovate: datasource=repology depName=debian_12/curl versioning=loose
+# renovate: datasource=repology depName=debian_12/curl versioning=deb
 ENV VERSION_CURL="7.88.1-10+deb12u5"
-# renovate: datasource=repology depName=debian_12/icu versioning=loose
+# renovate: datasource=repology depName=debian_12/libicu72 versioning=deb
 ENV VERSION_ICU="72.1-3"
-# renovate: datasource=repology depName=debian_12/sqlite3 versioning=loose
+# renovate: datasource=repology depName=debian_12/sqlite3 versioning=deb
 ENV VERSION_LIBSQLITE="3.40.1-2"
-# renovate: datasource=repology depName=debian_12/openssl versioning=loose
+# renovate: datasource=repology depName=debian_12/openssl versioning=deb
 ENV VERSION_OPENSSL="3.0.11-1~deb12u2"
 
 # Install dependencies

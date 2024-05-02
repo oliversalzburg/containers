@@ -1,5 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>oliversalzburg/renovate-config:default"],
-  "dryRun": "lookup"
+  "extends": ["github>oliversalzburg/renovate-config:default"]
 }

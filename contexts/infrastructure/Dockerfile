@@ -7,47 +7,47 @@ ARG VERSION_TERRAFORM
 
 WORKDIR /tmp
 
-# renovate: datasource=repology depName=debian_12/ca-certificates versioning=loose
+# renovate: datasource=repology depName=debian_12/ca-certificates versioning=deb
 ENV VERSION_CA_CERTIFICATES="20230311"
-# renovate: datasource=repology depName=debian_12/curl versioning=loose
+# renovate: datasource=repology depName=debian_12/curl versioning=deb
 ENV VERSION_CURL="7.88.1-10+deb12u5"
-# renovate: datasource=repology depName=debian_12/g++ versioning=loose
+# renovate: datasource=repology depName=debian_12/g++ versioning=deb
 ENV VERSION_GPP="4:12.2.0-3"
-# renovate: datasource=repology depName=debian_12/gcc versioning=loose
+# renovate: datasource=repology depName=debian_12/gcc versioning=deb
 ENV VERSION_GCC="4:12.2.0-3"
-# renovate: datasource=repology depName=debian_12/git versioning=loose
+# renovate: datasource=repology depName=debian_12/git versioning=deb
 ENV VERSION_GIT="1:2.39.2-1.1"
-# renovate: datasource=repology depName=debian_12/jq versioning=loose
+# renovate: datasource=repology depName=debian_12/jq versioning=deb
 ENV VERSION_JQ="1.6-2.1"
-# renovate: datasource=repology depName=debian_12/glibc versioning=loose
+# renovate: datasource=repology depName=debian_12/glibc versioning=deb
 ENV VERSION_LIBC="2.36-9+deb12u6"
-# renovate: datasource=repology depName=debian_12/libffi-dev versioning=loose
+# renovate: datasource=repology depName=debian_12/libffi-dev versioning=deb
 ENV VERSION_LIBFFI="3.4.4-1"
-# renovate: datasource=repology depName=debian_12/libbz2-dev versioning=loose
+# renovate: datasource=repology depName=debian_12/libbz2-dev versioning=deb
 ENV VERSION_LIBBZ2="1.0.8-5+b1"
-# renovate: datasource=repology depName=debian_12/libgdbm-compat-dev versioning=loose
+# renovate: datasource=repology depName=debian_12/libgdbm-compat-dev versioning=deb
 ENV VERSION_LIBGDBM="1.23-3"
-# renovate: datasource=repology depName=debian_12/liblzma-dev versioning=loose
+# renovate: datasource=repology depName=debian_12/liblzma-dev versioning=deb
 ENV VERSION_LIBLZMA="5.4.1-0.2"
-# renovate: datasource=repology depName=debian_12/libncurses-dev versioning=loose
+# renovate: datasource=repology depName=debian_12/libncurses-dev versioning=deb
 ENV VERSION_LIBNCURSES="6.4-4"
-# renovate: datasource=repology depName=debian_12/libreadline-dev versioning=loose
+# renovate: datasource=repology depName=debian_12/libreadline-dev versioning=deb
 ENV VERSION_LIBREADLINE="8.2-1.3"
-# renovate: datasource=repology depName=debian_12/libsqlite3-dev versioning=loose
+# renovate: datasource=repology depName=debian_12/libsqlite3-dev versioning=deb
 ENV VERSION_LIBSQLLITE3="3.40.1-2"
-# renovate: datasource=repology depName=debian_12/make-dfsg versioning=loose
+# renovate: datasource=repology depName=debian_12/make-dfsg versioning=deb
 ENV VERSION_MAKE="4.3-4.1"
-# renovate: datasource=repology depName=debian_12/openssl versioning=loose
+# renovate: datasource=repology depName=debian_12/openssl versioning=deb
 ENV VERSION_OPENSSL="3.0.11-1~deb12u2"
-# renovate: datasource=repology depName=debian_12/sqlite3 versioning=loose
+# renovate: datasource=repology depName=debian_12/sqlite3 versioning=deb
 ENV VERSION_SQLITE3="3.40.1-2"
-# renovate: datasource=repology depName=debian_12/tk-dev versioning=loose
+# renovate: datasource=repology depName=debian_12/tk-dev versioning=deb
 ENV VERSION_TK="8.6.13"
-# renovate: datasource=repology depName=debian_12/unzip versioning=loose
+# renovate: datasource=repology depName=debian_12/unzip versioning=deb
 ENV VERSION_UNZIP="6.0-28"
-# renovate: datasource=repology depName=debian_12/util-linux versioning=loose
+# renovate: datasource=repology depName=debian_12/util-linux versioning=deb
 ENV VERSION_UUID="2.38.1-5+deb12u1"
-# renovate: datasource=repology depName=debian_12/zlib versioning=loose
+# renovate: datasource=repology depName=debian_12/zlib versioning=deb
 ENV VERSION_ZLIB="1:1.2.13.dfsg-1"
 
 # Install dependencies

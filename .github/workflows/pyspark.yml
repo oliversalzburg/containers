@@ -35,10 +35,10 @@ jobs:
       matrix:
         VERSION_PYSPARK:
           - "3.3.0"
-          # renovate: datasource=pypi depName=pyspark versioning=pep440
+          # renovate: datasource=pypi depName=pyspark versioning=semver
           - "3.5.1"
         VERSION_PYTEST:
-          # renovate: datasource=pypi depName=pytest versioning=pep440
+          # renovate: datasource=pypi depName=pytest versioning=semver
           - "8.2.0"
 
     runs-on: ubuntu-22.04
