@@ -12,7 +12,7 @@ ENV CA_CERTIFICATES_VERSION="20230311"
 # renovate: datasource=repology depName=debian_12/curl versioning=deb
 ENV CURL_VERSION="7.88.1-10+deb12u5"
 # renovate: datasource=repology depName=debian_12/gcc-12 versioning=deb
-ENV GCC_VERSION="12.2.0-13"
+ENV GCC_VERSION="12.2.0-14"
 # renovate: datasource=repology depName=debian_12/git versioning=deb
 ENV GIT_VERSION="1:2.39.2-1.1"
 # renovate: datasource=repology depName=debian_12/jq versioning=deb
