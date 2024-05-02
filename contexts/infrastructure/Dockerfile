@@ -11,10 +11,8 @@ WORKDIR /tmp
 ENV CA_CERTIFICATES_VERSION="20230311"
 # renovate: datasource=repology depName=debian_12/curl versioning=deb
 ENV CURL_VERSION="7.88.1-10+deb12u5"
-# renovate: datasource=repology depName=debian_12/g++ versioning=deb
-ENV GPP_VERSION="4:12.2.0-3"
-# renovate: datasource=repology depName=debian_12/gcc versioning=deb
-ENV GCC_VERSION="4:12.2.0-3"
+# renovate: datasource=repology depName=debian_12/gcc-12 versioning=deb
+ENV GCC_VERSION="12.2.0-13"
 # renovate: datasource=repology depName=debian_12/git versioning=deb
 ENV GIT_VERSION="1:2.39.2-1.1"
 # renovate: datasource=repology depName=debian_12/jq versioning=deb
@@ -57,8 +55,7 @@ RUN apt-get update \
   && apt-get install --no-install-recommends --yes \
   ca-certificates=${CA_CERTIFICATES_VERSION} \
   curl=${CURL_VERSION} \
-  g++=${GPP_VERSION} \
-  gcc=${GCC_VERSION} \
+  gcc-12=${GCC_VERSION} \
   git=${GIT_VERSION} \
   jq=${JQ_VERSION} \
   libc6-dev=${LIBC_VERSION} \
