@@ -7,47 +7,47 @@ ARG TERRAFORM_VERSION
 
 WORKDIR /tmp
 
-# renovate: datasource=repology depName=debian_12/ca-certificates
+# renovate: datasource=custom.apt depName=debian/bookworm/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20230311"
-# renovate: datasource=repology depName=debian_12/curl versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/curl versioning=deb
 ENV CURL_VERSION="7.88.1-10+deb12u5"
-# renovate: datasource=repology depName=debian_12/g++ versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/g++ versioning=deb
 ENV GPP_VERSION="4:12.2.0-3"
-# renovate: datasource=repology depName=debian_12/gcc versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/gcc versioning=deb
 ENV GCC_VERSION="4:12.2.0-3"
-# renovate: datasource=repology depName=debian_12/git versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/git versioning=deb
 ENV GIT_VERSION="1:2.39.2-1.1"
-# renovate: datasource=repology depName=debian_12/jq versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/jq versioning=deb
 ENV JQ_VERSION="1.6-2.1"
-# renovate: datasource=repology depName=debian_12/glibc versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/libc6-dev versioning=deb
 ENV LIBC_VERSION="2.36-9+deb12u6"
-# renovate: datasource=repology depName=debian_12/libffi-dev versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/libffi-dev versioning=deb
 ENV LIBFFI_VERSION="3.4.4-1"
-# renovate: datasource=repology depName=debian_12/libbz2-dev versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/libbz2-dev versioning=deb
 ENV LIBBZ2_VERSION="1.0.8-5+b1"
-# renovate: datasource=repology depName=debian_12/libgdbm-compat-dev versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/libgdbm-compat-dev versioning=deb
 ENV LIBGDBM_VERSION="1.23-3"
-# renovate: datasource=repology depName=debian_12/liblzma-dev versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/liblzma-dev versioning=deb
 ENV LIBLZMA_VERSION="5.4.1-0.2"
-# renovate: datasource=repology depName=debian_12/libncurses-dev versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/libncurses-dev versioning=deb
 ENV LIBNCURSES_VERSION="6.4-4"
-# renovate: datasource=repology depName=debian_12/libreadline-dev versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/libreadline-dev versioning=deb
 ENV LIBREADLINE_VERSION="8.2-1.3"
-# renovate: datasource=repology depName=debian_12/libsqlite3-dev versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/libsqlite3-dev versioning=deb
 ENV LIBSQLLITE3_VERSION="3.40.1-2"
-# renovate: datasource=repology depName=debian_12/make-dfsg versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/make versioning=deb
 ENV MAKE_VERSION="4.3-4.1"
-# renovate: datasource=repology depName=debian_12/openssl versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/openssl versioning=deb
 ENV OPENSSL_VERSION="3.0.11-1~deb12u2"
-# renovate: datasource=repology depName=debian_12/sqlite3 versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/sqlite3 versioning=deb
 ENV SQLITE3_VERSION="3.40.1-2"
-# renovate: datasource=repology depName=debian_12/tk-dev versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/tk-dev versioning=deb
 ENV TK_VERSION="8.6.13"
-# renovate: datasource=repology depName=debian_12/unzip versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/unzip versioning=deb
 ENV UNZIP_VERSION="6.0-28"
-# renovate: datasource=repology depName=debian_12/util-linux versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/util-linux versioning=deb
 ENV UUID_VERSION="2.38.1-5+deb12u1"
-# renovate: datasource=repology depName=debian_12/zlib versioning=deb
+# renovate: datasource=custom.apt depName=debian/bookworm/main/zlib1g-dev versioning=deb
 ENV ZLIB_VERSION="1:1.2.13.dfsg-1"
 
 # Install dependencies
