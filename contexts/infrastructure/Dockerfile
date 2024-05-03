@@ -12,7 +12,7 @@ ENV CA_CERTIFICATES_VERSION="20230311"
 # renovate: datasource=repology depName=debian_12/curl versioning=deb
 ENV CURL_VERSION="7.88.1-10+deb12u5"
 # renovate: datasource=custom.apt depName=debian/bookworm/main/g++ versioning=deb
-ENV GPP_VERSION="12.2.0-14"
+ENV GPP_VERSION="4:12.2.0-3"
 # renovate: datasource=custom.apt depName=debian/bookworm/main/gcc versioning=deb
 ENV GCC_VERSION="12.2.0-14"
 # renovate: datasource=repology depName=debian_12/git versioning=deb
