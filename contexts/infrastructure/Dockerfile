@@ -20,7 +20,7 @@ ENV GIT_VERSION="1:2.39.2-1.1"
 # renovate: datasource=custom.apt depName=debian-observable/bookworm/main/jq versioning=deb
 ENV JQ_VERSION="1.6-2.1"
 # renovate: datasource=custom.apt depName=debian-security/bookworm-security/main/libc6-dev versioning=deb
-ENV LIBC_VERSION="2.36-9+deb12u6"
+ENV LIBC_VERSION="2.36-9+deb12u7"
 # renovate: datasource=custom.apt depName=debian-observable/bookworm/main/libffi-dev versioning=deb
 ENV LIBFFI_VERSION="3.4.4-1"
 # renovate: datasource=custom.apt depName=debian-observable/bookworm/main/libbz2-dev versioning=deb
