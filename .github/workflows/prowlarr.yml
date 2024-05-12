@@ -27,7 +27,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}/prowlarr
   REGISTRY: ghcr.io
   # renovate: datasource=github-releases depName=Prowlarr/Prowlarr versioning=loose
-  PROWLARR_VERSION: "1.16.2.4435"
+  PROWLARR_VERSION: "1.17.2.4511"
 
 jobs:
   build-publish:
