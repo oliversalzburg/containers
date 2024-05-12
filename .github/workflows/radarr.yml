@@ -27,7 +27,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}/radarr
   REGISTRY: ghcr.io
   # renovate: datasource=github-releases depName=Radarr/Radarr versioning=loose
-  RADARR_VERSION: "5.4.6.8723"
+  RADARR_VERSION: "5.5.3.8819"
 
 jobs:
   build-publish:
