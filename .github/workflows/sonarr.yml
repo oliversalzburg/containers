@@ -64,7 +64,7 @@ jobs:
             type=raw,value=${{ env.SONARR_VERSION }}
 
       - name: Build and push container image
-        uses: int128/kaniko-action@a11cadbd6e2142b1f59544ef8c3d8eec065be6e8 # v1
+        uses: int128/kaniko-action@96914c73dc2d44cc9e56ea95b9d65852a116620a # v1
         with:
           context: contexts/sonarr
           build-args: |
