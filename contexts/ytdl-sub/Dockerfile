@@ -5,17 +5,17 @@ ARG YTDLSUB_VERSION
 
 WORKDIR /tmp
 
-# renovate: datasource=repology depName=debian_12/ca-certificates
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ca-certificates
 ENV CA_CERTIFICATES_VERSION="20230311"
-# renovate: datasource=repology depName=debian_12/curl versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/curl
 ENV CURL_VERSION="7.88.1-10+deb12u5"
-# renovate: datasource=repology depName=debian_12/ffmpeg versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ffmpeg
 ENV FFMPEG_VERSION="7:5.1.4-0+deb12u1"
-# renovate: datasource=repology depName=debian_12/openssl versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/openssl
 ENV OPENSSL_VERSION="3.0.11-1~deb12u2"
-# renovate: datasource=repology depName=debian_12/python3 versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/python3
 ENV PYTHON3_VERSION="3.11.2-1+b1"
-# renovate: datasource=repology depName=debian_12/python3-pip versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/python3-pip
 ENV PYTHON3_PIP_VERSION="23.0.1+dfsg-1"
 
 # Install dependencies
