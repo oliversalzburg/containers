@@ -7,47 +7,47 @@ ARG TERRAFORM_VERSION
 
 WORKDIR /tmp
 
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ca-certificates versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ca-certificates
 ENV CA_CERTIFICATES_VERSION="20230311"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/curl versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/curl
 ENV CURL_VERSION="7.88.1-10+deb12u5"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/g++ versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/g++
 ENV GPP_VERSION="4:12.2.0-3"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/gcc versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/gcc
 ENV GCC_VERSION="4:12.2.0-3"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/git versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/git
 ENV GIT_VERSION="1:2.39.2-1.1"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/jq versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/jq
 ENV JQ_VERSION="1.6-2.1"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libc6-dev versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libc6-dev
 ENV LIBC_VERSION="2.36-9+deb12u7"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libffi-dev versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libffi-dev
 ENV LIBFFI_VERSION="3.4.4-1"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libbz2-dev versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libbz2-dev
 ENV LIBBZ2_VERSION="1.0.8-5+b1"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libgdbm-compat-dev versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libgdbm-compat-dev
 ENV LIBGDBM_VERSION="1.23-3"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/liblzma-dev versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/liblzma-dev
 ENV LIBLZMA_VERSION="5.4.1-0.2"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libncurses-dev versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libncurses-dev
 ENV LIBNCURSES_VERSION="6.4-4"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libreadline-dev versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libreadline-dev
 ENV LIBREADLINE_VERSION="8.2-1.3"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libsqlite3-dev versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libsqlite3-dev
 ENV LIBSQLLITE3_VERSION="3.40.1-2"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/make versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/make
 ENV MAKE_VERSION="4.3-4.1"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/openssl versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/openssl
 ENV OPENSSL_VERSION="3.0.11-1~deb12u2"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/sqlite3 versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/sqlite3
 ENV SQLITE3_VERSION="3.40.1-2"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/tk-dev versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/tk-dev
 ENV TK_VERSION="8.6.13"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/unzip versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/unzip
 ENV UNZIP_VERSION="6.0-28"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/util-linux versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/util-linux
 ENV UUID_VERSION="2.38.1-5+deb12u1"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/zlib1g-dev versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/zlib1g-dev
 ENV ZLIB_VERSION="1:1.2.13.dfsg-1"
 
 # Install dependencies
