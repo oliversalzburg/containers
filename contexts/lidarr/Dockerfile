@@ -11,7 +11,7 @@ ENV CA_CERTIFICATES_VERSION="20230311"
 ENV CURL_VERSION="7.88.1-10+deb12u5"
 # renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libicu72
 ENV ICU_VERSION="72.1-3"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libsqlite3
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libsqlite3-0
 ENV LIBSQLITE_VERSION="3.40.1-2"
 # renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/openssl
 ENV OPENSSL_VERSION="3.0.11-1~deb12u2"
