@@ -5,15 +5,15 @@ ARG SONARR_VERSION
 
 WORKDIR /tmp
 
-# renovate: datasource=repology depName=debian_12/ca-certificates
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ca-certificates
 ENV CA_CERTIFICATES_VERSION="20230311"
-# renovate: datasource=repology depName=debian_12/curl versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/curl
 ENV CURL_VERSION="7.88.1-10+deb12u5"
-# renovate: datasource=repology depName=debian_12/libicu72 versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libicu72
 ENV ICU_VERSION="72.1-3"
-# renovate: datasource=repology depName=debian_12/sqlite3 versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libsqlite3-0
 ENV LIBSQLITE_VERSION="3.40.1-2"
-# renovate: datasource=repology depName=debian_12/openssl versioning=deb
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/openssl
 ENV OPENSSL_VERSION="3.0.11-1~deb12u2"
 
 # Install dependencies
