@@ -5,15 +5,15 @@ ARG RADARR_VERSION
 
 WORKDIR /tmp
 
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ca-certificates
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20230311"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/curl
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/curl versioning=deb
 ENV CURL_VERSION="7.88.1-10+deb12u5"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libicu72
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libicu72 versioning=deb
 ENV ICU_VERSION="72.1-3"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libsqlite3-0
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/libsqlite3-0 versioning=deb
 ENV LIBSQLITE_VERSION="3.40.1-2"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/openssl
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/openssl versioning=deb
 ENV OPENSSL_VERSION="3.0.11-1~deb12u2"
 
 # Install dependencies

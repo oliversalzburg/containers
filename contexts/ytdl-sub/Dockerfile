@@ -5,17 +5,17 @@ ARG YTDLSUB_VERSION
 
 WORKDIR /tmp
 
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ca-certificates
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20230311"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/curl
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/curl versioning=deb
 ENV CURL_VERSION="7.88.1-10+deb12u5"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ffmpeg
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ffmpeg versioning=deb
 ENV FFMPEG_VERSION="7:5.1.4-0+deb12u1"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/openssl
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/openssl versioning=deb
 ENV OPENSSL_VERSION="3.0.11-1~deb12u2"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/python3
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/python3 versioning=deb
 ENV PYTHON3_VERSION="3.11.2-1+b1"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/python3-pip
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/python3-pip versioning=deb
 ENV PYTHON3_PIP_VERSION="23.0.1+dfsg-1"
 
 # Install dependencies

@@ -9,19 +9,19 @@ ARG PYTEST_VERSION
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
 
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ca-certificates
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20230311"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/git
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/git versioning=deb
 ENV GIT_VERSION="1:2.39.2-1.1"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/openjdk-17-jdk
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/openjdk-17-jdk versioning=deb
 ENV OPEN_JDK_VERSION="17.0.11+9-1~deb12u1"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/python3
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/python3 versioning=deb
 ENV PYTHON3_VERSION="3.11.2-1+b1"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/python3-pandas
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/python3-pandas versioning=deb
 ENV PYTHON3_PANDAS_VERSION="1.5.3+dfsg-2"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/python3-pip
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/python3-pip versioning=deb
 ENV PYTHON3_PIP_VERSION="23.0.1+dfsg-1"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/pipx
+# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/pipx versioning=deb
 ENV PYTHON3_PIPX_VERSION="1.1.0-1"
 
 # Install as much as possible from APT.
