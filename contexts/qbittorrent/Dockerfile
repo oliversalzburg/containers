@@ -24,7 +24,7 @@ ENV OPENSSL_VERSION="3.0.13-0ubuntu3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qtbase5-dev versioning=deb
 ENV QTBASE_VERSION="5.15.8+dfsg-11"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qttools5-dev versioning=deb
-ENV QTTOOLS_VERSION="5.15.8-2"
+ENV QTTOOLS_VERSION="5.15.13-1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/zlib1g-dev versioning=deb
 ENV ZLIB_VERSION="1:1.3.dfsg-3.1ubuntu2"
 
