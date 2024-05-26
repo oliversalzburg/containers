@@ -25,9 +25,9 @@ ENV MAKE_VERSION="4.3-4.1build2"
 ENV OPENSSL_VERSION="3.0.13-0ubuntu3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/python3 versioning=deb
 ENV PYTHON3_VERSION="1.0.0"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qtbase6-dev versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qt6-base-dev versioning=deb
 ENV QTBASE_VERSION="5.15.13+dfsg-1ubuntu1"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qttools6-dev versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qt6-tools-dev versioning=deb
 ENV QTTOOLS_VERSION="5.15.13-1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/zlib1g-dev versioning=deb
 ENV ZLIB_VERSION="1:1.3.dfsg-3.1ubuntu2"
@@ -49,8 +49,8 @@ RUN apt-get update \
   make=${MAKE_VERSION} \
   openssl=${OPENSSL_VERSION} \
   python3=${PYTHON_VERSION} \
-  qtbase6-dev=${QTBASE_VERSION} \
-  qttools6-dev=${QTTOOLS_VERSION} \
+  qt6-base-dev=${QTBASE_VERSION} \
+  qt6-tools-dev=${QTTOOLS_VERSION} \
   zlib1g-dev=${ZLIB_VERSION} \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
