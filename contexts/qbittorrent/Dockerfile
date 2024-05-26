@@ -26,7 +26,7 @@ ENV OPENSSL_VERSION="3.0.13-0ubuntu3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/python3 versioning=deb
 ENV PYTHON3_VERSION="3.12.3-0ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qt6-base-dev versioning=deb
-ENV QTBASE_VERSION="5.15.13+dfsg-1ubuntu1"
+ENV QTBASE_VERSION="6.4.2+dfsg-21.1build5"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qt6-tools-dev versioning=deb
 ENV QTTOOLS_VERSION="5.15.13-1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/zlib1g-dev versioning=deb
