@@ -15,15 +15,15 @@ ENV CURL_VERSION="7.88.1-10+deb12u5"
 ENV GPP_VERSION="4:12.2.0-3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/gcc versioning=deb
 ENV GCC_VERSION="4:12.2.0-3"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libtorrent-rasterbar-dev versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/libtorrent-rasterbar-dev versioning=deb
 ENV LIBTORRENT_RASTERBAR_VERSION="2.0.8-1+b1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/make versioning=deb
 ENV MAKE_VERSION="4.3-4.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
 ENV OPENSSL_VERSION="3.0.13-0ubuntu3"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/qtbase5-dev versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qtbase5-dev versioning=deb
 ENV QTBASE_VERSION="5.15.8+dfsg-11"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/qttools5-dev versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qttools5-dev versioning=deb
 ENV QTTOOLS_VERSION="5.15.8-2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/zlib1g-dev versioning=deb
 ENV ZLIB_VERSION="1:1.3.dfsg-3.1ubuntu2"
