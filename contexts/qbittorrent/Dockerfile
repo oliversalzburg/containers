@@ -8,7 +8,7 @@ WORKDIR /tmp
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20230311"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/cmake versioning=deb
-ENV CMAKE_VERSION="3.25.1-1"
+ENV CMAKE_VERSION="3.28.3-1build7"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/curl versioning=deb
 ENV CURL_VERSION="7.88.1-10+deb12u5"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/g++ versioning=deb
