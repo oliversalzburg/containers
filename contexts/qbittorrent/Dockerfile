@@ -15,15 +15,19 @@ ENV CURL_VERSION="8.5.0-2ubuntu10.1"
 ENV GPP_VERSION="4:13.2.0-7ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/gcc versioning=deb
 ENV GCC_VERSION="4:13.2.0-7ubuntu1"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libboost-dev versioning=deb
+ENV LIBBOOST_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/libtorrent-rasterbar-dev versioning=deb
 ENV LIBTORRENT_RASTERBAR_VERSION="2.0.10-1.1build2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/make versioning=deb
 ENV MAKE_VERSION="4.3-4.1build2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
 ENV OPENSSL_VERSION="3.0.13-0ubuntu3"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qtbase5-dev versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/python3 versioning=deb
+ENV PYTHON3_VERSION="1.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qt6-base-dev versioning=deb
 ENV QTBASE_VERSION="5.15.13+dfsg-1ubuntu1"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qttools5-dev versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qt6-tools-dev versioning=deb
 ENV QTTOOLS_VERSION="5.15.13-1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/zlib1g-dev versioning=deb
 ENV ZLIB_VERSION="1:1.3.dfsg-3.1ubuntu2"
@@ -38,14 +42,15 @@ RUN apt-get update \
   curl=${CURL_VERSION} \
   g++=${GPP_VERSION} \
   gcc=${GCC_VERSION} \
-  libboost-dev \
+  libboost-dev=${LIBBOOST_VERSION} \
   libssl3=${OPENSSL_VERSION} \
   libssl-dev=${OPENSSL_VERSION} \
   libtorrent-rasterbar-dev=${LIBTORRENT_RASTERBAR_VERSION} \
   make=${MAKE_VERSION} \
   openssl=${OPENSSL_VERSION} \
-  qtbase5-dev=${QTBASE_VERSION} \
-  qttools5-dev=${QTTOOLS_VERSION} \
+  python3=${PYTHON_VERSION} \
+  qt6-base-dev=${QTBASE_VERSION} \
+  qt6-tools-dev=${QTTOOLS_VERSION} \
   zlib1g-dev=${ZLIB_VERSION} \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
