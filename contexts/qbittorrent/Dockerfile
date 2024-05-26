@@ -16,7 +16,7 @@ ENV GPP_VERSION="4:12.2.0-3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/gcc versioning=deb
 ENV GCC_VERSION="4:12.2.0-3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/libtorrent-rasterbar-dev versioning=deb
-ENV LIBTORRENT_RASTERBAR_VERSION="2.0.8-1+b1"
+ENV LIBTORRENT_RASTERBAR_VERSION="2.0.10-1.1build2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/make versioning=deb
 ENV MAKE_VERSION="4.3-4.1build2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
