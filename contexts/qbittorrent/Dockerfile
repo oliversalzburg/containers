@@ -15,7 +15,7 @@ ENV CURL_VERSION="8.5.0-2ubuntu10.1"
 ENV GPP_VERSION="4:13.2.0-7ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/gcc versioning=deb
 ENV GCC_VERSION="4:13.2.0-7ubuntu1"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/libboost-dev versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libboost-dev versioning=deb
 ENV LIBBOOST_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/libtorrent-rasterbar-dev versioning=deb
 ENV LIBTORRENT_RASTERBAR_VERSION="2.0.10-1.1build2"
