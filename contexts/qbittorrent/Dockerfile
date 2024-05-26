@@ -48,7 +48,7 @@ RUN apt-get update \
   libtorrent-rasterbar-dev=${LIBTORRENT_RASTERBAR_VERSION} \
   make=${MAKE_VERSION} \
   openssl=${OPENSSL_VERSION} \
-  python3=${PYTHON_VERSION} \
+  python3=${PYTHON3_VERSION} \
   qt6-base-dev=${QTBASE_VERSION} \
   qt6-tools-dev=${QTTOOLS_VERSION} \
   zlib1g-dev=${ZLIB_VERSION} \
