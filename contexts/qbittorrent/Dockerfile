@@ -10,7 +10,7 @@ ENV CA_CERTIFICATES_VERSION="20230311"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/cmake versioning=deb
 ENV CMAKE_VERSION="3.28.3-1build7"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/curl versioning=deb
-ENV CURL_VERSION="7.88.1-10+deb12u5"
+ENV CURL_VERSION="8.5.0-2ubuntu10.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/g++ versioning=deb
 ENV GPP_VERSION="4:12.2.0-3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/gcc versioning=deb
