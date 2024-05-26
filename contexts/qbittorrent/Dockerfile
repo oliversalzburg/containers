@@ -28,7 +28,7 @@ ENV PYTHON3_VERSION="3.12.3-0ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qt6-base-dev versioning=deb
 ENV QTBASE_VERSION="5.15.13+dfsg-1ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qt6-tools-dev versioning=deb
-ENV QTTOOLS_VERSION="5.15.13-1"
+ENV QTTOOLS_VERSION="6.4.2-3build3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/zlib1g-dev versioning=deb
 ENV ZLIB_VERSION="1:1.3.dfsg-3.1ubuntu2"
 
