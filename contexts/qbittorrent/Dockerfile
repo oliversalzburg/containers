@@ -20,7 +20,7 @@ ENV LIBTORRENT_RASTERBAR_VERSION="2.0.8-1+b1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/make versioning=deb
 ENV MAKE_VERSION="4.3-4.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
-ENV OPENSSL_VERSION="3.0.11-1~deb12u2"
+ENV OPENSSL_VERSION="3.0.13-0ubuntu3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/qtbase5-dev versioning=deb
 ENV QTBASE_VERSION="5.15.8+dfsg-11"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/qttools5-dev versioning=deb
