@@ -65,8 +65,7 @@ RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive
   && ./configure --disable-gui \
   && make --jobs $(nproc --all) \
   && make install \
-  && rm -rf /tmp/* \
-  && ln --symbolic --no-target-directory /dev/stdout /tmp/qbittorrent.log
+  && rm -rf /tmp/*
 
 WORKDIR /config
 
