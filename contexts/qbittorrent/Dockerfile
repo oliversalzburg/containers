@@ -50,6 +50,7 @@ RUN apt-get update \
   openssl=${OPENSSL_VERSION} \
   python3=${PYTHON3_VERSION} \
   qtbase5-dev=${QTBASE_VERSION} \
+  qtbase5-private-dev=${QTBASE_VERSION} \
   qttools5-dev=${QTTOOLS_VERSION} \
   zlib1g-dev=${ZLIB_VERSION} \
   && apt-get clean \
@@ -62,7 +63,7 @@ RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive
   # Build qBittorrent
   && cd "qBittorrent-release-${QBITTORRENT_VERSION}" \
   && ./configure --disable-gui \
-  && make \
+  && make --jobs $(nproc --all) \
   && make install \
   && rm -rf /tmp/* \
   && ln --symbolic --no-target-directory /dev/stdout /tmp/qbittorrent.log
