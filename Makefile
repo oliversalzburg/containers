@@ -17,7 +17,7 @@ prowlarr:
 		.
 qbittorrent:
 	cd contexts/qbittorrent; podman build \
-		--build-arg QBITTORRENT_VERSION=4.5.5 \
+		--build-arg QBITTORRENT_VERSION=4.6.4 \
 		--tag qbittorrent \
 		.
 run-qbittorrent:

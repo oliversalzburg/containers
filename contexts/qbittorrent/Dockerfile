@@ -16,7 +16,7 @@ ENV GPP_VERSION="4:13.2.0-7ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/gcc versioning=deb
 ENV GCC_VERSION="4:13.2.0-7ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libboost-dev versioning=deb
-ENV LIBBOOST_VERSION="1.83.0.1ubuntu2"
+ENV LIBBOOST_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/libtorrent-rasterbar-dev versioning=deb
 ENV LIBTORRENT_RASTERBAR_VERSION="2.0.10-1.1build2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/make versioning=deb
@@ -49,8 +49,8 @@ RUN apt-get update \
   make=${MAKE_VERSION} \
   openssl=${OPENSSL_VERSION} \
   python3=${PYTHON3_VERSION} \
-  qt6-base-dev=${QTBASE_VERSION} \
-  qt6-tools-dev=${QTTOOLS_VERSION} \
+  qtbase5-dev=${QTBASE_VERSION} \
+  qttools5-dev=${QTTOOLS_VERSION} \
   zlib1g-dev=${ZLIB_VERSION} \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
@@ -61,9 +61,9 @@ RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive
   && tar xzf qbittorrent.tar.gz \
   # Build qBittorrent
   && cd "qBittorrent-release-${QBITTORRENT_VERSION}" \
-  && cmake -B build -DCMAKE_BUILD_TYPE=Release -DGUI=OFF \
-  && cmake --build build --parallel \
-  && cmake --install build \
+  && ./configure --disable-gui \
+  && make \
+  && make install \
   && rm -rf /tmp/* \
   && ln --symbolic --no-target-directory /dev/stdout /tmp/qbittorrent.log
 
