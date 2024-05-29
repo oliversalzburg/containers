@@ -22,7 +22,7 @@ ENV JQ_VERSION="1.6-2.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libc6-dev versioning=deb
 ENV LIBC_VERSION="2.36-9+deb12u7"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libffi-dev versioning=deb
-ENV LIBFFI_VERSION="3.4.4-1"
+ENV LIBFFI_VERSION="3.4.6-1build1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libbz2-dev versioning=deb
 ENV LIBBZ2_VERSION="1.0.8-5.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libgdbm-compat-dev versioning=deb
