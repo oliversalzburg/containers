@@ -26,32 +26,48 @@ concurrency:
 env:
   IMAGE_NAME: ${{ github.repository }}/infrastructure
   REGISTRY: ghcr.io
+  # renovate: datasource=github-tags depName=aws/aws-cli versioning=semver
+  AWS_CLI_VERSION: "2.15.42"
+  # renovate: datasource=github-tags depName=python/cpython versioning=semver-coerced
+  PYTHON_VERSION: "3.12.3"
+  # renovate: datasource=github-releases depName=hashicorp/terraform versioning=hashicorp
+  TERRAFORM_VERSION: "1.8.2"
 
 jobs:
+  versions:
+    runs-on: ubuntu-22.04
+    outputs:
+      AWS_CLI_VERSION: ${{ env.AWS_CLI_VERSION }}
+      PYTHON_VERSION: ${{ env.PYTHON_VERSION }}
+      TERRAFORM_VERSION: ${{ env.TERRAFORM_VERSION }}
+    steps:
+      - name: Generate outputs
+        run: |
+          echo "AWS_CLI_VERSION=${{ env.AWS_CLI_VERSION }}" >> $GITHUB_OUTPUT
+          echo "PYTHON_VERSION=${{ env.PYTHON_VERSION }}" >> $GITHUB_OUTPUT
+          echo "TERRAFORM_VERSION=${{ env.TERRAFORM_VERSION }}" >> $GITHUB_OUTPUT
+
   build-publish:
+    needs: versions
     # We don't need to run this on Renovate PRs. We will already test the `renovate/foo` branch.
     if: github.event_name != 'pull_request' || github.actor != 'renovate[bot]'
     strategy:
       matrix:
         AWS_CLI_VERSION:
-          # renovate: datasource=github-tags depName=aws/aws-cli versioning=semver
-          - "2.15.42"
+          - ${{ needs.versions.outputs.AWS_CLI_VERSION }}
         # https://endoflife.date/python
         PYTHON_VERSION:
           - "3.8.19" # latest 3.8
           - "3.9.19" # latest 3.9
           - "3.10.14" # latest 3.10
           - "3.11.9" # latest 3.11
-          # renovate: datasource=github-tags depName=python/cpython versioning=semver-coerced
-          - "3.12.3"
+          - ${{ needs.versions.outputs.PYTHON_VERSION }}
         # https://endoflife.date/terraform
         TERRAFORM_VERSION:
           - "1.7.5"
-          # renovate: datasource=github-releases depName=hashicorp/terraform versioning=hashicorp
-          - "1.8.2"
+          - ${{ needs.versions.outputs.TERRAFORM_VERSION }}
 
     runs-on: ubuntu-22.04
-    # Container needs to be able to read repo and publish packages.
     permissions:
       attestations: write
       contents: read

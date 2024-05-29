@@ -42,9 +42,10 @@ jobs:
           - "8.2.0"
 
     runs-on: ubuntu-22.04
-    # Container needs to be able to read repo and publish packages.
     permissions:
+      attestations: write
       contents: read
+      id-token: write
       packages: write
     steps:
       - name: Checkout
