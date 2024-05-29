@@ -16,7 +16,7 @@ ENV GPP_VERSION="4:13.2.0-7ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/gcc versioning=deb
 ENV GCC_VERSION="4:13.2.0-7ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/git versioning=deb
-ENV GIT_VERSION="1:2.43.0-1ubuntu7"
+ENV GIT_VERSION="1:2.43.0-1ubuntu7.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/jq versioning=deb
 ENV JQ_VERSION="1.7.1-3build1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libc6-dev versioning=deb
