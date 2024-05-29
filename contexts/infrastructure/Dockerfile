@@ -36,7 +36,7 @@ ENV LIBREADLINE_VERSION="8.2-4build1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libsqlite3-dev versioning=deb
 ENV LIBSQLLITE3_VERSION="3.40.1-2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/make versioning=deb
-ENV MAKE_VERSION="4.3-4.1"
+ENV MAKE_VERSION="4.3-4.1build2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
 ENV OPENSSL_VERSION="3.0.11-1~deb12u2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/sqlite3 versioning=deb
