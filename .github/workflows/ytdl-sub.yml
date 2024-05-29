@@ -27,7 +27,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}/ytdl-sub
   REGISTRY: ghcr.io
   # renovate: datasource=github-releases depName=jmbannon/ytdl-sub versioning=loose
-  YTDLSUB_VERSION: "2024.05.11"
+  YTDLSUB_VERSION: "2024.05.29"
 
 jobs:
   build-publish:
