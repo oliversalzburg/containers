@@ -34,9 +34,10 @@ jobs:
     # We don't need to run this on Renovate PRs. We will already test the `renovate/foo` branch.
     if: github.event_name != 'pull_request' || github.actor != 'renovate[bot]'
     runs-on: ubuntu-22.04
-    # Container needs to be able to read repo and publish packages.
     permissions:
+      attestations: write
       contents: read
+      id-token: write
       packages: write
     steps:
       - name: Checkout
@@ -65,6 +66,7 @@ jobs:
 
       - name: Build and push container image
         uses: int128/kaniko-action@96914c73dc2d44cc9e56ea95b9d65852a116620a # v1
+        id: push
         with:
           context: contexts/sonarr
           build-args: |
@@ -74,6 +76,25 @@ jobs:
           push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ steps.meta.outputs.tags }}
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0
+        if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
+        with:
+          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.SONARR_VERSION }}
+          format: spdx-json
+          output-file: sbom.spdx.json
+          upload-artifact: false
+          upload-release-assets: false
+      - name: Attest SBOM
+        uses: actions/attest-sbom@aaa2d0a82e0853a3aea99fcf632b9b61cdb534c2 # v1
+        if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
+        id: attest
+        with:
+          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          subject-digest: ${{ steps.push.outputs.digest }}
+          sbom-path: sbom.spdx.json
+          push-to-registry: true
 
   qa-successful:
     runs-on: ubuntu-22.04
