@@ -129,7 +129,7 @@ jobs:
           fail-build: false
       - name: upload Anchore scan SARIF report
         if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
-        uses: github/codeql-action/upload-sarif@162eb1e32abe518e88bd229ebc8784a533ceaa51 # v2
+        uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
