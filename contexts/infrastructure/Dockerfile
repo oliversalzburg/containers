@@ -20,7 +20,7 @@ ENV GIT_VERSION="1:2.43.0-1ubuntu7"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/jq versioning=deb
 ENV JQ_VERSION="1.7.1-3build1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libc6-dev versioning=deb
-ENV LIBC_VERSION="2.36-9+deb12u7"
+ENV LIBC_VERSION="2.39-0ubuntu8.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libffi-dev versioning=deb
 ENV LIBFFI_VERSION="3.4.6-1build1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libbz2-dev versioning=deb
