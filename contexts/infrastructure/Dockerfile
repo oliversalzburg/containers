@@ -34,7 +34,7 @@ ENV LIBNCURSES_VERSION="6.4+20240113-1ubuntu2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libreadline-dev versioning=deb
 ENV LIBREADLINE_VERSION="8.2-4build1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libsqlite3-dev versioning=deb
-ENV LIBSQLLITE3_VERSION="3.40.1-2"
+ENV LIBSQLLITE3_VERSION="3.45.1-1ubuntu2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/make versioning=deb
 ENV MAKE_VERSION="4.3-4.1build2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
