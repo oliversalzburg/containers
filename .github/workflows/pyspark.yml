@@ -62,9 +62,6 @@ jobs:
         uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          flavor: |
-            latest=false
-            suffix=_pyspark-${{ matrix.PYSPARK_VERSION }}_pytest-${{ matrix.PYTEST_VERSION }}
           labels: |
             org.opencontainers.image.description=PySpark Unit Testing
             org.opencontainers.image.revision=${{ github.sha }}
@@ -72,13 +69,11 @@ jobs:
             org.opencontainers.image.title=pyspark
             org.opencontainers.image.version=${{ github.ref_name }}
           tags: |
-            type=edge,branch=main
-            type=ref,event=branch,enable=${{ github.ref_name != 'main' }}
-            type=ref,event=pr
-            type=ref,event=tag
+            type=raw,value=pyspark-${{ matrix.PYSPARK_VERSION }}_pytest-${{ matrix.PYTEST_VERSION }}
 
       - name: Build and push container image
         uses: int128/kaniko-action@96914c73dc2d44cc9e56ea95b9d65852a116620a # v1
+        id: push
         with:
           context: contexts/pyspark
           build-args: |
@@ -89,6 +84,25 @@ jobs:
           push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ steps.meta.outputs.tags }}
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0
+        if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
+        with:
+          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:pyspark-${{ matrix.PYSPARK_VERSION }}_pytest-${{ matrix.PYTEST_VERSION }}
+          format: spdx-json
+          output-file: sbom.spdx.json
+          upload-artifact: false
+          upload-release-assets: false
+      - name: Attest SBOM
+        uses: actions/attest-sbom@aaa2d0a82e0853a3aea99fcf632b9b61cdb534c2 # v1
+        if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
+        id: attest
+        with:
+          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          subject-digest: ${{ steps.push.outputs.digest }}
+          sbom-path: sbom.spdx.json
+          push-to-registry: true
 
   qa-successful:
     runs-on: ubuntu-22.04
