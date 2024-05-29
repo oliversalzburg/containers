@@ -106,7 +106,7 @@ jobs:
       #    push-to-registry: true
 
       - name: Generate SBOM
-        uses: anchore/sbom-action@v0
+        uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0
         if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
         with:
           image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:terraform-${{ matrix.TERRAFORM_VERSION }}_awcli-${{ matrix.AWS_CLI_VERSION }}_python-${{ matrix.PYTHON_VERSION }}
@@ -115,7 +115,7 @@ jobs:
           upload-artifact: false
           upload-release-assets: false
       - name: Attest
-        uses: actions/attest-sbom@v1
+        uses: actions/attest-sbom@aaa2d0a82e0853a3aea99fcf632b9b61cdb534c2 # v1
         if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
         id: attest
         with:
