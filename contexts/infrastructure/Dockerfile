@@ -42,7 +42,7 @@ ENV OPENSSL_VERSION="3.0.13-0ubuntu3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/sqlite3 versioning=deb
 ENV SQLITE3_VERSION="3.40.1-2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/tk-dev versioning=deb
-ENV TK_VERSION="8.6.13"
+ENV TK_VERSION="8.6.14build1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/unzip versioning=deb
 ENV UNZIP_VERSION="6.0-28"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/util-linux versioning=deb
