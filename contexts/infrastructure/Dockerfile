@@ -44,7 +44,7 @@ ENV SQLITE3_VERSION="3.40.1-2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/tk-dev versioning=deb
 ENV TK_VERSION="8.6.14build1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/unzip versioning=deb
-ENV UNZIP_VERSION="6.0-28"
+ENV UNZIP_VERSION="6.0-28ubuntu4"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/util-linux versioning=deb
 ENV UUID_VERSION="2.38.1-5+deb12u1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/zlib1g-dev versioning=deb
