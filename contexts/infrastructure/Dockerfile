@@ -26,7 +26,7 @@ ENV LIBFFI_VERSION="3.4.4-1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libbz2-dev versioning=deb
 ENV LIBBZ2_VERSION="1.0.8-5+b1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libgdbm-compat-dev versioning=deb
-ENV LIBGDBM_VERSION="1.23-3"
+ENV LIBGDBM_VERSION="1.23-5.1build1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/liblzma-dev versioning=deb
 ENV LIBLZMA_VERSION="5.4.1-0.2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libncurses-dev versioning=deb
