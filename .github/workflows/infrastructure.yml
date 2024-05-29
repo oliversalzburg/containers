@@ -31,7 +31,7 @@ env:
   # renovate: datasource=github-tags depName=python/cpython versioning=semver-coerced
   PYTHON_VERSION: "3.12.3"
   # renovate: datasource=github-releases depName=hashicorp/terraform versioning=hashicorp
-  TERRAFORM_VERSION: "1.8.2"
+  TERRAFORM_VERSION: "1.8.4"
 
 jobs:
   versions:
