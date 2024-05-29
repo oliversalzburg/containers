@@ -68,21 +68,17 @@ jobs:
           - ${{ needs.versions.outputs.TERRAFORM_VERSION }}
 
     runs-on: ubuntu-22.04
+    env:
+      IMAGE_TAG: terraform-${{ matrix.TERRAFORM_VERSION }}_awcli-${{ matrix.AWS_CLI_VERSION }}_python-${{ matrix.PYTHON_VERSION }}
     permissions:
       attestations: write
       contents: read
       id-token: write
       packages: write
+      security-events: write
     steps:
       - name: Checkout
         uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
-
-      - name: Log in to the container registry
-        uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -96,10 +92,58 @@ jobs:
             org.opencontainers.image.title=infrastructure
             org.opencontainers.image.version=${{ github.ref_name }}
           tags: |
-            type=raw,value=terraform-${{ matrix.TERRAFORM_VERSION }}_awcli-${{ matrix.AWS_CLI_VERSION }}_python-${{ matrix.PYTHON_VERSION }}
+            type=raw,value=${{ env.IMAGE_TAG }}
 
-      - name: Build and push container image
-        uses: int128/kaniko-action@96914c73dc2d44cc9e56ea95b9d65852a116620a # v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@885d1462b80bc1c1c7f0b00334ad271f09369c55 # v2
+
+      - name: build local container
+        uses: docker/build-push-action@0a97817b6ade9f46837855d676c4cca3a2471fc9 # v4
+        id: build
+        env:
+          SOURCE_DATE_EPOCH: 0
+        with:
+          context: contexts/infrastructure
+          build-args: |
+            AWS_CLI_VERSION=${{ matrix.AWS_CLI_VERSION }}
+            PYTHON_VERSION=${{ matrix.PYTHON_VERSION }}
+            TERRAFORM_VERSION=${{ matrix.TERRAFORM_VERSION }}
+          tags: localbuild/testimage:latest
+          push: false
+          load: true
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0
+        with:
+          image: localbuild/testimage:latest
+          artifact-name: ${{ env.IMAGE_TAG }}.sbom.spdx.json
+          format: spdx-json
+          output-file: ${{ env.IMAGE_TAG }}.sbom.spdx.json
+          upload-artifact: true
+          upload-release-assets: false
+
+      - uses: anchore/scan-action@3343887d815d7b07465f6fdcd395bd66508d486a # v3
+        id: scan
+        with:
+          sbom: ${{ env.IMAGE_TAG }}.sbom.spdx.json
+          fail-build: false
+      - name: upload Anchore scan SARIF report
+        if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
+        uses: github/codeql-action/upload-sarif@162eb1e32abe518e88bd229ebc8784a533ceaa51 # v2
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
+
+      - name: Log in to the container registry
+        if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
+        uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: build+push container
+        if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
+        uses: docker/build-push-action@0a97817b6ade9f46837855d676c4cca3a2471fc9 # v4
         id: push
         with:
           context: contexts/infrastructure
@@ -107,21 +151,10 @@ jobs:
             AWS_CLI_VERSION=${{ matrix.AWS_CLI_VERSION }}
             PYTHON_VERSION=${{ matrix.PYTHON_VERSION }}
             TERRAFORM_VERSION=${{ matrix.TERRAFORM_VERSION }}
-          cache: true
-          cache-repository: ${{ env.REGISTRY }}/${{ github.repository }}/cache
-          push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
-          labels: ${{ steps.meta.outputs.labels }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          provenance: mode=max
+          push: true
 
-      - name: Generate SBOM
-        uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0
-        if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
-        with:
-          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:terraform-${{ matrix.TERRAFORM_VERSION }}_awcli-${{ matrix.AWS_CLI_VERSION }}_python-${{ matrix.PYTHON_VERSION }}
-          format: spdx-json
-          output-file: sbom.spdx.json
-          upload-artifact: false
-          upload-release-assets: false
       - name: Attest SBOM
         uses: actions/attest-sbom@aaa2d0a82e0853a3aea99fcf632b9b61cdb534c2 # v1
         if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
@@ -129,7 +162,7 @@ jobs:
         with:
           subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           subject-digest: ${{ steps.push.outputs.digest }}
-          sbom-path: sbom.spdx.json
+          sbom-path: ${{ env.IMAGE_TAG }}.sbom.spdx.json
           push-to-registry: true
 
   qa-successful:
