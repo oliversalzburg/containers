@@ -28,7 +28,7 @@ ENV LIBBZ2_VERSION="1.0.8-5.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libgdbm-compat-dev versioning=deb
 ENV LIBGDBM_VERSION="1.23-5.1build1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/liblzma-dev versioning=deb
-ENV LIBLZMA_VERSION="5.4.1-0.2"
+ENV LIBLZMA_VERSION="5.6.1+really5.4.5-1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libncurses-dev versioning=deb
 ENV LIBNCURSES_VERSION="6.4+20240113-1ubuntu2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libreadline-dev versioning=deb
