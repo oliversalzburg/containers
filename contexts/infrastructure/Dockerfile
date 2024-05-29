@@ -46,7 +46,7 @@ ENV TK_VERSION="8.6.14build1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/unzip versioning=deb
 ENV UNZIP_VERSION="6.0-28ubuntu4"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/util-linux versioning=deb
-ENV UUID_VERSION="2.38.1-5+deb12u1"
+ENV UUID_VERSION="2.39.3-9ubuntu6"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/zlib1g-dev versioning=deb
 ENV ZLIB_VERSION="1:1.3.dfsg-3.1ubuntu2"
 
