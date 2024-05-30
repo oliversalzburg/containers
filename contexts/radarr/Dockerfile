@@ -33,6 +33,7 @@ RUN apt-get update \
 RUN curl --location --silent "https://github.com/Radarr/Radarr/releases/download/v${RADARR_VERSION}/Radarr.master.${RADARR_VERSION}.linux-core-x64.tar.gz" --output "radarr.tar.gz" \
   # Quietly unpack
   && tar xzf radarr.tar.gz \
+  && rm radarr.tar.gz \
   && mv Radarr /opt/radarr
 
 WORKDIR /opt/radarr

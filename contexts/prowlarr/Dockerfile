@@ -33,6 +33,7 @@ RUN apt-get update \
 RUN curl --location --silent "https://github.com/Prowlarr/Prowlarr/releases/download/v${PROWLARR_VERSION}/Prowlarr.master.${PROWLARR_VERSION}.linux-core-x64.tar.gz" --output "prowlarr.tar.gz" \
   # Quietly unpack
   && tar xzf prowlarr.tar.gz \
+  && rm prowlarr.tar.gz \
   && mv Prowlarr /opt/prowlarr
 
 WORKDIR /opt/prowlarr

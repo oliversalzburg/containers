@@ -33,6 +33,7 @@ RUN apt-get update \
 RUN curl --location --silent "https://github.com/Lidarr/Lidarr/releases/download/v${LIDARR_VERSION}/Lidarr.master.${LIDARR_VERSION}.linux-core-x64.tar.gz" --output "lidarr.tar.gz" \
   # Quietly unpack
   && tar xzf lidarr.tar.gz \
+  && rm lidarr.tar.gz \
   && mv Lidarr /opt/lidarr
 
 WORKDIR /opt/lidarr

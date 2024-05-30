@@ -33,6 +33,7 @@ RUN apt-get update \
 RUN curl --location --silent "https://github.com/Sonarr/Sonarr/releases/download/v${SONARR_VERSION}/Sonarr.main.${SONARR_VERSION}.linux-x64.tar.gz" --output "sonarr.tar.gz" \
   # Quietly unpack
   && tar xzf sonarr.tar.gz \
+  && rm sonarr.tar.gz \
   && mv Sonarr /opt/sonarr
 
 WORKDIR /opt/sonarr

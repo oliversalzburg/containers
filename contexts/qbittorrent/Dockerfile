@@ -60,6 +60,7 @@ RUN apt-get update \
 RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive/refs/tags/release-${QBITTORRENT_VERSION}.tar.gz" --output "qbittorrent.tar.gz" \
   # Quietly unpack
   && tar xzf qbittorrent.tar.gz \
+  && rm qbittorrent.tar.gz \
   # Build qBittorrent
   && cd "qBittorrent-release-${QBITTORRENT_VERSION}" \
   && ./configure --disable-gui \
