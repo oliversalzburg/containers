@@ -86,8 +86,8 @@ jobs:
           SOURCE_DATE_EPOCH: 0
         with:
           build-args: ${{ inputs.build_args }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=registry,ref=oliversalzburg/containers/cache
+          cache-to: type=registry,ref=oliversalzburg/containers/cache,mode=max
           context: ${{ inputs.context }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64
