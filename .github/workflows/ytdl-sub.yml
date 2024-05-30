@@ -2,104 +2,61 @@ name: ytdl-sub
 
 on:
   push:
-    branches:
-      - feat/*
-      - fix/*
-      - main
-      - renovate/*
     paths:
       - .github/workflows/ytdl-sub.yml
       - contexts/ytdl-sub/*
-    tags:
-      - "v*"
   pull_request:
-    branches:
-      - main
     paths:
       - .github/workflows/ytdl-sub.yml
       - contexts/ytdl-sub/*
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 env:
-  IMAGE_NAME: ${{ github.repository }}/ytdl-sub
-  REGISTRY: ghcr.io
   # renovate: datasource=github-releases depName=jmbannon/ytdl-sub versioning=loose
   YTDLSUB_VERSION: "2024.05.29"
 
 jobs:
+  versions:
+    name: Versions
+    outputs:
+      YTDLSUB_VERSION: ${{ env.YTDLSUB_VERSION }}
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Generate outputs
+        run: |
+          echo "YTDLSUB_VERSION=${{ env.YTDLSUB_VERSION }}" >> $GITHUB_OUTPUT
+
   build-publish:
     # We don't need to run this on Renovate PRs. We will already test the `renovate/foo` branch.
     if: github.event_name != 'pull_request' || github.actor != 'renovate[bot]'
-    runs-on: ubuntu-22.04
+    name: Call Build
+    needs: versions
     permissions:
       attestations: write
       contents: read
       id-token: write
       packages: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
-
-      - name: Log in to the container registry
-        uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          labels: |
-            org.opencontainers.image.description=ytdl-sub
-            org.opencontainers.image.revision=${{ github.sha }}
-            org.opencontainers.image.source=https://github.com/oliversalzburg/containers
-            org.opencontainers.image.title=ytdl-sub
-            org.opencontainers.image.version=${{ github.ref_name }}
-          tags: |
-            type=raw,value=${{ env.YTDLSUB_VERSION }}
-
-      - name: Build and push container image
-        uses: int128/kaniko-action@96914c73dc2d44cc9e56ea95b9d65852a116620a # v1
-        id: push
-        with:
-          context: contexts/ytdl-sub
-          build-args: |
-            YTDLSUB_VERSION=${{ env.YTDLSUB_VERSION }}
-          cache: true
-          cache-repository: ${{ env.REGISTRY }}/${{ github.repository }}/cache
-          push: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
-          labels: ${{ steps.meta.outputs.labels }}
-          tags: ${{ steps.meta.outputs.tags }}
-
-      - name: Generate SBOM
-        uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0
-        if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
-        with:
-          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.YTDLSUB_VERSION }}
-          format: spdx-json
-          output-file: sbom.spdx.json
-          upload-artifact: false
-          upload-release-assets: false
-      - name: Attest SBOM
-        uses: actions/attest-sbom@aaa2d0a82e0853a3aea99fcf632b9b61cdb534c2 # v1
-        if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
-        id: attest
-        with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          subject-digest: ${{ steps.push.outputs.digest }}
-          sbom-path: sbom.spdx.json
-          push-to-registry: true
+      security-events: write
+    uses: ./.github/workflows/container-build.yml
+    with:
+      build_args: |
+        YTDLSUB_VERSION=${{ needs.versions.outputs.YTDLSUB_VERSION }}
+      context: contexts/ytdl-sub
+      image_description: ytdl-sub is a command-line tool that downloads media via yt-dlp and prepares it for your favorite media player (Kodi, Jellyfin, Plex, Emby, modern music players).
+      image_name: ${{ github.repository }}/ytdl-sub
+      image_tag: ${{ needs.versions.outputs.YTDLSUB_VERSION }}
+      image_title: ytdl-sub
+      push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
 
   qa-successful:
-    runs-on: ubuntu-22.04
-    needs: build-publish
     if: ( success() || failure() )
+    name: Evaluate QA results
+    needs: build-publish
+    runs-on: ubuntu-22.04
     steps:
       - name: Success
         if: ${{ !(contains(needs.*.result, 'failure')) }}
@@ -109,14 +66,15 @@ jobs:
         run: exit 1
 
   delete-untagged:
-    runs-on: ubuntu-22.04
+    if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+    name: Clean up layers
     needs: qa-successful
-    if: github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') )
     permissions:
       contents: read
       packages: write
+    runs-on: ubuntu-22.04
     steps:
-      - name: Delete all containers from package without tags
+      - name: Delete untagged layers
         uses: Chizkiyahu/delete-untagged-ghcr-action@e8c780ca2d589797e657691fc16bffe066714890 # v4
         with:
           token: ${{ github.token }}

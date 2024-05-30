@@ -16,130 +16,47 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  IMAGE_NAME: ${{ github.repository }}/lidarr
-  REGISTRY: ghcr.io
   # renovate: datasource=github-releases depName=Lidarr/Lidarr versioning=loose
   LIDARR_VERSION: "2.3.3.4204"
 
 jobs:
   versions:
-    runs-on: ubuntu-22.04
+    name: Versions
     outputs:
       LIDARR_VERSION: ${{ env.LIDARR_VERSION }}
+    runs-on: ubuntu-22.04
     steps:
       - name: Generate outputs
         run: |
           echo "LIDARR_VERSION=${{ env.LIDARR_VERSION }}" >> $GITHUB_OUTPUT
 
   build-publish:
-    needs: versions
     # We don't need to run this on Renovate PRs. We will already test the `renovate/foo` branch.
     if: github.event_name != 'pull_request' || github.actor != 'renovate[bot]'
-    runs-on: ubuntu-22.04
-    env:
-      IMAGE_TAG: ${{ needs.versions.outputs.LIDARR_VERSION }}
+    name: Call Build
+    needs: versions
     permissions:
       attestations: write
       contents: read
       id-token: write
       packages: write
       security-events: write
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
-
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          labels: |
-            org.opencontainers.image.description=Lidarr
-            org.opencontainers.image.revision=${{ github.sha }}
-            org.opencontainers.image.source=https://github.com/oliversalzburg/containers
-            org.opencontainers.image.title=lidarr
-            org.opencontainers.image.version=${{ github.ref_name }}
-          tags: |
-            type=raw,value=${{ env.LIDARR_VERSION }}
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb # v3
-
-      - name: build local container
-        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5
-        id: build
-        env:
-          SOURCE_DATE_EPOCH: 0
-        with:
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          context: contexts/lidarr
-          build-args: |
-            LIDARR_VERSION=${{ env.LIDARR_VERSION }}
-          tags: localbuild/testimage:latest
-          push: false
-          load: true
-
-      - name: Generate SBOM
-        uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0
-        with:
-          image: localbuild/testimage:latest
-          artifact-name: ${{ env.IMAGE_TAG }}.sbom.spdx.json
-          format: spdx-json
-          output-file: ${{ env.IMAGE_TAG }}.sbom.spdx.json
-          upload-artifact: true
-          upload-release-assets: false
-
-      - uses: anchore/scan-action@3343887d815d7b07465f6fdcd395bd66508d486a # v3
-        id: scan
-        with:
-          sbom: ${{ env.IMAGE_TAG }}.sbom.spdx.json
-          fail-build: false
-          severity-cutoff: critical
-      - name: upload Anchore scan SARIF report
-        if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
-        uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3
-        with:
-          category: lidarr
-          sarif_file: ${{ steps.scan.outputs.sarif }}
-
-      - name: Log in to the container registry
-        if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
-        uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: build+push container
-        if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
-        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5
-        id: push
-        with:
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          context: contexts/lidarr
-          build-args: |
-            LIDARR_VERSION=${{ env.LIDARR_VERSION }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-          provenance: mode=max
-          push: true
-
-      - name: Attest SBOM
-        uses: actions/attest-sbom@aaa2d0a82e0853a3aea99fcf632b9b61cdb534c2 # v1
-        if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
-        id: attest
-        with:
-          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          subject-digest: ${{ steps.push.outputs.digest }}
-          sbom-path: ${{ env.IMAGE_TAG }}.sbom.spdx.json
-          push-to-registry: true
+    uses: ./.github/workflows/container-build.yml
+    with:
+      build_args: |
+        LIDARR_VERSION=${{ needs.versions.outputs.LIDARR_VERSION }}
+      context: contexts/lidarr
+      image_description: Lidarr is a music collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new albums from your favorite artists and will interface with clients and indexers to grab, sort, and rename them. It can also be configured to automatically upgrade the quality of existing files in the library when a better quality format becomes available.
+      image_name: ${{ github.repository }}/lidarr
+      image_tag: ${{ needs.versions.outputs.LIDARR_VERSION }}
+      image_title: Lidarr
+      push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
 
   qa-successful:
-    runs-on: ubuntu-22.04
-    needs: build-publish
     if: ( success() || failure() )
+    name: Evaluate QA results
+    needs: build-publish
+    runs-on: ubuntu-22.04
     steps:
       - name: Success
         if: ${{ !(contains(needs.*.result, 'failure')) }}
@@ -149,14 +66,15 @@ jobs:
         run: exit 1
 
   delete-untagged:
-    runs-on: ubuntu-22.04
+    if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+    name: Clean up layers
     needs: qa-successful
-    if: github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') )
     permissions:
       contents: read
       packages: write
+    runs-on: ubuntu-22.04
     steps:
-      - name: Delete all containers from package without tags
+      - name: Delete untagged layers
         uses: Chizkiyahu/delete-untagged-ghcr-action@e8c780ca2d589797e657691fc16bffe066714890 # v4
         with:
           token: ${{ github.token }}
