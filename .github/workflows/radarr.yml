@@ -50,6 +50,7 @@ jobs:
       image_name: ${{ github.repository }}/radarr
       image_tag: ${{ needs.versions.outputs.RADARR_VERSION }}
       image_title: Radarr
+      is_latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
 
   qa-successful:

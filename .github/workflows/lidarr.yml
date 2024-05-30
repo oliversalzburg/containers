@@ -50,6 +50,7 @@ jobs:
       image_name: ${{ github.repository }}/lidarr
       image_tag: ${{ needs.versions.outputs.LIDARR_VERSION }}
       image_title: Lidarr
+      is_latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
 
   qa-successful:

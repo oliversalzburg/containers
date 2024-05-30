@@ -50,6 +50,7 @@ jobs:
       image_name: ${{ github.repository }}/sonarr
       image_tag: ${{ needs.versions.outputs.SONARR_VERSION }}
       image_title: Sonarr
+      is_latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
 
   qa-successful:

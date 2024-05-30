@@ -75,6 +75,7 @@ jobs:
       image_name: ${{ github.repository }}/infrastructure
       image_tag: terraform-${{ matrix.TERRAFORM_VERSION }}_awcli-${{ matrix.AWS_CLI_VERSION }}_python-${{ matrix.PYTHON_VERSION }}
       image_title: IaC Tooling
+      is_latest: false
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
 
   qa-successful:

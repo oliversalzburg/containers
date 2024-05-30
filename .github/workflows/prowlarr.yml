@@ -50,6 +50,7 @@ jobs:
       image_name: ${{ github.repository }}/prowlarr
       image_tag: ${{ needs.versions.outputs.PROWLARR_VERSION }}
       image_title: Prowlarr
+      is_latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
 
   qa-successful:

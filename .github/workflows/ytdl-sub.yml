@@ -50,6 +50,7 @@ jobs:
       image_name: ${{ github.repository }}/ytdl-sub
       image_tag: ${{ needs.versions.outputs.YTDLSUB_VERSION }}
       image_title: ytdl-sub
+      is_latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
 
   qa-successful:

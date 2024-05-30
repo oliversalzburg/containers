@@ -21,6 +21,10 @@ on:
       image_title:
         required: false
         type: string
+      is_latest:
+        default: false
+        required: true
+        type: boolean
       push:
         default: false
         required: false
@@ -58,7 +62,7 @@ jobs:
             org.opencontainers.image.version=${{ inputs.image_tag }}
           tags: |
             type=raw,value=${{ inputs.image_tag }}
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=latest,enable=${{ inputs.is_latest }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb # v3
@@ -83,7 +87,10 @@ jobs:
           context: ${{ inputs.context }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64
-          #provenance: mode=max
+          # Pushes a provenance attestation to the registry, which can currently confuse
+          # some clients. We skip this process for the time being, and attest our SBOM
+          # though GitHub manually.
+          provenance: false
           push: ${{ inputs.push }}
           tags: ${{ steps.meta.outputs.tags }}
 
@@ -120,4 +127,4 @@ jobs:
           subject-name: ${{ inputs.registry }}/${{ inputs.image_name }}
           subject-digest: ${{ steps.build.outputs.digest }}
           sbom-path: ${{ inputs.image_tag }}.sbom.spdx.json
-          push-to-registry: false
+          push-to-registry: true

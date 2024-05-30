@@ -50,6 +50,7 @@ jobs:
       image_name: ${{ github.repository }}/qbittorrent
       image_tag: ${{ needs.versions.outputs.QBITTORRENT_VERSION }}
       image_title: qBittorrent
+      is_latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
 
   qa-successful:
