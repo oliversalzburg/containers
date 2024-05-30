@@ -19,7 +19,7 @@ env:
   # renovate: datasource=github-tags depName=aws/aws-cli versioning=semver
   AWS_CLI_VERSION: "2.15.60"
   # renovate: datasource=github-releases depName=opentofu/opentofu versioning=semver
-  OPENTOFU_VERSION: "1.6.0"
+  OPENTOFU_VERSION: "1.7.1"
   # renovate: datasource=github-tags depName=python/cpython versioning=semver-coerced
   PYTHON_VERSION: "3.12.3"
   # renovate: datasource=github-releases depName=hashicorp/terraform versioning=hashicorp
