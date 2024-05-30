@@ -14,7 +14,7 @@ ENV FFMPEG_VERSION="7:5.1.4-0+deb12u1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
 ENV OPENSSL_VERSION="3.0.13-0ubuntu3.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/python3 versioning=deb
-ENV PYTHON3_VERSION="3.11.2-1+b1"
+ENV PYTHON3_VERSION="3.12.3-0ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/python3-pip versioning=deb
 ENV PYTHON3_PIP_VERSION="23.0.1+dfsg-1"
 
