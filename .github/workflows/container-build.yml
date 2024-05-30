@@ -83,7 +83,7 @@ jobs:
         with:
           build-args: ${{ inputs.build_args }}
           cache-from: type=gha
-          cache-to: type=gha,mode=min
+          cache-to: type=gha,mode=max
           context: ${{ inputs.context }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64
