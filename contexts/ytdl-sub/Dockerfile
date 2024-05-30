@@ -12,7 +12,7 @@ ENV CURL_VERSION="7.88.1-10+deb12u5"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ffmpeg versioning=deb
 ENV FFMPEG_VERSION="7:5.1.4-0+deb12u1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
-ENV OPENSSL_VERSION="3.0.11-1~deb12u2"
+ENV OPENSSL_VERSION="3.0.13-0ubuntu3.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/python3 versioning=deb
 ENV PYTHON3_VERSION="3.11.2-1+b1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/python3-pip versioning=deb
