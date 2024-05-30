@@ -114,6 +114,7 @@ jobs:
         uses: anchore/scan-action@3343887d815d7b07465f6fdcd395bd66508d486a # v3
         id: scan
         with:
+          add-cpes-if-none: true
           fail-build: false
           only-fixed: true
           sbom: ${{ inputs.image_tag }}.sbom.spdx.json
@@ -123,7 +124,7 @@ jobs:
         if: ${{ inputs.push }}
         uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3
         with:
-          category: ${{ inputs.image_name }}
+          category: ${{ inputs.context }}-${{ inputs.image_name }}
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
       - name: Upload SBOM attestation
