@@ -8,7 +8,7 @@ WORKDIR /tmp
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20230311"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/curl versioning=deb
-ENV CURL_VERSION="7.88.1-10+deb12u5"
+ENV CURL_VERSION="8.5.0-2ubuntu10.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ffmpeg versioning=deb
 ENV FFMPEG_VERSION="7:5.1.4-0+deb12u1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
