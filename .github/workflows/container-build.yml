@@ -109,15 +109,15 @@ jobs:
           upload-artifact: true
           upload-release-assets: false
 
-      - name: Grype scan SBOM
+      - name: Grype scan
         if: ${{ inputs.push }}
         uses: anchore/scan-action@3343887d815d7b07465f6fdcd395bd66508d486a # v3
         id: scan
         with:
           add-cpes-if-none: true
           fail-build: false
+          image: ${{ inputs.registry }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
           only-fixed: true
-          sbom: ${{ inputs.image_tag }}.sbom.spdx.json
           severity-cutoff: critical
 
       - name: Store SARIF report
