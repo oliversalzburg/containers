@@ -40,9 +40,6 @@ jobs:
           echo "TERRAFORM_VERSION=${{ env.TERRAFORM_VERSION }}" >> $GITHUB_OUTPUT
 
   build-publish:
-    needs: versions
-    # We don't need to run this on Renovate PRs. We will already test the `renovate/foo` branch.
-    if: github.event_name != 'pull_request' || github.actor != 'renovate[bot]'
     strategy:
       matrix:
         AWS_CLI_VERSION:
@@ -59,6 +56,9 @@ jobs:
           - "1.7.5"
           - ${{ needs.versions.outputs.TERRAFORM_VERSION }}
 
+    needs: versions
+    # We don't need to run this on Renovate PRs. We will already test the `renovate/foo` branch.
+    if: github.event_name != 'pull_request' || github.actor != 'renovate[bot]'
     runs-on: ubuntu-22.04
     env:
       IMAGE_TAG: terraform-${{ matrix.TERRAFORM_VERSION }}_awcli-${{ matrix.AWS_CLI_VERSION }}_python-${{ matrix.PYTHON_VERSION }}
@@ -68,6 +68,7 @@ jobs:
       id-token: write
       packages: write
       security-events: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
@@ -95,6 +96,8 @@ jobs:
         env:
           SOURCE_DATE_EPOCH: 0
         with:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           context: contexts/infrastructure
           build-args: |
             AWS_CLI_VERSION=${{ matrix.AWS_CLI_VERSION }}
@@ -139,6 +142,8 @@ jobs:
         uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5
         id: push
         with:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           context: contexts/infrastructure
           build-args: |
             AWS_CLI_VERSION=${{ matrix.AWS_CLI_VERSION }}

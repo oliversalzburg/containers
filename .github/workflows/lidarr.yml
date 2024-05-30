@@ -22,25 +22,32 @@ env:
   LIDARR_VERSION: "2.3.3.4204"
 
 jobs:
+  versions:
+    runs-on: ubuntu-22.04
+    outputs:
+      LIDARR_VERSION: ${{ env.LIDARR_VERSION }}
+    steps:
+      - name: Generate outputs
+        run: |
+          echo "LIDARR_VERSION=${{ env.LIDARR_VERSION }}" >> $GITHUB_OUTPUT
+
   build-publish:
+    needs: versions
     # We don't need to run this on Renovate PRs. We will already test the `renovate/foo` branch.
     if: github.event_name != 'pull_request' || github.actor != 'renovate[bot]'
     runs-on: ubuntu-22.04
+    env:
+      IMAGE_TAG: ${{ needs.versions.outputs.LIDARR_VERSION }}
     permissions:
       attestations: write
       contents: read
       id-token: write
       packages: write
+      security-events: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
-
-      - name: Log in to the container registry
-        uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -65,6 +72,8 @@ jobs:
         env:
           SOURCE_DATE_EPOCH: 0
         with:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           context: contexts/lidarr
           build-args: |
             LIDARR_VERSION=${{ env.LIDARR_VERSION }}
@@ -107,7 +116,9 @@ jobs:
         uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5
         id: push
         with:
-          context: contexts/infrastructure
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          context: contexts/lidarr
           build-args: |
             LIDARR_VERSION=${{ env.LIDARR_VERSION }}
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
