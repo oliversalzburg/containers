@@ -12,7 +12,7 @@ ENV CURL_VERSION="7.88.1-10+deb12u5"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libicu74 versioning=deb
 ENV ICU_VERSION="72.1-3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libsqlite3-0 versioning=deb
-ENV LIBSQLITE_VERSION="3.40.1-2"
+ENV LIBSQLITE_VERSION="3.45.1-1ubuntu2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
 ENV OPENSSL_VERSION="3.0.13-0ubuntu3.1"
 
