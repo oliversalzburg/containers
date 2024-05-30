@@ -2,6 +2,7 @@ FROM docker.io/library/ubuntu:noble@sha256:3f85b7caad41a95462cf5b787d8a04604c826
 
 # Versions of core components.
 ARG AWS_CLI_VERSION
+ARG OPENTOFU_VERSION
 ARG PYTHON_VERSION
 ARG TERRAFORM_VERSION
 
@@ -88,6 +89,16 @@ RUN curl --silent "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWS_CL
   && rm -rf ./awscliv2.zip ./aws \
   # Print installed version
   && aws --version
+
+# OpenTofu
+RUN curl --location --silent "https://github.com/opentofu/opentofu/releases/download/v${OPENTOFU_VERSION}/tofu_${OPENTOFU_VERSION}_linux_amd64.zip" --output "opentofu.zip" && \
+  # Quietly unzip
+  unzip -q opentofu.zip && \
+  mv tofu /usr/bin/tofu && \
+  # Delete temporary data
+  rm -rf ./opentofu.zip && \
+  # Print installed version
+  tofu --version
 
 # Python
 # hadolint ignore=DL3003

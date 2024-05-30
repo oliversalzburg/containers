@@ -18,6 +18,8 @@ concurrency:
 env:
   # renovate: datasource=github-tags depName=aws/aws-cli versioning=semver
   AWS_CLI_VERSION: "2.15.60"
+  # renovate: datasource=github-releases depName=opentofu/opentofu versioning=semver
+  OPENTOFU_VERSION: "1.6.0"
   # renovate: datasource=github-tags depName=python/cpython versioning=semver-coerced
   PYTHON_VERSION: "3.12.3"
   # renovate: datasource=github-releases depName=hashicorp/terraform versioning=hashicorp
@@ -28,6 +30,7 @@ jobs:
     name: Versions
     outputs:
       AWS_CLI_VERSION: ${{ env.AWS_CLI_VERSION }}
+      OPENTOFU_VERSION: ${{ env.OPENTOFU_VERSION }}
       PYTHON_VERSION: ${{ env.PYTHON_VERSION }}
       TERRAFORM_VERSION: ${{ env.TERRAFORM_VERSION }}
     runs-on: ubuntu-22.04
@@ -35,6 +38,7 @@ jobs:
       - name: Generate outputs
         run: |
           echo "AWS_CLI_VERSION=${{ env.AWS_CLI_VERSION }}" >> $GITHUB_OUTPUT
+          echo "OPENTOFU_VERSION=${{ env.OPENTOFU_VERSION }}" >> $GITHUB_OUTPUT
           echo "PYTHON_VERSION=${{ env.PYTHON_VERSION }}" >> $GITHUB_OUTPUT
           echo "TERRAFORM_VERSION=${{ env.TERRAFORM_VERSION }}" >> $GITHUB_OUTPUT
 
@@ -53,6 +57,8 @@ jobs:
       matrix:
         AWS_CLI_VERSION:
           - ${{ needs.versions.outputs.AWS_CLI_VERSION }}
+        OPENTOFU_VERSION:
+          - ${{ needs.versions.outputs.OPENTOFU_VERSION }}
         # https://endoflife.date/python
         PYTHON_VERSION:
           - "3.8.19" # latest 3.8
@@ -68,12 +74,13 @@ jobs:
     with:
       build_args: |
         AWS_CLI_VERSION=${{ matrix.AWS_CLI_VERSION }}
+        OPENTOFU_VERSION=${{ matrix.OPENTOFU_VERSION }}
         PYTHON_VERSION=${{ matrix.PYTHON_VERSION }}
         TERRAFORM_VERSION=${{ matrix.TERRAFORM_VERSION }}
       context: contexts/infrastructure
       image_description: Common tooling for IaC tasks.
       image_name: ${{ github.repository }}/infrastructure
-      image_tag: terraform-${{ matrix.TERRAFORM_VERSION }}_awcli-${{ matrix.AWS_CLI_VERSION }}_python-${{ matrix.PYTHON_VERSION }}
+      image_tag: awcli-${{ matrix.AWS_CLI_VERSION }}_opentofu-${{ matrix.OPENTOFU_VERSION }}_python-${{ matrix.PYTHON_VERSION }}_terraform-${{ matrix.TERRAFORM_VERSION }}
       image_title: IaC Tooling
       is_latest: false
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}

@@ -99,6 +99,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
 
       - name: Generate SBOM
+        if: ${{ inputs.push }}
         uses: anchore/sbom-action@e8d2a6937ecead383dfe75190d104edd1f9c5751 # v0
         with:
           artifact-name: ${{ inputs.image_tag }}.sbom.spdx.json
@@ -109,6 +110,7 @@ jobs:
           upload-release-assets: false
 
       - name: Grype scan SBOM
+        if: ${{ inputs.push }}
         uses: anchore/scan-action@3343887d815d7b07465f6fdcd395bd66508d486a # v3
         id: scan
         with:

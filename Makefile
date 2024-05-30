@@ -1,6 +1,7 @@
 infrastructure:
 	cd contexts/infrastructure; podman build \
 		--build-arg AWS_CLI_VERSION=2.15.59 \
+		--build-arg OPENTOFU_VERSION=1.7.1 \
 		--build-arg PYTHON_VERSION=3.12.3 \
 		--build-arg TERRAFORM_VERSION=1.8.4 \
 		--tag infrastructure \
