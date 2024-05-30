@@ -3,6 +3,10 @@ name: Container Build
 on:
   workflow_call:
     inputs:
+      attest:
+        default: true
+        required: false
+        type: boolean
       build_args:
         required: false
         type: string
@@ -121,7 +125,7 @@ jobs:
 
       - name: Upload SBOM attestation
         uses: actions/attest-sbom@aaa2d0a82e0853a3aea99fcf632b9b61cdb534c2 # v1
-        if: ${{ inputs.push }}
+        if: ${{ inputs.attest && inputs.push }}
         id: attest
         with:
           subject-name: ${{ inputs.registry }}/${{ inputs.image_name }}
