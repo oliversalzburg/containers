@@ -1,21 +1,21 @@
-FROM docker.io/library/debian:12.5-slim@sha256:804194b909ef23fb995d9412c9378fb3505fe2427b70f3cc425339e48a828fca
+FROM docker.io/library/ubuntu:noble@sha256:3f85b7caad41a95462cf5b787d8a04604c8262cdcdf9a472b8c52ef83375fe15
 
 # Versions of core components.
 ARG YTDLSUB_VERSION
 
 WORKDIR /tmp
 
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ca-certificates versioning=deb
-ENV CA_CERTIFICATES_VERSION="20230311"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/curl versioning=deb
-ENV CURL_VERSION="7.88.1-10+deb12u5"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/ffmpeg versioning=deb
-ENV FFMPEG_VERSION="7:5.1.4-0+deb12u1"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/openssl versioning=deb
-ENV OPENSSL_VERSION="3.0.11-1~deb12u2"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/python3 versioning=deb
-ENV PYTHON3_VERSION="3.11.2-1+b1"
-# renovate: datasource=custom.apt.debian depName=debian-observable/bookworm/main/python3-pip versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ca-certificates versioning=deb
+ENV CA_CERTIFICATES_VERSION="20240203"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/curl versioning=deb
+ENV CURL_VERSION="8.5.0-2ubuntu10.1"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/ffmpeg versioning=deb
+ENV FFMPEG_VERSION="3.12.3-0ubuntu1"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
+ENV OPENSSL_VERSION="3.0.13-0ubuntu3.1"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/python3 versioning=deb
+ENV PYTHON3_VERSION="3.12.3-0ubuntu1"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/python3-pip versioning=deb
 ENV PYTHON3_PIP_VERSION="23.0.1+dfsg-1"
 
 # Install dependencies
