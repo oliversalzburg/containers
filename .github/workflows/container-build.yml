@@ -104,7 +104,7 @@ jobs:
         with:
           artifact-name: ${{ inputs.image_tag }}.sbom.spdx.json
           format: spdx-json
-          image: ${{ inputs.registry }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
+          image: ${{ inputs.registry }}/${{ github.repository }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
           output-file: ${{ inputs.image_tag }}.sbom.spdx.json
           upload-artifact: true
           upload-release-assets: false
@@ -116,7 +116,7 @@ jobs:
         with:
           add-cpes-if-none: true
           fail-build: false
-          image: ${{ inputs.registry }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
+          image: ${{ inputs.registry }}/${{ github.repository }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
           only-fixed: true
           severity-cutoff: critical
 
@@ -131,7 +131,7 @@ jobs:
         if: ${{ inputs.push }}
         uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3
         with:
-          category: ${{ inputs.context }}-${{ inputs.image_name }}
+          category: ${{ inputs.image_name }}-${{ inputs.image_tag }}
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
       - name: Upload SBOM attestation
