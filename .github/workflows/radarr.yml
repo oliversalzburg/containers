@@ -99,7 +99,7 @@ jobs:
   qa-successful:
     runs-on: ubuntu-22.04
     needs: build-publish
-    if: always()
+    if: ( success() || failure() )
     steps:
       - name: Success
         if: ${{ !(contains(needs.*.result, 'failure')) }}
