@@ -4,31 +4,31 @@ FROM docker.io/library/ubuntu:noble@sha256:3f85b7caad41a95462cf5b787d8a04604c826
 ARG QBITTORRENT_VERSION
 
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ca-certificates versioning=deb
-ENV CA_CERTIFICATES_VERSION="20240203"
+ARG CA_CERTIFICATES_VERSION="20240203"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/cmake versioning=deb
-ENV CMAKE_VERSION="3.28.3-1build7"
+ARG CMAKE_VERSION="3.28.3-1build7"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/curl versioning=deb
-ENV CURL_VERSION="8.5.0-2ubuntu10.1"
+ARG CURL_VERSION="8.5.0-2ubuntu10.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/g++ versioning=deb
-ENV GPP_VERSION="4:13.2.0-7ubuntu1"
+ARG GPP_VERSION="4:13.2.0-7ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/gcc versioning=deb
-ENV GCC_VERSION="4:13.2.0-7ubuntu1"
+ARG GCC_VERSION="4:13.2.0-7ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libboost-dev versioning=deb
-ENV LIBBOOST_VERSION="1.83.0.1ubuntu2"
+ARG LIBBOOST_VERSION="1.83.0.1ubuntu2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/libtorrent-rasterbar-dev versioning=deb
-ENV LIBTORRENT_RASTERBAR_VERSION="2.0.10-1.1build2"
+ARG LIBTORRENT_RASTERBAR_VERSION="2.0.10-1.1build2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/make versioning=deb
-ENV MAKE_VERSION="4.3-4.1build2"
+ARG MAKE_VERSION="4.3-4.1build2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
-ENV OPENSSL_VERSION="3.0.13-0ubuntu3.1"
+ARG OPENSSL_VERSION="3.0.13-0ubuntu3.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/python3 versioning=deb
-ENV PYTHON3_VERSION="3.12.3-0ubuntu1"
+ARG PYTHON3_VERSION="3.12.3-0ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qtbase5-dev versioning=deb
-ENV QTBASE_VERSION="5.15.13+dfsg-1ubuntu1"
+ARG QTBASE_VERSION="5.15.13+dfsg-1ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qttools5-dev versioning=deb
-ENV QTTOOLS_VERSION="5.15.13-1"
+ARG QTTOOLS_VERSION="5.15.13-1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/zlib1g-dev versioning=deb
-ENV ZLIB_VERSION="1:1.3.dfsg-3.1ubuntu2"
+ARG ZLIB_VERSION="1:1.3.dfsg-3.1ubuntu2"
 
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
