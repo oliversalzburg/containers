@@ -27,7 +27,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}/sonarr
   REGISTRY: ghcr.io
   # renovate: datasource=github-releases depName=Sonarr/Sonarr versioning=loose
-  SONARR_VERSION: "4.0.4.1491"
+  SONARR_VERSION: "4.0.5.1710"
 
 jobs:
   build-publish:
