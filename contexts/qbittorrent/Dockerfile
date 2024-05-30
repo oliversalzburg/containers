@@ -3,8 +3,6 @@ FROM docker.io/library/ubuntu:noble@sha256:3f85b7caad41a95462cf5b787d8a04604c826
 # Versions of core components.
 ARG QBITTORRENT_VERSION
 
-WORKDIR /tmp
-
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20240203"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/cmake versioning=deb
@@ -57,6 +55,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 # qBittorrent
+WORKDIR /usr/src/qbittorrent
 RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive/refs/tags/release-${QBITTORRENT_VERSION}.tar.gz" --output "qbittorrent.tar.gz" \
   # Quietly unpack
   && tar xzf qbittorrent.tar.gz \
@@ -65,9 +64,11 @@ RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive
   && cd "qBittorrent-release-${QBITTORRENT_VERSION}" \
   && ./configure --disable-gui \
   && make --jobs $(nproc --all) \
-  && make install \
-  && rm -rf /tmp/*
+  && make install
 
+FROM docker.io/library/ubuntu:noble@sha256:3f85b7caad41a95462cf5b787d8a04604c8262cdcdf9a472b8c52ef83375fe15
+COPY --from=0 /usr/lib/ /usr/lib/
+COPY --from=0 /usr/local/ /usr/local/
+RUN ldconfig
 WORKDIR /config
-
 ENTRYPOINT [ "/usr/local/bin/qbittorrent-nox", "--profile=/config", "--relative-fastresume" ]
