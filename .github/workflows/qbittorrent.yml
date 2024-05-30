@@ -43,8 +43,6 @@ jobs:
       security-events: write
     uses: ./.github/workflows/container-build.yml
     with:
-      # Attestation is currently broken for this image. Probably due to the large size of the BOM.
-      attest: false
       build_args: |
         QBITTORRENT_VERSION=${{ needs.versions.outputs.QBITTORRENT_VERSION }}
       context: contexts/qbittorrent

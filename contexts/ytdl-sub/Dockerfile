@@ -3,12 +3,8 @@ FROM docker.io/library/ubuntu:noble@sha256:3f85b7caad41a95462cf5b787d8a04604c826
 # Versions of core components.
 ARG YTDLSUB_VERSION
 
-WORKDIR /tmp
-
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20240203"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/curl versioning=deb
-ENV CURL_VERSION="8.5.0-2ubuntu10.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/ffmpeg versioning=deb
 ENV FFMPEG_VERSION="7:6.1.1-3ubuntu5"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
@@ -24,7 +20,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
   && apt-get install --no-install-recommends --yes \
   ca-certificates=${CA_CERTIFICATES_VERSION} \
-  curl=${CURL_VERSION} \
   ffmpeg=${FFMPEG_VERSION} \
   openssl=${OPENSSL_VERSION} \
   python3=${PYTHON3_VERSION} \

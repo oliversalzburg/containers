@@ -3,8 +3,6 @@ FROM docker.io/library/ubuntu:noble@sha256:3f85b7caad41a95462cf5b787d8a04604c826
 # Versions of core components.
 ARG LIDARR_VERSION
 
-WORKDIR /tmp
-
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20240203"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/curl versioning=deb
@@ -39,5 +37,3 @@ RUN curl --location --silent "https://github.com/Lidarr/Lidarr/releases/download
 WORKDIR /opt/lidarr
 
 ENTRYPOINT [ "/opt/lidarr/Lidarr", "-nobrowser", "-data=/var/lib/lidarr/" ]
-
-

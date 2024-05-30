@@ -5,8 +5,6 @@ ARG AWS_CLI_VERSION
 ARG PYTHON_VERSION
 ARG TERRAFORM_VERSION
 
-WORKDIR /tmp
-
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20240203"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/curl versioning=deb
