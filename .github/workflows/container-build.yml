@@ -120,6 +120,13 @@ jobs:
           sbom: ${{ inputs.image_tag }}.sbom.spdx.json
           severity-cutoff: critical
 
+      - name: Store SARIF report
+        if: ${{ inputs.push }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.image_tag }}.sarif.json
+          path: ${{ steps.scan.outputs.sarif }}
+
       - name: Upload scan report
         if: ${{ inputs.push }}
         uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3
