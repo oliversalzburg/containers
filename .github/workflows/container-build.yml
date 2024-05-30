@@ -112,8 +112,9 @@ jobs:
         uses: anchore/scan-action@3343887d815d7b07465f6fdcd395bd66508d486a # v3
         id: scan
         with:
-          sbom: ${{ inputs.image_tag }}.sbom.spdx.json
           fail-build: false
+          only-fixed: true
+          sbom: ${{ inputs.image_tag }}.sbom.spdx.json
           severity-cutoff: critical
 
       - name: Upload scan report
