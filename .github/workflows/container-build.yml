@@ -57,7 +57,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@8e5442c4ef9f78752691e2d8f8d19755c6f78e81 # v5.5.1
         with:
-          images: ${{ inputs.registry }}/${{ inputs.image_name }}
+          images: ${{ inputs.registry }}/${{ github.repository }}/${{ inputs.image_name }}
           labels: |
             org.opencontainers.image.description=${{ inputs.image_description || inputs.image_title || inputs.image_name }}
             org.opencontainers.image.revision=${{ github.sha }}
@@ -86,8 +86,8 @@ jobs:
           SOURCE_DATE_EPOCH: 0
         with:
           build-args: ${{ inputs.build_args }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=registry,ref=${{ inputs.registry }}/${{ github.repository }}/cache:${{ inputs.image_name }}
+          cache-to: type=registry,ref=${{ inputs.registry }}/${{ github.repository }}/cache:${{ inputs.image_name }},mode=max
           context: ${{ inputs.context }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64
@@ -104,7 +104,7 @@ jobs:
         with:
           artifact-name: ${{ inputs.image_tag }}.sbom.spdx.json
           format: spdx-json
-          image: ${{ inputs.registry }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
+          image: ${{ inputs.registry }}/${{ github.repository }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
           output-file: ${{ inputs.image_tag }}.sbom.spdx.json
           upload-artifact: true
           upload-release-assets: false
@@ -116,7 +116,7 @@ jobs:
         with:
           add-cpes-if-none: true
           fail-build: false
-          image: ${{ inputs.registry }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
+          image: ${{ inputs.registry }}/${{ github.repository }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
           only-fixed: true
           severity-cutoff: critical
 
@@ -131,7 +131,7 @@ jobs:
         if: ${{ inputs.push }}
         uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3
         with:
-          category: ${{ inputs.context }}-${{ inputs.image_name }}
+          category: ${{ inputs.image_name }}-${{ inputs.image_tag }}
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
       - name: Upload SBOM attestation
@@ -139,7 +139,7 @@ jobs:
         if: ${{ inputs.attest && inputs.push }}
         id: attest
         with:
-          subject-name: ${{ inputs.registry }}/${{ inputs.image_name }}
+          subject-name: ${{ inputs.registry }}/${{ github.repository }}/${{ inputs.image_name }}
           subject-digest: ${{ steps.build.outputs.digest }}
           sbom-path: ${{ inputs.image_tag }}.sbom.spdx.json
           push-to-registry: true

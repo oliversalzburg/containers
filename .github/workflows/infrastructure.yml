@@ -79,7 +79,7 @@ jobs:
         TERRAFORM_VERSION=${{ matrix.TERRAFORM_VERSION }}
       context: contexts/infrastructure
       image_description: Common tooling for IaC tasks.
-      image_name: ${{ github.repository }}/infrastructure
+      image_name: infrastructure
       image_tag: awcli-${{ matrix.AWS_CLI_VERSION }}_opentofu-${{ matrix.OPENTOFU_VERSION }}_python-${{ matrix.PYTHON_VERSION }}_terraform-${{ matrix.TERRAFORM_VERSION }}
       image_title: IaC Tooling
       is_latest: false
