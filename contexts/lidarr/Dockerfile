@@ -6,7 +6,7 @@ ARG LIDARR_VERSION
 WORKDIR /tmp
 
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ca-certificates versioning=deb
-ENV CA_CERTIFICATES_VERSION="20230311"
+ENV CA_CERTIFICATES_VERSION="20240203"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/curl versioning=deb
 ENV CURL_VERSION="7.88.1-10+deb12u5"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libicu74 versioning=deb
