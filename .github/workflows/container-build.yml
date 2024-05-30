@@ -83,13 +83,13 @@ jobs:
         with:
           build-args: ${{ inputs.build_args }}
           cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-to: type=gha,mode=min
           context: ${{ inputs.context }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64
           # Pushes a provenance attestation to the registry, which can currently confuse
-          # some clients. We skip this process for the time being, and attest our SBOM
-          # though GitHub manually.
+          # some clients. We skip this process for the time being, and instead attest
+          # our SBOM manually later.
           provenance: false
           push: ${{ inputs.push }}
           tags: ${{ steps.meta.outputs.tags }}
