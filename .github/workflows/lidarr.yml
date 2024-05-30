@@ -101,6 +101,7 @@ jobs:
         if: ${{ github.event_name == 'push' && ( github.ref_name == 'main' || startsWith(github.ref, 'refs/tags/v') ) }}
         uses: github/codeql-action/upload-sarif@9fdb3e49720b44c48891d036bb502feb25684276 # v3
         with:
+          category: lidarr
           sarif_file: ${{ steps.scan.outputs.sarif }}
 
       - name: Log in to the container registry
