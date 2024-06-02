@@ -7,7 +7,7 @@ on:
       - contexts/sonarr/*
   pull_request:
     paths:
-      - .github/workflows/*
+      - .github/workflows/sonarr.yml
       - contexts/sonarr/*
   workflow_dispatch:
 

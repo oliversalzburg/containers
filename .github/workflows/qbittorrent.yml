@@ -7,7 +7,7 @@ on:
       - contexts/qbittorrent/*
   pull_request:
     paths:
-      - .github/workflows/*
+      - .github/workflows/qbittorrent.yml
       - contexts/qbittorrent/*
   workflow_dispatch:
 
