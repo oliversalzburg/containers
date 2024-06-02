@@ -7,7 +7,7 @@ on:
       - contexts/ytdl-sub/*
   pull_request:
     paths:
-      - .github/workflows/ytdl-sub.yml
+      - .github/workflows/*
       - contexts/ytdl-sub/*
   workflow_dispatch:
 

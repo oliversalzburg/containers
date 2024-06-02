@@ -7,7 +7,7 @@ on:
       - contexts/lidarr/*
   pull_request:
     paths:
-      - .github/workflows/lidarr.yml
+      - .github/workflows/*
       - contexts/lidarr/*
   workflow_dispatch:
 

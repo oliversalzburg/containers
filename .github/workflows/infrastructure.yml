@@ -7,7 +7,7 @@ on:
       - contexts/infrastructure/*
   pull_request:
     paths:
-      - .github/workflows/infrastructure.yml
+      - .github/workflows/*
       - contexts/infrastructure/*
   workflow_dispatch:
 

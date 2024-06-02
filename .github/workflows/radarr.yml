@@ -7,7 +7,7 @@ on:
       - contexts/radarr/*
   pull_request:
     paths:
-      - .github/workflows/radarr.yml
+      - .github/workflows/*
       - contexts/radarr/*
   workflow_dispatch:
 
