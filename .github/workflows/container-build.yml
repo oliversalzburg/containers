@@ -87,7 +87,7 @@ jobs:
         with:
           build-args: ${{ inputs.build_args }}
           cache-from: type=registry,ref=${{ inputs.registry }}/${{ github.repository }}/cache:${{ inputs.image_name }}
-          cache-to: ${{ inputs.push && 'type=registry,ref=${{ inputs.registry }}/${{ github.repository }}/cache:${{ inputs.image_name }},mode=max' }}
+          cache-to: ${{ inputs.push && 'type=registry,ref=${{ inputs.registry }}/${{ github.repository }}/cache:${{ inputs.image_name }},mode=max' || '' }}
           context: ${{ inputs.context }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64
