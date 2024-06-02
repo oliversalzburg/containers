@@ -3,10 +3,12 @@ name: qBittorrent
 on:
   push:
     paths:
+      - .github/workflows/container-build.yml
       - .github/workflows/qbittorrent.yml
       - contexts/qbittorrent/*
   pull_request:
     paths:
+      - .github/workflows/container-build.yml
       - .github/workflows/qbittorrent.yml
       - contexts/qbittorrent/*
   workflow_dispatch:

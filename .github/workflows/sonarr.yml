@@ -3,10 +3,12 @@ name: Sonarr
 on:
   push:
     paths:
+      - .github/workflows/container-build.yml
       - .github/workflows/sonarr.yml
       - contexts/sonarr/*
   pull_request:
     paths:
+      - .github/workflows/container-build.yml
       - .github/workflows/sonarr.yml
       - contexts/sonarr/*
   workflow_dispatch:

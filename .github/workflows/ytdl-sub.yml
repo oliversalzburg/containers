@@ -3,10 +3,12 @@ name: ytdl-sub
 on:
   push:
     paths:
+      - .github/workflows/container-build.yml
       - .github/workflows/ytdl-sub.yml
       - contexts/ytdl-sub/*
   pull_request:
     paths:
+      - .github/workflows/container-build.yml
       - .github/workflows/ytdl-sub.yml
       - contexts/ytdl-sub/*
   workflow_dispatch:

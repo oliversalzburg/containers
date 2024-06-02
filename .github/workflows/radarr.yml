@@ -3,10 +3,12 @@ name: Radarr
 on:
   push:
     paths:
+      - .github/workflows/container-build.yml
       - .github/workflows/radarr.yml
       - contexts/radarr/*
   pull_request:
     paths:
+      - .github/workflows/container-build.yml
       - .github/workflows/radarr.yml
       - contexts/radarr/*
   workflow_dispatch:

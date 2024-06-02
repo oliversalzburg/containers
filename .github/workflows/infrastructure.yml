@@ -3,10 +3,12 @@ name: Infrastructure
 on:
   push:
     paths:
+      - .github/workflows/container-build.yml
       - .github/workflows/infrastructure.yml
       - contexts/infrastructure/*
   pull_request:
     paths:
+      - .github/workflows/container-build.yml
       - .github/workflows/infrastructure.yml
       - contexts/infrastructure/*
   workflow_dispatch:

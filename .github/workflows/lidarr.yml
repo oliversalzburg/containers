@@ -3,10 +3,12 @@ name: Lidarr
 on:
   push:
     paths:
+      - .github/workflows/container-build.yml
       - .github/workflows/lidarr.yml
       - contexts/lidarr/*
   pull_request:
     paths:
+      - .github/workflows/container-build.yml
       - .github/workflows/lidarr.yml
       - contexts/lidarr/*
   workflow_dispatch:
