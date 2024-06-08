@@ -55,10 +55,26 @@ jobs:
       is_latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
 
+  test:
+    name: Test
+    needs: 
+      - versions
+      - build-publish
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4
+
+      - name: Run container with image
+        run: |
+          .scripts/test.sh podman run --rm ghcr.io/oliversalzburg/containers/qbittorrent:${{ needs.versions.outputs.QBITTORRENT_VERSION }}
+
   qa-successful:
     if: ( success() || failure() )
     name: Evaluate QA results
-    needs: build-publish
+    needs: 
+      - build-publish
+      - test
     runs-on: ubuntu-22.04
     steps:
       - name: Success

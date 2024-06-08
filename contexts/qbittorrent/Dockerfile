@@ -41,8 +41,14 @@ RUN apt-get update \
   g++=${GPP_VERSION} \
   gcc=${GCC_VERSION} \
   libboost-dev=${LIBBOOST_VERSION} \
+  libqt5core5t64=${QTBASE_VERSION} \
+  libqt5gui5t64=${QTBASE_VERSION} \
+  libqt5network5t64=${QTBASE_VERSION} \
+  libqt5sql5t64=${QTBASE_VERSION} \
+  libqt5xml5t64=${QTBASE_VERSION} \
   libssl3=${OPENSSL_VERSION} \
   libssl-dev=${OPENSSL_VERSION} \
+  libtorrent-rasterbar2.0t64=${LIBTORRENT_RASTERBAR_VERSION} \
   libtorrent-rasterbar-dev=${LIBTORRENT_RASTERBAR_VERSION} \
   make=${MAKE_VERSION} \
   openssl=${OPENSSL_VERSION} \
@@ -66,9 +72,24 @@ RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive
   && make --jobs $(nproc --all) \
   && make install
 
+RUN apt-get remove --purge --yes \
+  cmake \
+  curl \
+  g++ \
+  gcc \
+  libboost-dev \
+  libtorrent-rasterbar-dev \
+  libssl-dev \
+  make \
+  qtbase5-dev \
+  qtbase5-private-dev \
+  qttools5-dev \
+  zlib1g-dev \
+  && apt-get autoremove --yes \
+  && apt-get clean
+
 FROM docker.io/library/ubuntu:noble@sha256:e3f92abc0967a6c19d0dfa2d55838833e947b9d74edbcb0113e48535ad4be12a
-COPY --from=0 /usr/lib/ /usr/lib/
-COPY --from=0 /usr/local/ /usr/local/
+COPY --from=0 / /
 RUN ldconfig
 WORKDIR /config
 ENTRYPOINT [ "/usr/local/bin/qbittorrent-nox", "--profile=/config", "--relative-fastresume" ]
