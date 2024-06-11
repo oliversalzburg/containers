@@ -19,7 +19,7 @@ concurrency:
 
 env:
   # renovate: datasource=github-tags depName=aws/aws-cli versioning=semver
-  AWS_CLI_VERSION: "2.16.4"
+  AWS_CLI_VERSION: "2.16.6"
   # renovate: datasource=github-releases depName=opentofu/opentofu versioning=semver
   OPENTOFU_VERSION: "1.7.2"
   # renovate: datasource=github-tags depName=python/cpython versioning=semver-coerced
