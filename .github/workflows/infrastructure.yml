@@ -72,7 +72,7 @@ jobs:
         TERRAFORM_VERSION:
           - "1.7.5"
           - ${{ needs.versions.outputs.TERRAFORM_VERSION }}
-    uses: ./.github/workflows/container-build.yml
+    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@main
     with:
       build_args: |
         AWS_CLI_VERSION=${{ matrix.AWS_CLI_VERSION }}
