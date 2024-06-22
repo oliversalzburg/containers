@@ -49,7 +49,7 @@ jobs:
         RADARR_VERSION=${{ needs.versions.outputs.RADARR_VERSION }}
       context: contexts/radarr
       image_description: Works great and looks even better doing it.
-      image_name: radarr
+      image_name: oliversalzburg/containers/radarr
       image_tag: ${{ needs.versions.outputs.RADARR_VERSION }}
       image_title: Radarr
       is_latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}

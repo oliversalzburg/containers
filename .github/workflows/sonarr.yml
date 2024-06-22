@@ -49,7 +49,7 @@ jobs:
         SONARR_VERSION=${{ needs.versions.outputs.SONARR_VERSION }}
       context: contexts/sonarr
       image_description: Sonarr is an internet PVR for Usenet and Torrents.
-      image_name: sonarr
+      image_name: oliversalzburg/containers/sonarr
       image_tag: ${{ needs.versions.outputs.SONARR_VERSION }}
       image_title: Sonarr
       is_latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}

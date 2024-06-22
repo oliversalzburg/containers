@@ -49,7 +49,7 @@ jobs:
         PROWLARR_VERSION=${{ needs.versions.outputs.PROWLARR_VERSION }}
       context: contexts/prowlarr
       image_description: The Ultimate Indexer Manager
-      image_name: prowlarr
+      image_name: oliversalzburg/containers/prowlarr
       image_tag: ${{ needs.versions.outputs.PROWLARR_VERSION }}
       image_title: Prowlarr
       is_latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
