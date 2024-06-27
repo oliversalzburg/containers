@@ -74,7 +74,6 @@ RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive
 
 RUN apt-get remove --purge --yes \
   cmake \
-  curl \
   g++ \
   gcc \
   libboost-dev \
