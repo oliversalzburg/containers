@@ -70,7 +70,7 @@ jobs:
           - ${{ needs.versions.outputs.PYTHON_VERSION }}
         # https://endoflife.date/terraform
         TERRAFORM_VERSION:
-          - "1.7.5"
+          - "1.8.5"
           - ${{ needs.versions.outputs.TERRAFORM_VERSION }}
     uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@main
     with:
