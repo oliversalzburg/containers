@@ -3,12 +3,10 @@ name: Prowlarr
 on:
   push:
     paths:
-      - .github/workflows/container-build.yml
       - .github/workflows/prowlarr.yml
       - contexts/prowlarr/*
   pull_request:
     paths:
-      - .github/workflows/container-build.yml
       - .github/workflows/prowlarr.yml
       - contexts/prowlarr/*
   workflow_dispatch:
