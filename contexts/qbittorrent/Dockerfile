@@ -8,7 +8,7 @@ ARG CA_CERTIFICATES_VERSION="20240203"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/cmake versioning=deb
 ARG CMAKE_VERSION="3.28.3-1build7"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/curl versioning=deb
-ARG CURL_VERSION="8.5.0-2ubuntu10.1"
+ARG CURL_VERSION="8.5.0-2ubuntu10.2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/g++ versioning=deb
 ARG GPP_VERSION="4:13.2.0-7ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/gcc versioning=deb

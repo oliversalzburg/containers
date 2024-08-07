@@ -6,7 +6,7 @@ ARG LIDARR_VERSION
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20240203"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/curl versioning=deb
-ENV CURL_VERSION="8.5.0-2ubuntu10.1"
+ENV CURL_VERSION="8.5.0-2ubuntu10.2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libicu74 versioning=deb
 ENV ICU_VERSION="74.2-1ubuntu3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libsqlite3-0 versioning=deb
