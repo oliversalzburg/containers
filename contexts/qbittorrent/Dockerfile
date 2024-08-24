@@ -22,7 +22,7 @@ ARG MAKE_VERSION="4.3-4.1build2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
 ARG OPENSSL_VERSION="3.0.13-0ubuntu3.2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/python3 versioning=deb
-ARG PYTHON3_VERSION="3.12.3-0ubuntu1"
+ARG PYTHON3_VERSION="3.12.3-0ubuntu2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qtbase5-dev versioning=deb
 ARG QTBASE_VERSION="5.15.13+dfsg-1ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qttools5-dev versioning=deb
