@@ -6,13 +6,13 @@ ARG SONARR_VERSION
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20240203"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/curl versioning=deb
-ENV CURL_VERSION="8.5.0-2ubuntu10.2"
+ENV CURL_VERSION="8.5.0-2ubuntu10.3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libicu74 versioning=deb
-ENV ICU_VERSION="74.2-1ubuntu3"
+ENV ICU_VERSION="74.2-1ubuntu3.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libsqlite3-0 versioning=deb
 ENV LIBSQLITE_VERSION="3.45.1-1ubuntu2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
-ENV OPENSSL_VERSION="3.0.13-0ubuntu3.2"
+ENV OPENSSL_VERSION="3.0.13-0ubuntu3.3"
 
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
