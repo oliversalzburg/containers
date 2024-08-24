@@ -28,7 +28,7 @@ ARG QTBASE_VERSION="5.15.13+dfsg-1ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qttools5-dev versioning=deb
 ARG QTTOOLS_VERSION="5.15.13-1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/zlib1g-dev versioning=deb
-ARG ZLIB_VERSION="1:1.3.dfsg-3.1ubuntu2"
+ARG ZLIB_VERSION="1:1.3.dfsg-3.1ubuntu2.1"
 
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
