@@ -12,7 +12,7 @@ ENV ICU_VERSION="74.2-1ubuntu3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libsqlite3-0 versioning=deb
 ENV LIBSQLITE_VERSION="3.45.1-1ubuntu2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
-ENV OPENSSL_VERSION="3.0.13-0ubuntu3.2"
+ENV OPENSSL_VERSION="3.0.13-0ubuntu3.3"
 
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
