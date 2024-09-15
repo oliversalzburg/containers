@@ -43,15 +43,17 @@ jobs:
       security-events: write
     uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@main
     with:
-      build_args: |
+      build-args: |
         YTDLSUB_VERSION=${{ needs.versions.outputs.YTDLSUB_VERSION }}
       context: contexts/ytdl-sub
-      image_description: ytdl-sub is a command-line tool that downloads media via yt-dlp and prepares it for your favorite media player (Kodi, Jellyfin, Plex, Emby, modern music players).
-      image_name: oliversalzburg/containers/ytdl-sub
-      image_tag: ${{ needs.versions.outputs.YTDLSUB_VERSION }}
-      image_title: ytdl-sub
-      is_latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      image-description: ytdl-sub is a command-line tool that downloads media via yt-dlp and prepares it for your favorite media player (Kodi, Jellyfin, Plex, Emby, modern music players).
+      image-name: oliversalzburg/containers/ytdl-sub
+      image-tag: ${{ needs.versions.outputs.YTDLSUB_VERSION }}
+      image-title: ytdl-sub
+      is-latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      with-sarif: false
+      with-sbom: false
 
   qa-successful:
     if: ( success() || failure() )

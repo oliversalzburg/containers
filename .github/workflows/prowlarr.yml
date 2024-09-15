@@ -43,15 +43,17 @@ jobs:
       security-events: write
     uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@main
     with:
-      build_args: |
+      build-args: |
         PROWLARR_VERSION=${{ needs.versions.outputs.PROWLARR_VERSION }}
       context: contexts/prowlarr
-      image_description: The Ultimate Indexer Manager
-      image_name: oliversalzburg/containers/prowlarr
-      image_tag: ${{ needs.versions.outputs.PROWLARR_VERSION }}
-      image_title: Prowlarr
-      is_latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      image-description: The Ultimate Indexer Manager
+      image-name: oliversalzburg/containers/prowlarr
+      image-tag: ${{ needs.versions.outputs.PROWLARR_VERSION }}
+      image-title: Prowlarr
+      is-latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      with-sarif: false
+      with-sbom: false
 
   qa-successful:
     if: ( success() || failure() )
