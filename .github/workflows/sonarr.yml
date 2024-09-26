@@ -24,7 +24,7 @@ jobs:
     name: Versions
     outputs:
       SONARR_VERSION: ${{ env.SONARR_VERSION }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Generate outputs
         run: |
@@ -59,7 +59,7 @@ jobs:
     if: ( success() || failure() )
     name: Evaluate QA results
     needs: build-publish
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Success
         if: ${{ !(contains(needs.*.result, 'failure')) }}
@@ -75,7 +75,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Delete untagged layers
         uses: Chizkiyahu/delete-untagged-ghcr-action@e8c780ca2d589797e657691fc16bffe066714890 # v4
