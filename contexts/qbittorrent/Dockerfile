@@ -23,10 +23,10 @@ ARG MAKE_VERSION="4.3-4.1build2"
 ARG OPENSSL_VERSION="3.0.13-0ubuntu3.4"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/python3 versioning=deb
 ARG PYTHON3_VERSION="3.12.3-0ubuntu2"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qtbase5-dev versioning=deb
-ARG QTBASE_VERSION="5.15.13+dfsg-1ubuntu1"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qtbase6-dev versioning=deb
+ARG QTBASE_VERSION="6.4.2+dfsg-21.1build5"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qttools5-dev versioning=deb
-ARG QTTOOLS_VERSION="5.15.13-1"
+ARG QTTOOLS_VERSION="6.4.2-3build3"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/zlib1g-dev versioning=deb
 ARG ZLIB_VERSION="1:1.3.dfsg-3.1ubuntu2.1"
 
@@ -41,11 +41,11 @@ RUN apt-get update \
   g++=${GPP_VERSION} \
   gcc=${GCC_VERSION} \
   libboost-dev=${LIBBOOST_VERSION} \
-  libqt5core5t64=${QTBASE_VERSION} \
-  libqt5gui5t64=${QTBASE_VERSION} \
-  libqt5network5t64=${QTBASE_VERSION} \
-  libqt5sql5t64=${QTBASE_VERSION} \
-  libqt5xml5t64=${QTBASE_VERSION} \
+  libqt6core6t64=${QTBASE_VERSION} \
+  libqt6gui6t64=${QTBASE_VERSION} \
+  libqt6network6t64=${QTBASE_VERSION} \
+  libqt6sql6t64=${QTBASE_VERSION} \
+  libqt6xml6t64=${QTBASE_VERSION} \
   libssl3=${OPENSSL_VERSION} \
   libssl-dev=${OPENSSL_VERSION} \
   libtorrent-rasterbar2.0t64=${LIBTORRENT_RASTERBAR_VERSION} \
@@ -53,9 +53,12 @@ RUN apt-get update \
   make=${MAKE_VERSION} \
   openssl=${OPENSSL_VERSION} \
   python3=${PYTHON3_VERSION} \
-  qtbase5-dev=${QTBASE_VERSION} \
-  qtbase5-private-dev=${QTBASE_VERSION} \
-  qttools5-dev=${QTTOOLS_VERSION} \
+  qt6-base-dev=${QTBASE_VERSION} \
+  qt6-base-dev-tools=${QTBASE_VERSION} \
+  qt6-base-private-dev=${QTBASE_VERSION} \
+  qt6-tools-dev=${QTTOOLS_VERSION} \
+  qt6-tools-dev-tools=${QTTOOLS_VERSION} \
+  qt6-tools-private-dev=${QTTOOLS_VERSION} \
   zlib1g-dev=${ZLIB_VERSION} \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
@@ -68,9 +71,9 @@ RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive
   && rm qbittorrent.tar.gz \
   # Build qBittorrent
   && cd "qBittorrent-release-${QBITTORRENT_VERSION}" \
-  && ./configure --disable-gui \
-  && make --jobs $(nproc --all) \
-  && make install
+  && cmake -B build -DCMAKE_BUILD_TYPE=Release -DGUI=OFF \
+  && cmake --build build -- --jobs $(nproc --all) \
+  && cmake --install build
 
 RUN apt-get remove --purge --yes \
   cmake \
@@ -80,9 +83,12 @@ RUN apt-get remove --purge --yes \
   libtorrent-rasterbar-dev \
   libssl-dev \
   make \
-  qtbase5-dev \
-  qtbase5-private-dev \
-  qttools5-dev \
+  qt6-base-dev \
+  qt6-base-dev-tools \
+  qt6-base-private-dev \
+  qt6-tools-dev \
+  qt6-tools-dev-tools \
+  qt6-tools-private-dev \
   zlib1g-dev \
   && apt-get autoremove --yes \
   && apt-get clean
