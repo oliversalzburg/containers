@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:noble@sha256:ee6860ab126bb8291052401af00acad20d69c16e46579a47dac1c57cd4688446
+FROM docker.io/library/ubuntu:noble@sha256:ab64a8382e935382638764d8719362bb50ee418d944c1f3d26e0c99fae49a345
 
 # Versions of core components.
 ARG QBITTORRENT_VERSION
@@ -87,7 +87,7 @@ RUN apt-get remove --purge --yes \
   && apt-get autoremove --yes \
   && apt-get clean
 
-FROM docker.io/library/ubuntu:noble@sha256:ee6860ab126bb8291052401af00acad20d69c16e46579a47dac1c57cd4688446
+FROM docker.io/library/ubuntu:noble@sha256:ab64a8382e935382638764d8719362bb50ee418d944c1f3d26e0c99fae49a345
 COPY --from=0 / /
 RUN ldconfig
 WORKDIR /config
