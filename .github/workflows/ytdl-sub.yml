@@ -17,7 +17,7 @@ concurrency:
 
 env:
   # renovate: datasource=github-releases depName=jmbannon/ytdl-sub versioning=loose
-  YTDLSUB_VERSION: "2024.10.27.post3"
+  YTDLSUB_VERSION: "2024.10.27.post5"
 
 jobs:
   versions:
