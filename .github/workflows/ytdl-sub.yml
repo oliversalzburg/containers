@@ -31,8 +31,6 @@ jobs:
           echo "YTDLSUB_VERSION=${{ env.YTDLSUB_VERSION }}" >> $GITHUB_OUTPUT
 
   build-publish:
-    # We don't need to run this on Renovate PRs. We will already test the `renovate/foo` branch.
-    if: github.event_name != 'pull_request' || github.actor != 'renovate[bot]'
     name: Call Build
     needs: versions
     permissions:
