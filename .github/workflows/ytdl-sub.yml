@@ -65,22 +65,3 @@ jobs:
       - name: Failure
         if: ${{ contains(needs.*.result, 'failure') }}
         run: exit 1
-
-  delete-untagged:
-    if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
-    name: Clean up layers
-    needs: qa-successful
-    permissions:
-      contents: read
-      packages: write
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Delete untagged layers
-        uses: Chizkiyahu/delete-untagged-ghcr-action@1c77a06b7f80ad4beb82b85919003831d47277d1 # v5
-        with:
-          token: ${{ github.token }}
-          repository_owner: ${{ github.repository_owner }}
-          repository: ${{ github.repository }}
-          package_name: containers/ytdl-sub
-          untagged_only: true
-          owner_type: user
