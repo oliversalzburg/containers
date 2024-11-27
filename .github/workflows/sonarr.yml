@@ -17,7 +17,7 @@ concurrency:
 
 env:
   # renovate: datasource=github-releases depName=Sonarr/Sonarr versioning=loose
-  SONARR_VERSION: "4.0.10.2544"
+  SONARR_VERSION: "4.0.11.2680"
 
 jobs:
   versions:
