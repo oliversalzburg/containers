@@ -1,65 +1,93 @@
-FROM docker.io/library/ubuntu:noble@sha256:1e622c5f073b4f6bfad6632f2616c7f59ef256e96fe78bf6a595d1dc4376ac02
+FROM docker.io/library/ubuntu:plucky
 
 # Versions of core components.
 ARG QBITTORRENT_VERSION
 
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ca-certificates versioning=deb
-ARG CA_CERTIFICATES_VERSION="20240203"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/cmake versioning=deb
-ARG CMAKE_VERSION="3.28.3-1build7"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/curl versioning=deb
-ARG CURL_VERSION="8.5.0-2ubuntu10.6"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/g++ versioning=deb
-ARG GPP_VERSION="4:13.2.0-7ubuntu1"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/gcc versioning=deb
-ARG GCC_VERSION="4:13.2.0-7ubuntu1"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libboost-dev versioning=deb
-ARG LIBBOOST_VERSION="1.83.0.1ubuntu2"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/libtorrent-rasterbar-dev versioning=deb
-ARG LIBTORRENT_RASTERBAR_VERSION="2.0.10-1.1build2"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/make versioning=deb
-ARG MAKE_VERSION="4.3-4.1build2"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
-ARG OPENSSL_VERSION="3.0.13-0ubuntu3.5"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/python3 versioning=deb
-ARG PYTHON3_VERSION="3.12.3-0ubuntu2"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qtbase5-dev versioning=deb
-ARG QTBASE_VERSION="5.15.13+dfsg-1ubuntu1"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/qttools5-dev versioning=deb
-ARG QTTOOLS_VERSION="5.15.13-1"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/zlib1g-dev versioning=deb
-ARG ZLIB_VERSION="1:1.3.dfsg-3.1ubuntu2.1"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/build-essential versioning=deb
+ARG BUILD_ESSENTIAL_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/ca-certificates versioning=deb
+ARG CA_CERTIFICATES_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/cmake versioning=deb
+ARG CMAKE_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/curl versioning=deb
+ARG CURL_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/ipcalc-ng versioning=deb
+ARG IPCALC_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/iproute2 versioning=deb
+ARG IPROUTE_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/iptables versioning=deb
+ARG IPTABLES_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/iputils-ping versioning=deb
+ARG IPUTILS_PING_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libboost-dev versioning=deb
+ARG LIBBOOST_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libcap2-bin versioning=deb
+ARG LIBCAP2_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libqt6concurrent6 versioning=deb
+ARG LIBQT6_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libtorrent-rasterbar-dev versioning=deb
+ARG LIBTORRENT_RASTERBAR_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/openssl versioning=deb
+ARG OPENSSL_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/python3 versioning=deb
+ARG PYTHON3_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/zlib1g-dev versioning=deb
+ARG ZLIB_VERSION="*"
 
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
   && apt-get install --no-install-recommends --yes \
+  build-essential=${BUILD_ESSENTIAL_VERSION} \
   ca-certificates=${CA_CERTIFICATES_VERSION} \
   cmake=${CMAKE_VERSION} \
   curl=${CURL_VERSION} \
-  g++=${GPP_VERSION} \
-  gcc=${GCC_VERSION} \
+  ipcalc-ng=${IPCALC_VERSION} \
+  iproute2=${IPROUTE_VERSION} \
+  iptables=${IPTABLES_VERSION} \
+  iputils-ping=${IPUTILS_PING_VERSION} \
   libboost-dev=${LIBBOOST_VERSION} \
-  libqt5core5t64=${QTBASE_VERSION} \
-  libqt5gui5t64=${QTBASE_VERSION} \
-  libqt5network5t64=${QTBASE_VERSION} \
-  libqt5sql5t64=${QTBASE_VERSION} \
-  libqt5xml5t64=${QTBASE_VERSION} \
-  libssl3=${OPENSSL_VERSION} \
+  libcap2-bin=${LIBCAP2_VERSION} \
+  libqt6concurrent6=${LIBQT6_VERSION} \
+  libqt6core6t64=${LIBQT6_VERSION} \
+  libqt6gui6=${LIBQT6_VERSION} \
+  libqt6network6=${LIBQT6_VERSION} \
+  libqt6sql6=${LIBQT6_VERSION} \
+  libqt6xml6=${LIBQT6_VERSION} \
+  libqt6sql6-sqlite=${LIBQT6_VERSION} \
+  libqt6uitools6=${LIBQT6_VERSION} \
   libssl-dev=${OPENSSL_VERSION} \
-  libtorrent-rasterbar2.0t64=${LIBTORRENT_RASTERBAR_VERSION} \
+  libssl3t64=${OPENSSL_VERSION} \
   libtorrent-rasterbar-dev=${LIBTORRENT_RASTERBAR_VERSION} \
-  make=${MAKE_VERSION} \
+  libtorrent-rasterbar2.0t64=${LIBTORRENT_RASTERBAR_VERSION} \
+  libxcb-cursor-dev \
+  libxkbcommon-x11-dev \
+  locales \
+  natpmpc \
+  ninja-build \
   openssl=${OPENSSL_VERSION} \
-  python3=${PYTHON3_VERSION} \
-  qtbase5-dev=${QTBASE_VERSION} \
-  qtbase5-private-dev=${QTBASE_VERSION} \
-  qttools5-dev=${QTTOOLS_VERSION} \
+  qt6-base-dev \
+  qt6-base-dev-tools \
+  qt6-base-private-dev \
+  qt6-tools-dev \
+  qt6-tools-dev-tools \
+  qt6-tools-private-dev \
+  tzdata \
+  unzip \
+  wget \
+  wireguard-go \
+  wireguard-tools \
+  xz-utils \
   zlib1g-dev=${ZLIB_VERSION} \
-  ipcalc-ng iproute2 iptables iputils-ping libcap2-bin locales natpmpc tzdata unzip wget wireguard-go wireguard-tools xz-utils \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
+
+RUN sed -i "/en_US.UTF-8/s/^# //g" /etc/locale.gen \
+  && locale-gen
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 # qBittorrent
 WORKDIR /usr/src/qbittorrent
@@ -69,9 +97,9 @@ RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive
   && rm qbittorrent.tar.gz \
   # Build qBittorrent
   && cd "qBittorrent-release-${QBITTORRENT_VERSION}" \
-  && ./configure --disable-gui \
-  && make --jobs $(nproc --all) \
-  && make install
+  && cmake -B build -DCMAKE_BUILD_TYPE=Release -DGUI=OFF \
+  && cmake --build build \
+  && cmake --install build
 
 RUN apt-get remove --purge --yes \
   cmake \
@@ -81,14 +109,18 @@ RUN apt-get remove --purge --yes \
   libtorrent-rasterbar-dev \
   libssl-dev \
   make \
-  qtbase5-dev \
-  qtbase5-private-dev \
-  qttools5-dev \
+  ninja-build \
+  qt6-base-dev \
+  qt6-base-dev-tools \
+  qt6-base-private-dev \
+  qt6-tools-dev \
+  qt6-tools-dev-tools \
+  qt6-tools-private-dev \
   zlib1g-dev \
   && apt-get autoremove --yes \
   && apt-get clean
 
-FROM docker.io/library/ubuntu:noble@sha256:1e622c5f073b4f6bfad6632f2616c7f59ef256e96fe78bf6a595d1dc4376ac02
+FROM docker.io/library/ubuntu:plucky
 COPY --from=0 / /
 RUN ldconfig
 WORKDIR /config
