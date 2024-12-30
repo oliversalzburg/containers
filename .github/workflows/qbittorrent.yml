@@ -24,6 +24,8 @@ jobs:
     name: Versions
     outputs:
       QBITTORRENT_VERSION: ${{ env.QBITTORRENT_VERSION }}
+    permissions:
+      contents: none
     runs-on: ubuntu-24.04
     steps:
       - name: Generate outputs
@@ -58,6 +60,8 @@ jobs:
     needs: 
       - versions
       - build-publish
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
@@ -73,6 +77,8 @@ jobs:
     needs: 
       - build-publish
       - test
+    permissions:
+      contents: none
     runs-on: ubuntu-24.04
     steps:
       - name: Success

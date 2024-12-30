@@ -24,6 +24,8 @@ jobs:
     name: Versions
     outputs:
       SONARR_VERSION: ${{ env.SONARR_VERSION }}
+    permissions:
+      contents: none
     runs-on: ubuntu-24.04
     steps:
       - name: Generate outputs
@@ -57,6 +59,8 @@ jobs:
     if: ( success() || failure() )
     name: Evaluate QA results
     needs: build-publish
+    permissions:
+      contents: none
     runs-on: ubuntu-24.04
     steps:
       - name: Success
