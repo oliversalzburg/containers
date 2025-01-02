@@ -27,6 +27,15 @@ sonarr:
 		--tag sonarr \
 		.
 
+run-whisparr:
+	podman run --interactive --rm --tty --entrypoint bash --volume /tmp:/config \
+		whisparr
+whisparr:
+	cd contexts/whisparr; podman build \
+		--build-arg WHISPARR_VERSION=2.0.0.548 \
+		--tag whisparr \
+		.
+
 ytdl-sub:
 	cd contexts/ytdl-sub; podman build \
 		--build-arg YTDLSUB_VERSION=2024.4.3 \
