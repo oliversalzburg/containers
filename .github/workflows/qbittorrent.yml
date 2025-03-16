@@ -46,11 +46,12 @@ jobs:
       build-args: |
         QBITTORRENT_VERSION=${{ needs.versions.outputs.QBITTORRENT_VERSION }}
       context: contexts/qbittorrent
+      dist-tag: latest
       image-description: The qBittorrent project aims to provide an open-source software alternative to µTorrent.
       image-name: oliversalzburg/containers/qbittorrent
-      image-tag: ${{ needs.versions.outputs.QBITTORRENT_VERSION }}
+      image-tag: v${{ needs.versions.outputs.QBITTORRENT_VERSION }}
       image-title: qBittorrent
-      is-latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      is-latest: true
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       with-sarif: false
       with-sbom: false

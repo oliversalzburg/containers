@@ -46,11 +46,12 @@ jobs:
       build-args: |
         SONARR_VERSION=${{ needs.versions.outputs.SONARR_VERSION }}
       context: contexts/sonarr
+      dist-tag: latest
       image-description: Sonarr is an internet PVR for Usenet and Torrents.
       image-name: oliversalzburg/containers/sonarr
-      image-tag: ${{ needs.versions.outputs.SONARR_VERSION }}
+      image-tag: v${{ needs.versions.outputs.SONARR_VERSION }}
       image-title: Sonarr
-      is-latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      is-latest: true
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       with-sarif: false
       with-sbom: false

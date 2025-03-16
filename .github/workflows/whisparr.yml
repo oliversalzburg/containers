@@ -45,11 +45,12 @@ jobs:
       build-args: |
         WHISPARR_VERSION=${{ needs.versions.outputs.WHISPARR_VERSION }}
       context: contexts/whisparr
+      dist-tag: latest
       image-description: Works great and looks even better doing it.
       image-name: oliversalzburg/containers/whisparr
-      image-tag: ${{ needs.versions.outputs.WHISPARR_VERSION }}
+      image-tag: v${{ needs.versions.outputs.WHISPARR_VERSION }}
       image-title: Whisparr
-      is-latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      is-latest: true
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       with-sarif: false
       with-sbom: false

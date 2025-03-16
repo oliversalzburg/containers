@@ -46,11 +46,12 @@ jobs:
       build-args: |
         YTDLSUB_VERSION=${{ needs.versions.outputs.YTDLSUB_VERSION }}
       context: contexts/ytdl-sub
+      dist-tag: latest
       image-description: ytdl-sub is a command-line tool that downloads media via yt-dlp and prepares it for your favorite media player (Kodi, Jellyfin, Plex, Emby, modern music players).
       image-name: oliversalzburg/containers/ytdl-sub
-      image-tag: ${{ needs.versions.outputs.YTDLSUB_VERSION }}
+      image-tag: v${{ needs.versions.outputs.YTDLSUB_VERSION }}
       image-title: ytdl-sub
-      is-latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      is-latest: true
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       with-sarif: false
       with-sbom: false

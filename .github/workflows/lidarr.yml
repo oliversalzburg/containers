@@ -46,11 +46,12 @@ jobs:
       build-args: |
         LIDARR_VERSION=${{ needs.versions.outputs.LIDARR_VERSION }}
       context: contexts/lidarr
+      dist-tag: latest
       image-description: Lidarr is a music collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new albums from your favorite artists and will interface with clients and indexers to grab, sort, and rename them. It can also be configured to automatically upgrade the quality of existing files in the library when a better quality format becomes available.
       image-name: oliversalzburg/containers/lidarr
-      image-tag: ${{ needs.versions.outputs.LIDARR_VERSION }}
+      image-tag: v${{ needs.versions.outputs.LIDARR_VERSION }}
       image-title: Lidarr
-      is-latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      is-latest: true
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       with-sarif: false
       with-sbom: false

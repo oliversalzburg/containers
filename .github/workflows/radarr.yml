@@ -46,11 +46,12 @@ jobs:
       build-args: |
         RADARR_VERSION=${{ needs.versions.outputs.RADARR_VERSION }}
       context: contexts/radarr
+      dist-tag: latest
       image-description: Works great and looks even better doing it.
       image-name: oliversalzburg/containers/radarr
-      image-tag: ${{ needs.versions.outputs.RADARR_VERSION }}
+      image-tag: v${{ needs.versions.outputs.RADARR_VERSION }}
       image-title: Radarr
-      is-latest: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      is-latest: true
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       with-sarif: false
       with-sbom: false
