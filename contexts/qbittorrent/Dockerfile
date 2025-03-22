@@ -57,6 +57,7 @@ RUN apt-get update \
   qtbase5-private-dev=${QTBASE_VERSION} \
   qttools5-dev=${QTTOOLS_VERSION} \
   zlib1g-dev=${ZLIB_VERSION} \
+  ipcalc-ng iproute2 iptables iputils-ping libcap2-bin locales natpmpc tzdata unzip wget wireguard-go wireguard-tools xz-utils \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
