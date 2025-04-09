@@ -32,7 +32,7 @@ run-whisparr:
 		whisparr
 whisparr:
 	cd contexts/whisparr; podman build \
-		--build-arg WHISPARR_VERSION=2.0.0.548 \
+		--build-arg WHISPARR_VERSION=2.0.0.987 \
 		--tag whisparr \
 		.
 
