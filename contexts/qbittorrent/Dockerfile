@@ -4,43 +4,55 @@ FROM docker.io/library/ubuntu:plucky
 ARG QBITTORRENT_VERSION
 
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/build-essential versioning=deb
-ARG BUILD_ESSENTIAL_VERSION="*"
+ARG BUILD_ESSENTIAL_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/ca-certificates versioning=deb
-ARG CA_CERTIFICATES_VERSION="*"
+ARG CA_CERTIFICATES_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/cmake versioning=deb
-ARG CMAKE_VERSION="*"
+ARG CMAKE_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/curl versioning=deb
-ARG CURL_VERSION="*"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/ipcalc-ng versioning=deb
-ARG IPCALC_VERSION="*"
+ARG CURL_VERSION="1.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/ipcalc-ng versioning=deb
+ARG IPCALC_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/iproute2 versioning=deb
-ARG IPROUTE_VERSION="*"
+ARG IPROUTE_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/iptables versioning=deb
-ARG IPTABLES_VERSION="*"
+ARG IPTABLES_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/iputils-ping versioning=deb
-ARG IPUTILS_PING_VERSION="*"
+ARG IPUTILS_PING_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libboost-dev versioning=deb
-ARG LIBBOOST_VERSION="*"
+ARG LIBBOOST_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libcap2-bin versioning=deb
-ARG LIBCAP2_VERSION="*"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libqt6concurrent6 versioning=deb
-ARG LIBQT6_VERSION="*"
+ARG LIBCAP2_VERSION="1.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libqt6concurrent6 versioning=deb
+ARG LIBQT6_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libtorrent-rasterbar-dev versioning=deb
-ARG LIBTORRENT_RASTERBAR_VERSION="*"
+ARG LIBTORRENT_RASTERBAR_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libxcb-cursor-dev versioning=deb
-ARG LIBXCB_CURSOR_VERSION="*"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libxkbcommon-x11-dev versioning=deb
-ARG LIBXKBCOMMON_X11_VERSION="*"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/locales versioning=deb
-ARG LOCALES_VERSION="*"
+ARG LIBXCB_CURSOR_VERSION="1.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libxkbcommon-x11-dev versioning=deb
+ARG LIBXKBCOMMON_X11_VERSION="1.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/locales versioning=deb
+ARG LOCALES_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/natpmpc versioning=deb
-ARG NATPMPC_VERSION="*"
+ARG NATPMPC_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/openssl versioning=deb
-ARG OPENSSL_VERSION="*"
+ARG OPENSSL_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/python3 versioning=deb
-ARG PYTHON3_VERSION="*"
+ARG PYTHON3_VERSION="1.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/qt6-base-dev versioning=deb
+ARG QT6_VERSION="1.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/tzdata versioning=deb
+ARG TZDATA_VERSION="1.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/unzip versioning=deb
+ARG UNZIP_VERSION="1.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/wget versioning=deb
+ARG WGET_VERSION="1.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/wireguard-go versioning=deb
+ARG WIREGUARD_VERSION="1.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/xz-utils versioning=deb
+ARG XZ_UTILS_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/zlib1g-dev versioning=deb
-ARG ZLIB_VERSION="*"
+ARG ZLIB_VERSION="1.0.0"
 
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
@@ -74,18 +86,18 @@ RUN apt-get update \
   locales=${LOCALES_VERSION} \
   natpmpc=${NATPMPC_VERSION} \
   openssl=${OPENSSL_VERSION} \
-  qt6-base-dev \
-  qt6-base-dev-tools \
-  qt6-base-private-dev \
-  qt6-tools-dev \
-  qt6-tools-dev-tools \
-  qt6-tools-private-dev \
-  tzdata \
-  unzip \
-  wget \
-  wireguard-go \
-  wireguard-tools \
-  xz-utils \
+  qt6-base-dev=${QT6_VERSION} \
+  qt6-base-dev-tools=${QT6_VERSION} \
+  qt6-base-private-dev=${QT6_VERSION} \
+  qt6-tools-dev=${QT6_VERSION} \
+  qt6-tools-dev-tools=${QT6_VERSION} \
+  qt6-tools-private-dev=${QT6_VERSION} \
+  tzdata=${TZDATA_VERSION} \
+  unzip=${UNZIP_VERSION} \
+  wget=${WGET_VERSION} \
+  wireguard-go=${WIREGUARD_VERSION} \
+  wireguard-tools=${WIREGUARD_VERSION} \
+  xz-utils=${XZ_UTILS_VERSION} \
   zlib1g-dev=${ZLIB_VERSION} \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
