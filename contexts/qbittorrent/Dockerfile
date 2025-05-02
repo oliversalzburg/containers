@@ -28,7 +28,7 @@ ARG LIBQT6_VERSION="0.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libtorrent-rasterbar-dev versioning=deb
 ARG LIBTORRENT_RASTERBAR_VERSION="0.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libxcb-cursor-dev versioning=deb
-ARG LIBXCB_CURSOR_VERSION="0.0.0"
+ARG LIBXCB_CURSOR_VERSION="0.1.5-1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libxkbcommon-x11-dev versioning=deb
 ARG LIBXKBCOMMON_X11_VERSION="1.7.0-2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/locales versioning=deb
@@ -48,7 +48,7 @@ ARG UNZIP_VERSION="0.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/wget versioning=deb
 ARG WGET_VERSION="1.24.5-2ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/wireguard-go versioning=deb
-ARG WIREGUARD_VERSION="0.0.0"
+ARG WIREGUARD_VERSION="0.0.20231211-1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/xz-utils versioning=deb
 ARG XZ_UTILS_VERSION="0.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/zlib1g-dev versioning=deb
