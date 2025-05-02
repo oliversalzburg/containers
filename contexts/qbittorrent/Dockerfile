@@ -12,15 +12,15 @@ ARG CMAKE_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/curl versioning=deb
 ARG CURL_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/ipcalc-ng versioning=deb
-ARG IPCALC_VERSION="1.0.0"
+ARG IPCALC_VERSION="1.0.3-2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/iproute2 versioning=deb
 ARG IPROUTE_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/iptables versioning=deb
-ARG IPTABLES_VERSION="1.0.0"
+ARG IPTABLES_VERSION="1.8.11-2ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/iputils-ping versioning=deb
 ARG IPUTILS_PING_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libboost-dev versioning=deb
-ARG LIBBOOST_VERSION="1.0.0"
+ARG LIBBOOST_VERSION="1.83.0.2ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libcap2-bin versioning=deb
 ARG LIBCAP2_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libqt6concurrent6 versioning=deb
@@ -30,7 +30,7 @@ ARG LIBTORRENT_RASTERBAR_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libxcb-cursor-dev versioning=deb
 ARG LIBXCB_CURSOR_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libxkbcommon-x11-dev versioning=deb
-ARG LIBXKBCOMMON_X11_VERSION="1.0.0"
+ARG LIBXKBCOMMON_X11_VERSION="1.7.0-2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/locales versioning=deb
 ARG LOCALES_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/natpmpc versioning=deb
@@ -46,13 +46,13 @@ ARG TZDATA_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/unzip versioning=deb
 ARG UNZIP_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/wget versioning=deb
-ARG WGET_VERSION="1.0.0"
+ARG WGET_VERSION="1.24.5-2ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/wireguard-go versioning=deb
 ARG WIREGUARD_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/xz-utils versioning=deb
 ARG XZ_UTILS_VERSION="1.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/zlib1g-dev versioning=deb
-ARG ZLIB_VERSION="1.0.0"
+ARG ZLIB_VERSION="1:1.3.dfsg+really1.3.1-1ubuntu1"
 
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
