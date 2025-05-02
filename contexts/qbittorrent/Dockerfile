@@ -27,6 +27,14 @@ ARG LIBCAP2_VERSION="*"
 ARG LIBQT6_VERSION="*"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libtorrent-rasterbar-dev versioning=deb
 ARG LIBTORRENT_RASTERBAR_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libxcb-cursor-dev versioning=deb
+ARG LIBXCB_CURSOR_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libxkbcommon-x11-dev versioning=deb
+ARG LIBXKBCOMMON_X11_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/locales versioning=deb
+ARG LOCALES_VERSION="*"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/natpmpc versioning=deb
+ARG NATPMPC_VERSION="*"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/openssl versioning=deb
 ARG OPENSSL_VERSION="*"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/python3 versioning=deb
@@ -61,11 +69,10 @@ RUN apt-get update \
   libssl3t64=${OPENSSL_VERSION} \
   libtorrent-rasterbar-dev=${LIBTORRENT_RASTERBAR_VERSION} \
   libtorrent-rasterbar2.0t64=${LIBTORRENT_RASTERBAR_VERSION} \
-  libxcb-cursor-dev \
-  libxkbcommon-x11-dev \
-  locales \
-  natpmpc \
-  ninja-build \
+  libxcb-cursor-dev=${LIBXCB_CURSOR_VERSION} \
+  libxkbcommon-x11-dev=${LIBXKBCOMMON_X11_VERSION} \
+  locales=${LOCALES_VERSION} \
+  natpmpc=${NATPMPC_VERSION} \
   openssl=${OPENSSL_VERSION} \
   qt6-base-dev \
   qt6-base-dev-tools \
