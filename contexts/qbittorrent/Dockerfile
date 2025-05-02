@@ -24,7 +24,21 @@ ARG LIBBOOST_VERSION="1.83.0.2ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libcap2-bin versioning=deb
 ARG LIBCAP2_VERSION="0.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libqt6concurrent6 versioning=deb
-ARG LIBQT6_VERSION="0.0.0"
+ARG LIBQT6_CONCURRENT_VERSION="0.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libqt6core6t64 versioning=deb
+ARG LIBQT6_CORE_VERSION="0.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libqt6gui6 versioning=deb
+ARG LIBQT6_GUI_VERSION="0.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libqt6network6 versioning=deb
+ARG LIBQT6_NETWORK_VERSION="0.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libqt6sql6-sqlite versioning=deb
+ARG LIBQT6_SQLITE_VERSION="0.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libqt6sql6 versioning=deb
+ARG LIBQT6_SQL_VERSION="0.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libqt6uitools6 versioning=deb
+ARG LIBQT6_UITOOLS_VERSION="0.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libqt6xml6 versioning=deb
+ARG LIBQT6_XML_VERSION="0.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libtorrent-rasterbar-dev versioning=deb
 ARG LIBTORRENT_RASTERBAR_VERSION="0.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/libxcb-cursor-dev versioning=deb
@@ -40,7 +54,9 @@ ARG OPENSSL_VERSION="0.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/python3 versioning=deb
 ARG PYTHON3_VERSION="0.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/qt6-base-dev versioning=deb
-ARG QT6_VERSION="0.0.0"
+ARG QT6_BASE_VERSION="0.0.0"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/qt6-tools-dev versioning=deb
+ARG QT6_TOOLS_VERSION="0.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/tzdata versioning=deb
 ARG TZDATA_VERSION="0.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/unzip versioning=deb
@@ -49,6 +65,8 @@ ARG UNZIP_VERSION="0.0.0"
 ARG WGET_VERSION="1.24.5-2ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/wireguard-go versioning=deb
 ARG WIREGUARD_VERSION="0.0.20231211-1"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/wireguard-tools versioning=deb
+ARG WIREGUARD_TOOLS_VERSION="0.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/xz-utils versioning=deb
 ARG XZ_UTILS_VERSION="0.0.0"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/zlib1g-dev versioning=deb
@@ -69,14 +87,14 @@ RUN apt-get update \
   iputils-ping=${IPUTILS_PING_VERSION} \
   libboost-dev=${LIBBOOST_VERSION} \
   libcap2-bin=${LIBCAP2_VERSION} \
-  libqt6concurrent6=${LIBQT6_VERSION} \
-  libqt6core6t64=${LIBQT6_VERSION} \
-  libqt6gui6=${LIBQT6_VERSION} \
-  libqt6network6=${LIBQT6_VERSION} \
-  libqt6sql6=${LIBQT6_VERSION} \
-  libqt6xml6=${LIBQT6_VERSION} \
-  libqt6sql6-sqlite=${LIBQT6_VERSION} \
-  libqt6uitools6=${LIBQT6_VERSION} \
+  libqt6concurrent6=${LIBQT6_CONCURRENT_VERSION} \
+  libqt6core6t64=${LIBQT6_CORE_VERSION} \
+  libqt6gui6=${LIBQT6_GUI_VERSION} \
+  libqt6network6=${LIBQT6_NETWORK_VERSION} \
+  libqt6sql6-sqlite=${LIBQT6_SQLITE_VERSION} \
+  libqt6sql6=${LIBQT6_SQL_VERSION} \
+  libqt6uitools6=${LIBQT6_UITOOLS_VERSION} \
+  libqt6xml6=${LIBQT6_XML_VERSION} \
   libssl-dev=${OPENSSL_VERSION} \
   libssl3t64=${OPENSSL_VERSION} \
   libtorrent-rasterbar-dev=${LIBTORRENT_RASTERBAR_VERSION} \
@@ -86,17 +104,17 @@ RUN apt-get update \
   locales=${LOCALES_VERSION} \
   natpmpc=${NATPMPC_VERSION} \
   openssl=${OPENSSL_VERSION} \
-  qt6-base-dev=${QT6_VERSION} \
-  qt6-base-dev-tools=${QT6_VERSION} \
-  qt6-base-private-dev=${QT6_VERSION} \
-  qt6-tools-dev=${QT6_VERSION} \
-  qt6-tools-dev-tools=${QT6_VERSION} \
-  qt6-tools-private-dev=${QT6_VERSION} \
+  qt6-base-dev-tools=${QT6_BASE_VERSION} \
+  qt6-base-dev=${QT6_BASE_VERSION} \
+  qt6-base-private-dev=${QT6_BASE_VERSION} \
+  qt6-tools-dev-tools=${QT6_TOOLS_VERSION} \
+  qt6-tools-dev=${QT6_TOOLS_VERSION} \
+  qt6-tools-private-dev=${QT6_TOOLS_VERSION} \
   tzdata=${TZDATA_VERSION} \
   unzip=${UNZIP_VERSION} \
   wget=${WGET_VERSION} \
   wireguard-go=${WIREGUARD_VERSION} \
-  wireguard-tools=${WIREGUARD_VERSION} \
+  wireguard-tools=${WIREGUARD_TOOLS_VERSION} \
   xz-utils=${XZ_UTILS_VERSION} \
   zlib1g-dev=${ZLIB_VERSION} \
   && apt-get clean \
