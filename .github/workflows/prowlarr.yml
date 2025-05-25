@@ -17,7 +17,7 @@ concurrency:
 
 env:
   # renovate: datasource=github-releases depName=Prowlarr/Prowlarr versioning=loose
-  PROWLARR_VERSION: "1.35.1.5034"
+  PROWLARR_VERSION: "1.36.3.5071"
 
 jobs:
   versions:
