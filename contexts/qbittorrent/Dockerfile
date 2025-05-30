@@ -58,7 +58,7 @@ ARG QT6_BASE_VERSION="6.8.3+dfsg-0ubuntu2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/qt6-tools-dev versioning=deb
 ARG QT6_TOOLS_VERSION="6.8.3-0ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/tzdata versioning=deb
-ARG TZDATA_VERSION="2025b-1ubuntu1"
+ARG TZDATA_VERSION="2025b-1ubuntu1.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/unzip versioning=deb
 ARG UNZIP_VERSION="6.0-28ubuntu6"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/wget versioning=deb
