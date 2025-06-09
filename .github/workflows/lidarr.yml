@@ -17,7 +17,7 @@ concurrency:
 
 env:
   # renovate: datasource=github-releases depName=Lidarr/Lidarr versioning=loose
-  LIDARR_VERSION: "2.11.2.4629"
+  LIDARR_VERSION: "2.12.4.4658"
 
 jobs:
   versions:
