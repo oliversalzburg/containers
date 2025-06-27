@@ -12,7 +12,7 @@ ENV OPENSSL_VERSION="3.0.13-0ubuntu3.5"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/python3 versioning=deb
 ENV PYTHON3_VERSION="3.12.3-0ubuntu2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/universe/python3-pip versioning=deb
-ENV PYTHON3_PIP_VERSION="24.0+dfsg-1ubuntu1.1"
+ENV PYTHON3_PIP_VERSION="24.0+dfsg-1ubuntu1.2"
 
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
