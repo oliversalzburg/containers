@@ -46,7 +46,7 @@ ARG LIBXCB_CURSOR_VERSION="0.1.5-1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libxkbcommon-x11-dev versioning=deb
 ARG LIBXKBCOMMON_X11_VERSION="1.7.0-2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/locales versioning=deb
-ARG LOCALES_VERSION="2.41-6ubuntu1"
+ARG LOCALES_VERSION="2.41-6ubuntu1.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/natpmpc versioning=deb
 ARG NATPMPC_VERSION="20230423-1.2build2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/openssl versioning=deb
