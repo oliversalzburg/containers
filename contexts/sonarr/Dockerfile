@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:noble@sha256:440dcf6a5640b2ae5c77724e68787a906afb8ddee98bf86db94eea8528c2c076
+FROM docker.io/library/ubuntu:noble@sha256:e356c061e8d56c58b708d0907925a9bd54cc8f467f05bfa3d714d1d0a4883d97
 
 # Versions of core components.
 ARG SONARR_VERSION
