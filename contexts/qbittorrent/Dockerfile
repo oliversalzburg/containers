@@ -18,7 +18,7 @@ ARG IPROUTE_VERSION="6.14.0-1ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/iptables versioning=deb
 ARG IPTABLES_VERSION="1.8.11-2ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/iputils-ping versioning=deb
-ARG IPUTILS_PING_VERSION="3:20240905-1ubuntu1"
+ARG IPUTILS_PING_VERSION="3:20240905-1ubuntu1.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libboost-dev versioning=deb
 ARG LIBBOOST_VERSION="1.83.0.2ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libcap2-bin versioning=deb
