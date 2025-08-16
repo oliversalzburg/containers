@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:plucky-20250730@sha256:9502de9490082e44c5fcfd86160bd497add2c7c231c0d06688ffc726ecb927d3
+FROM docker.io/library/ubuntu:plucky-20250730@sha256:74ce8b24fba224d38178f7f6734e1ee9fc5a3f72ac8b8aba79ba940c9366aeac
 
 # Versions of core components.
 ARG QBITTORRENT_VERSION
@@ -157,7 +157,7 @@ RUN apt-get remove --purge --yes \
   && apt-get autoremove --yes \
   && apt-get clean
 
-FROM docker.io/library/ubuntu:plucky-20250730@sha256:9502de9490082e44c5fcfd86160bd497add2c7c231c0d06688ffc726ecb927d3
+FROM docker.io/library/ubuntu:plucky-20250730@sha256:74ce8b24fba224d38178f7f6734e1ee9fc5a3f72ac8b8aba79ba940c9366aeac
 COPY --from=0 / /
 RUN ldconfig
 WORKDIR /config
