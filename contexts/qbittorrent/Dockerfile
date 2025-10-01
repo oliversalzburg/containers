@@ -50,7 +50,7 @@ ARG LOCALES_VERSION="2.41-6ubuntu1.2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/natpmpc versioning=deb
 ARG NATPMPC_VERSION="20230423-1.2build2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/openssl versioning=deb
-ARG OPENSSL_VERSION="3.4.1-1ubuntu3"
+ARG OPENSSL_VERSION="3.4.1-1ubuntu4"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/python3 versioning=deb
 ARG PYTHON3_VERSION="3.13.3-1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/qt6-base-dev versioning=deb
