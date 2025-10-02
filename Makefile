@@ -35,9 +35,3 @@ whisparr:
 		--build-arg WHISPARR_VERSION=2.0.0.1250 \
 		--tag whisparr \
 		.
-
-ytdl-sub:
-	cd contexts/ytdl-sub; podman build \
-		--build-arg YTDLSUB_VERSION=2024.4.3 \
-		--tag ytdl-sub \
-		.
