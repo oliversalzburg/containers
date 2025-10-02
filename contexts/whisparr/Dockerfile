@@ -1,17 +1,17 @@
-FROM docker.io/library/ubuntu:noble@sha256:fdb6c9ceb1293dcb0b7eda5df195b15303b01857d7b10f98489e7691d20aa2a1
+FROM docker.io/library/ubuntu:plucky-20250925.1@sha256:61715ab46e7ffac134f0687b9d96826db4e2759e56b00ffd7907c5bf38a9035a
 
 # Versions of core components.
 ARG WHISPARR_VERSION
 
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/ca-certificates versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20240203"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/curl versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/curl versioning=deb
 ENV CURL_VERSION="8.5.0-2ubuntu10.6"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libicu74 versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libicu74 versioning=deb
 ENV ICU_VERSION="74.2-1ubuntu3.1"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/libsqlite3-0 versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libsqlite3-0 versioning=deb
 ENV LIBSQLITE_VERSION="3.45.1-1ubuntu2.5"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/noble/main/openssl versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/openssl versioning=deb
 ENV OPENSSL_VERSION="3.0.13-0ubuntu3.6"
 
 # Install dependencies
