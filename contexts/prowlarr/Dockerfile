@@ -4,7 +4,7 @@ FROM docker.io/library/ubuntu:plucky-20250925.1@sha256:61715ab46e7ffac134f0687b9
 ARG PROWLARR_VERSION
 
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/ca-certificates versioning=deb
-ENV CA_CERTIFICATES_VERSION="20240203"
+ENV CA_CERTIFICATES_VERSION="20241223"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/curl versioning=deb
 ENV CURL_VERSION="8.5.0-2ubuntu10.6"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libicu74 versioning=deb
