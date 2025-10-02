@@ -7,7 +7,7 @@ ARG LIDARR_VERSION
 ENV CA_CERTIFICATES_VERSION="20241223"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/curl versioning=deb
 ENV CURL_VERSION="8.5.0-2ubuntu10.6"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libicu74 versioning=deb
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libicu76 versioning=deb
 ENV ICU_VERSION="74.2-1ubuntu3.1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libsqlite3-0 versioning=deb
 ENV LIBSQLITE_VERSION="3.45.1-1ubuntu2.5"
@@ -21,7 +21,7 @@ RUN apt-get update \
   && apt-get install --no-install-recommends --yes \
   ca-certificates=${CA_CERTIFICATES_VERSION} \
   curl=${CURL_VERSION} \
-  libicu74=${ICU_VERSION} \
+  libicu76=${ICU_VERSION} \
   libsqlite3-0=${LIBSQLITE_VERSION} \
   openssl=${OPENSSL_VERSION} \
   && apt-get clean \
