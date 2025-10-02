@@ -8,7 +8,7 @@ ENV CA_CERTIFICATES_VERSION="20241223"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/curl versioning=deb
 ENV CURL_VERSION="8.5.0-2ubuntu10.6"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libicu76 versioning=deb
-ENV ICU_VERSION="74.2-1ubuntu3.1"
+ENV ICU_VERSION="76.1-1ubuntu2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/libsqlite3-0 versioning=deb
 ENV LIBSQLITE_VERSION="3.45.1-1ubuntu2.5"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/openssl versioning=deb
