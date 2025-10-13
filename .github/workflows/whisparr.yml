@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  WHISPARR_VERSION: "2.0.0.1250"
+  WHISPARR_VERSION: "2.0.0.1282"
 
 jobs:
   versions:
