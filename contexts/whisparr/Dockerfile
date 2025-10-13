@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:plucky-20251001@sha256:393b8507b8b5d3cdeece165b5c85d517d343842af210e67b091aaf6cf1fc8369
+FROM docker.io/library/ubuntu:plucky-20251001@sha256:27771fb7b40a58237c98e8d3e6b9ecdd9289cec69a857fccfb85ff36294dac20
 
 # Versions of core components.
 ARG WHISPARR_VERSION
