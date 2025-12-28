@@ -12,7 +12,7 @@ ARG CMAKE_VERSION="3.31.6-1ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/curl versioning=deb
 ARG CURL_VERSION="8.12.1-3ubuntu1"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/bind9-dnsutils versioning=deb
-ARG DNSUTILS_VERSION="0.0.1"
+ARG DNSUTILS_VERSION="1:9.20.11-0ubuntu0.2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/universe/ipcalc-ng versioning=deb
 ARG IPCALC_VERSION="1.0.3-2"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/iproute2 versioning=deb
