@@ -3,6 +3,14 @@ lidarr:
 		--build-arg LIDARR_VERSION=2.1.7.4030 \
 		--tag lidarr \
 		.
+nzbget:
+	cd contexts/nzbget; podman build \
+		--build-arg NZBGET_VERSION=26.0 \
+		--tag nzbget \
+		.
+run-nzbget:
+	podman run --interactive --rm --tty --entrypoint bash --volume /tmp:/config \
+		nzbget
 prowlarr:
 	cd contexts/prowlarr; podman build \
 		--build-arg PROWLARR_VERSION=1.13.3.4273 \

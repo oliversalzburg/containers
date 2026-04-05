@@ -1,0 +1,72 @@
+name: NZBGet
+
+on:
+  push:
+    paths:
+      - .github/workflows/nzbget.yml
+      - contexts/nzbget/*
+  pull_request:
+    paths:
+      - .github/workflows/nzbget.yml
+      - contexts/nzbget/*
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  # renovate: datasource=github-releases depName=nzbgetcom/nzbget versioning=loose
+  NZBGET_VERSION: "26.0"
+
+jobs:
+  versions:
+    name: Versions
+    outputs:
+      NZBGET_VERSION: ${{ env.NZBGET_VERSION }}
+    permissions:
+      contents: none
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Generate outputs
+        run: |
+          echo "NZBGET_VERSION=${{ env.NZBGET_VERSION }}" >> $GITHUB_OUTPUT
+
+  build-publish:
+    name: Call Build
+    needs: versions
+    permissions:
+      attestations: write
+      contents: read
+      id-token: write
+      packages: write
+      security-events: write
+    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@6804ca9891035c37aa14dcda51e6135c5f5f6d8b # main
+    with:
+      build-args: |
+        NZBGET_VERSION=${{ needs.versions.outputs.NZBGET_VERSION }}
+      context: contexts/nzbget
+      dist-tag: latest
+      image-description: NZBGet is an advanced NZB downloader designed to efficiently retrieve articles from Usenet newsgroups. It is built for high performance and low resource consumption, making it ideal for users looking for a fast, automated Usenet experience. NZBGet works seamlessly across platforms like Windows, macOS, Linux, NAS devices, and Docker containers.
+      image-name: oliversalzburg/containers/nzbget
+      image-tag: v${{ needs.versions.outputs.NZBGET_VERSION }}
+      image-title: NZBGet
+      is-latest: true
+      push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      with-sarif: false
+      with-sbom: false
+
+  qa-successful:
+    if: ( success() || failure() )
+    name: Evaluate QA results
+    needs: build-publish
+    permissions:
+      contents: none
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Success
+        if: ${{ !(contains(needs.*.result, 'failure')) }}
+        run: exit 0
+      - name: Failure
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1
