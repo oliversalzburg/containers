@@ -30,4 +30,4 @@ RUN curl --location --silent "https://github.com/nzbgetcom/nzbget/releases/downl
   && sh nzbget-bin-linux.run
 
 WORKDIR /opt/nzbget
-CMD [ "/opt/nzbget/nzbget", "-s", "-c", "/config/nzbget.conf", "-o", "outputmode=log" ]
+CMD [ "/opt/nzbget/nzbget", "-s", "-c", "/config/nzbget.conf" ]
