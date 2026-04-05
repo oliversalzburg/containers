@@ -3,6 +3,8 @@ FROM docker.io/library/ubuntu:plucky-20251001@sha256:27771fb7b40a58237c98e8d3e6b
 # Versions of core components.
 ARG NZBGET_VERSION
 
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/7zip versioning=deb
+ENV SEVENZIP_VERSION="24.09+dfsg-7"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20241223"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/curl versioning=deb
@@ -13,6 +15,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
   && apt-get install --no-install-recommends --yes \
+  7zip=${SEVENZIP_VERSION} \
   ca-certificates=${CA_CERTIFICATES_VERSION} \
   curl=${CURL_VERSION} \
   && apt-get clean \

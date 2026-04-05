@@ -9,7 +9,7 @@ nzbget:
 		--tag nzbget \
 		.
 run-nzbget:
-	podman run --interactive --rm --tty --entrypoint bash --volume /tmp:/config \
+	podman run --interactive --rm --tty \
 		nzbget
 prowlarr:
 	cd contexts/prowlarr; podman build \
