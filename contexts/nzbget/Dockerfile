@@ -9,6 +9,8 @@ ENV SEVENZIP_VERSION="24.09+dfsg-7"
 ENV CA_CERTIFICATES_VERSION="20241223"
 # renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/curl versioning=deb
 ENV CURL_VERSION="8.12.1-3ubuntu1"
+# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/unrar versioning=deb
+ENV UNRAR_VERSION="1:7.1.5-3"
 
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
@@ -18,6 +20,7 @@ RUN apt-get update \
   7zip=${SEVENZIP_VERSION} \
   ca-certificates=${CA_CERTIFICATES_VERSION} \
   curl=${CURL_VERSION} \
+  unrar=${UNRAR_VERSION} \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
