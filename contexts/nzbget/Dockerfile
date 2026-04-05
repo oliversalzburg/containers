@@ -22,6 +22,7 @@ RUN apt-get update \
 WORKDIR /opt
 RUN curl --location --silent "https://github.com/nzbgetcom/nzbget/releases/download/v${NZBGET_VERSION}/nzbget-${NZBGET_VERSION}-bin-linux.run" --output "nzbget-bin-linux.run" \
   && mkdir /config \
+  && mkdir --parents /opt/nzbget/downloads \
   && touch /config/nzbget.conf \
   && sh nzbget-bin-linux.run
 
