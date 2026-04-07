@@ -17,7 +17,7 @@ concurrency:
 
 env:
   # renovate: datasource=github-releases depName=nzbgetcom/nzbget versioning=loose
-  NZBGET_VERSION: "26.0"
+  NZBGET_VERSION: "26.1"
 
 jobs:
   versions:
