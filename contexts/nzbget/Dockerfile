@@ -3,15 +3,10 @@ FROM docker.io/library/ubuntu:plucky-20251001@sha256:27771fb7b40a58237c98e8d3e6b
 # Versions of core components.
 ARG NZBGET_VERSION
 
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/7zip versioning=deb
 ENV SEVENZIP_VERSION="24.09+dfsg-7"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/ca-certificates versioning=deb
 ENV CA_CERTIFICATES_VERSION="20241223"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/curl versioning=deb
 ENV CURL_VERSION="8.12.1-3ubuntu1"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/python3 versioning=deb
 ARG PYTHON3_VERSION="3.13.3-1"
-# renovate: datasource=custom.apt.ubuntu depName=ubuntu-observable/plucky/main/unrar versioning=deb
 ENV UNRAR_VERSION="1:7.1.5-3"
 
 # Install dependencies
