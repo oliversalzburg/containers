@@ -54,18 +54,3 @@ jobs:
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       with-sarif: false
       with-sbom: false
-
-  qa-successful:
-    if: ( success() || failure() )
-    name: Evaluate QA results
-    needs: build-publish
-    permissions:
-      contents: none
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Success
-        if: ${{ !(contains(needs.*.result, 'failure')) }}
-        run: exit 0
-      - name: Failure
-        if: ${{ contains(needs.*.result, 'failure') }}
-        run: exit 1
