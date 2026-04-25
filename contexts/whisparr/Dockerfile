@@ -23,7 +23,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 # Whisparr
-RUN curl --location --silent "https://whisparr.servarr.com/v1/update/nightly/updatefile?version=${WHISPARR_VERSION}&os=linux&runtime=netcore&arch=x64" --output "whisparr.tar.gz" \
+RUN curl --location --silent "https://github.com/Whisparr/Whisparr/releases/download/v${WHISPARR_VERSION}/Whisparr.${WHISPARR_VERSION}.linux-x64.tar.gz" --output "whisparr.tar.gz" \
   # Quietly unpack
   && tar xzf whisparr.tar.gz \
   && rm whisparr.tar.gz \
