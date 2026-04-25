@@ -1,11 +1,11 @@
 lidarr:
 	cd contexts/lidarr; podman build \
-		--build-arg LIDARR_VERSION=2.1.7.4030 \
+		--build-arg LIDARR_VERSION=3.1.0.4875 \
 		--tag lidarr \
 		.
 nzbget:
 	cd contexts/nzbget; podman build \
-		--build-arg NZBGET_VERSION=26.0 \
+		--build-arg NZBGET_VERSION=26.1 \
 		--tag nzbget \
 		.
 run-nzbget:
@@ -13,12 +13,12 @@ run-nzbget:
 		nzbget
 prowlarr:
 	cd contexts/prowlarr; podman build \
-		--build-arg PROWLARR_VERSION=1.13.3.4273 \
+		--build-arg PROWLARR_VERSION=2.3.5.5327 \
 		--tag prowlarr \
 		.
 qbittorrent:
 	cd contexts/qbittorrent; podman build \
-		--build-arg QBITTORRENT_VERSION=5.1.0 \
+		--build-arg QBITTORRENT_VERSION=5.1.4 \
 		--tag qbittorrent \
 		.
 run-qbittorrent:
@@ -26,12 +26,12 @@ run-qbittorrent:
 		qbittorrent
 radarr:
 	cd contexts/radarr; podman build \
-		--build-arg RADARR_VERSION=5.3.6.8612 \
+		--build-arg RADARR_VERSION=6.1.1.10360 \
 		--tag radarr \
 		.
 sonarr:
 	cd contexts/sonarr; podman build \
-		--build-arg SONARR_VERSION=4.0.2.1183 \
+		--build-arg SONARR_VERSION=4.0.17.2952 \
 		--tag sonarr \
 		.
 
@@ -40,6 +40,6 @@ run-whisparr:
 		whisparr
 whisparr:
 	cd contexts/whisparr; podman build \
-		--build-arg WHISPARR_VERSION=2.0.0.2151 \
+		--build-arg WHISPARR_VERSION=2.2.0-release.108 \
 		--tag whisparr \
 		.
