@@ -40,6 +40,6 @@ run-whisparr:
 		whisparr
 whisparr:
 	cd contexts/whisparr; podman build \
-		--build-arg WHISPARR_VERSION=2.2.0-release.108 \
+		--build-arg WHISPARR_VERSION=2.2.0-develop.115 \
 		--tag whisparr \
 		.
