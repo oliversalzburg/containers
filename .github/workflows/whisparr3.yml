@@ -1,4 +1,4 @@
-name: Whisparr
+name: Whisparr v3
 
 on:
   push:
@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  WHISPARR_VERSION: "2.2.0-develop.115"
+  WHISPARR_VERSION: "3.3.3-release.683"
 
 jobs:
   versions:
@@ -44,12 +44,12 @@ jobs:
     with:
       build-args: |
         WHISPARR_VERSION=${{ needs.versions.outputs.WHISPARR_VERSION }}
-      context: contexts/whisparr
+      context: contexts/whisparr3
       dist-tag: latest
       image-description: Works great and looks even better doing it.
       image-name: oliversalzburg/containers/whisparr
       image-tag: v${{ needs.versions.outputs.WHISPARR_VERSION }}
-      image-title: Whisparr
+      image-title: Whisparr v3
       is-latest: true
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       with-sarif: false

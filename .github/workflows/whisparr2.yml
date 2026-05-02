@@ -1,0 +1,56 @@
+name: Whisparr v2
+
+on:
+  push:
+    paths:
+      - .github/workflows/whisparr.yml
+      - contexts/whisparr/*
+  pull_request:
+    paths:
+      - .github/workflows/whisparr.yml
+      - contexts/whisparr/*
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  WHISPARR_VERSION: "2.2.0-develop.115"
+
+jobs:
+  versions:
+    name: Versions
+    outputs:
+      WHISPARR_VERSION: ${{ env.WHISPARR_VERSION }}
+    permissions:
+      contents: none
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Generate outputs
+        run: |
+          echo "WHISPARR_VERSION=${{ env.WHISPARR_VERSION }}" >> $GITHUB_OUTPUT
+
+  build-publish:
+    name: Call Build
+    needs: versions
+    permissions:
+      attestations: write
+      contents: read
+      id-token: write
+      packages: write
+      security-events: write
+    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@6c9ac0000d371339c5de1988b36f6c22039cf201 # main
+    with:
+      build-args: |
+        WHISPARR_VERSION=${{ needs.versions.outputs.WHISPARR_VERSION }}
+      context: contexts/whisparr2
+      dist-tag: latest
+      image-description: Works great and looks even better doing it.
+      image-name: oliversalzburg/containers/whisparr
+      image-tag: v${{ needs.versions.outputs.WHISPARR_VERSION }}
+      image-title: Whisparr v2
+      is-latest: true
+      push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      with-sarif: false
+      with-sbom: false

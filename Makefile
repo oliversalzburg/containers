@@ -35,11 +35,20 @@ sonarr:
 		--tag sonarr \
 		.
 
-run-whisparr:
+run-whisparr2:
 	podman run --interactive --rm --tty --entrypoint bash --volume /tmp:/config \
-		whisparr
-whisparr:
-	cd contexts/whisparr; podman build \
+		whisparr2
+whisparr2:
+	cd contexts/whisparr2; podman build \
 		--build-arg WHISPARR_VERSION=2.2.0-develop.115 \
-		--tag whisparr \
+		--tag whisparr2 \
+		.
+
+run-whisparr3:
+	podman run --interactive --rm --tty --entrypoint bash --volume /tmp:/config \
+		whisparr3
+whisparr3:
+	cd contexts/whisparr3; podman build \
+		--build-arg WHISPARR_VERSION=3.3.3-release.683 \
+		--tag whisparr3 \
 		.
