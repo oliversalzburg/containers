@@ -1,3 +1,5 @@
+all: lidarr nzbget prowlarr qbittorrent radarr sonarr whisparr2 whisparr3
+
 lidarr:
 	cd contexts/lidarr; podman build \
 		--build-arg LIDARR_VERSION=3.1.0.4875 \
