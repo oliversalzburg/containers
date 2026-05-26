@@ -17,7 +17,7 @@ concurrency:
 
 env:
   # renovate: datasource=github-tags depName=qbittorrent/qBittorrent extractVersion=^release-(?<version>.*)$
-  QBITTORRENT_VERSION: "5.2.0"
+  QBITTORRENT_VERSION: "5.2.1"
 
 jobs:
   versions:
