@@ -30,10 +30,10 @@ RUN curl --location --silent "https://plex.tv/downloads/details/5?build=linux-x8
   && dpkg -i plex.deb \
   && rm plex.deb
 
-COPY [ "Preferences.xml", "/usr/lib/plexmediaserver/Library/Application Support/Plex Media Server/Preferences.xml" ]
+COPY [ "Preferences.xml", "/config/Preferences.xml" ]
 
 WORKDIR /usr/lib/plexmediaserver/
-ENV PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR="/usr/lib/plexmediaserver/Library/Application Support/"
+ENV PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR="/config/"
 ENV PLEX_MEDIA_SERVER_HOME=/usr/lib/plexmediaserver
 ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6
 ENV PLEX_MEDIA_SERVER_INFO_VENDOR="Debian GNU/Linux"
