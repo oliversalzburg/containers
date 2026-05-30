@@ -37,4 +37,4 @@ ENV PLEX_MEDIA_SERVER_INFO_VENDOR="Debian GNU/Linux"
 ENV PLEX_MEDIA_SERVER_INFO_MODEL=x86_64
 ENV PLEX_MEDIA_SERVER_INFO_PLATFORM_VERSION=whatever
 
-ENTRYPOINT [ "/usr/lib/plexmediaserver/Plex\ Media\ Server" ]
+ENTRYPOINT [ "/usr/lib/plexmediaserver/Plex Media Server" ]
