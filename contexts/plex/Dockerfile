@@ -16,9 +16,6 @@ RUN apt-get update \
   ca-certificates=${CA_CERTIFICATES_VERSION} \
   curl=${CURL_VERSION} \
   tzdata=${TZDATA_VERSION} \
-  unrar=${UNRAR_VERSION} \
-  uuid-runtime=${UUIDRUNTIME_VERSION} \
-  xmlstarlet=${XMLSTARLET_VERSION} \
   xq=${XQ_VERSION} \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
