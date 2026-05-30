@@ -1,0 +1,38 @@
+name: Plex
+
+on:
+  push:
+    paths:
+      - .github/workflows/plex.yml
+      - contexts/plex/*
+  pull_request:
+    paths:
+      - .github/workflows/plex.yml
+      - contexts/plex/*
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-publish:
+    name: Call Build
+    permissions:
+      attestations: write
+      contents: read
+      id-token: write
+      packages: write
+      security-events: write
+    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@f504b1c83e104232349a2e2be28bf690b2b292a4 # main
+    with:
+      context: contexts/plex
+      dist-tag: latest
+      image-description: A piece of garbage that is sadly needed sometimes.
+      image-name: oliversalzburg/containers/plex
+      image-tag: edge
+      image-title: Plex
+      is-latest: true
+      push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      with-sarif: false
+      with-sbom: false

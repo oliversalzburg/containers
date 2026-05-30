@@ -13,6 +13,13 @@ nzbget:
 run-nzbget:
 	podman run --interactive --rm --tty --entrypoint bash \
 		nzbget
+plex:
+	cd contexts/plex; podman build \
+		--tag plex \
+		.
+run-plex:
+	podman run --publish 32400:32400 --interactive --rm --tty --entrypoint bash \
+		plex
 prowlarr:
 	cd contexts/prowlarr; podman build \
 		--build-arg PROWLARR_VERSION=2.3.5.5327 \

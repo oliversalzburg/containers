@@ -1,0 +1,43 @@
+FROM docker.io/library/ubuntu:26.04@sha256:f3d28607ddd78734bb7f71f117f3c6706c666b8b76cbff7c9ff6e5718d46ff64
+
+ARG CA_CERTIFICATES_VERSION="20260223"
+ARG CURL_VERSION="8.18.0-1ubuntu2.1"
+ARG TZDATA_VERSION="2026a-3ubuntu1"
+ARG UNRAR_VERSION="1:7.2.4-1"
+ARG UUIDRUNTIME_VERSION="2.41.3-3ubuntu2"
+ARG XMLSTARLET_VERSION="1.6.1-5build1"
+ARG XQ_VERSION="1.3.0-1build1"
+
+# Install dependencies
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update \
+  && apt-get install --no-install-recommends --yes \
+  ca-certificates=${CA_CERTIFICATES_VERSION} \
+  curl=${CURL_VERSION} \
+  tzdata=${TZDATA_VERSION} \
+  unrar=${UNRAR_VERSION} \
+  uuid-runtime=${UUIDRUNTIME_VERSION} \
+  xmlstarlet=${XMLSTARLET_VERSION} \
+  xq=${XQ_VERSION} \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+# Plex
+RUN curl --location --silent "https://plex.tv/downloads/details/5?build=linux-x86_64&channel=16&distro=debian" \
+  | xq --xpath /MediaContainer/Release/Package/@url \
+  | xargs curl --silent --output "plex.deb" \
+  && dpkg -i plex.deb \
+  && rm plex.deb
+
+COPY [ "Preferences.xml", "/usr/lib/plexmediaserver/Library/Application Support/Plex Media Server/Preferences.xml" ]
+
+WORKDIR /usr/lib/plexmediaserver/
+ENV PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR="/usr/lib/plexmediaserver/Library/Application Support/"
+ENV PLEX_MEDIA_SERVER_HOME=/usr/lib/plexmediaserver
+ENV PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=6
+ENV PLEX_MEDIA_SERVER_INFO_VENDOR="Debian GNU/Linux"
+ENV PLEX_MEDIA_SERVER_INFO_MODEL=x86_64
+ENV PLEX_MEDIA_SERVER_INFO_PLATFORM_VERSION=whatever
+
+ENTRYPOINT [ "/usr/lib/plexmediaserver/Plex\ Media\ Server" ]
