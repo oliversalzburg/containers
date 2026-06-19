@@ -41,7 +41,7 @@ jobs:
       id-token: write
       packages: write
       security-events: write
-    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@8094460d906f0757025caadd7648f6e0416c710f # main
+    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@b3fca3c22d1ab29fca611f7e577ceba64efffa37 # main
     with:
       build-args: |
         NZBGET_VERSION=${{ needs.versions.outputs.NZBGET_VERSION }}
