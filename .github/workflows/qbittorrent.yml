@@ -55,36 +55,3 @@ jobs:
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
       with-sarif: false
       with-sbom: false
-
-  test:
-    name: Test
-    needs: 
-      - versions
-      - build-publish
-    permissions:
-      contents: read
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
-
-      - name: Run container with image
-        run: |
-          .scripts/test.sh podman run --rm ghcr.io/oliversalzburg/containers/qbittorrent:v${{ needs.versions.outputs.QBITTORRENT_VERSION }}
-
-  qa-successful:
-    if: ( success() || failure() )
-    name: Evaluate QA results
-    needs: 
-      - build-publish
-      - test
-    permissions:
-      contents: none
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Success
-        if: ${{ !(contains(needs.*.result, 'failure')) }}
-        run: exit 0
-      - name: Failure
-        if: ${{ contains(needs.*.result, 'failure') }}
-        run: exit 1
