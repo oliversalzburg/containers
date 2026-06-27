@@ -41,7 +41,7 @@ jobs:
       id-token: write
       packages: write
       security-events: write
-    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@b8d4f36d301efbc9f44237bddcac3004ee2c2eae # main
+    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@530c09308e77df4947973fa19630a029634047ea # main
     with:
       build-args: |
         SONARR_VERSION=${{ needs.versions.outputs.SONARR_VERSION }}
