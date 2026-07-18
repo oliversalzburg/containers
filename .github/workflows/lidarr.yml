@@ -41,7 +41,7 @@ jobs:
       id-token: write
       packages: write
       security-events: write
-    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@a673982f7f1777f79b088767806e9b1425ed2ec7 # main
+    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@88be0f519d3e329098c5a99b2e5e9c3f775d0884 # main
     with:
       build-args: |
         LIDARR_VERSION=${{ needs.versions.outputs.LIDARR_VERSION }}
