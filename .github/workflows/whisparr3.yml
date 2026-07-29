@@ -3,12 +3,12 @@ name: Whisparr v3
 on:
   push:
     paths:
-      - .github/workflows/whisparr.yml
-      - contexts/whisparr/*
+      - .github/workflows/whisparr3.yml
+      - contexts/whisparr3/*
   pull_request:
     paths:
-      - .github/workflows/whisparr.yml
-      - contexts/whisparr/*
+      - .github/workflows/whisparr3.yml
+      - contexts/whisparr3/*
   workflow_dispatch:
 
 concurrency:
