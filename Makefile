@@ -58,6 +58,6 @@ run-whisparr3:
 		whisparr3
 whisparr3:
 	cd contexts/whisparr3; podman build \
-		--build-arg WHISPARR_VERSION=3.3.3-release.683 \
+		--build-arg WHISPARR_VERSION=3.3.7-release.979 \
 		--tag whisparr3 \
 		.
