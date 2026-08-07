@@ -41,7 +41,7 @@ jobs:
       id-token: write
       packages: write
       security-events: write
-    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@44482760049da018d1a53bf49fe0d53a3a9f38fe # main
+    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@98170989a1155c54d532122418fe3423d0f2ecef # main
     with:
       build-args: |
         PROWLARR_VERSION=${{ needs.versions.outputs.PROWLARR_VERSION }}
