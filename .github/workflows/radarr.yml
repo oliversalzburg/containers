@@ -41,7 +41,7 @@ jobs:
       id-token: write
       packages: write
       security-events: write
-    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@98170989a1155c54d532122418fe3423d0f2ecef # main
+    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@6322e7b468cda14cc7d698d693c256c12e02791b # main
     with:
       build-args: |
         RADARR_VERSION=${{ needs.versions.outputs.RADARR_VERSION }}
