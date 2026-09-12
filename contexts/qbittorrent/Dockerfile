@@ -102,7 +102,7 @@ RUN curl --location --silent "https://github.com/qbittorrent/qBittorrent/archive
   # Build qBittorrent
   && cd "qBittorrent-release-${QBITTORRENT_VERSION}" \
   && cmake -B build -DCMAKE_BUILD_TYPE=Release -DGUI=OFF \
-  && cmake --build build \
+  && cmake --build build --parallel $(nproc) \
   && cmake --install build
 
 RUN apt-get remove --purge --yes \
