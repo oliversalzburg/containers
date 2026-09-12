@@ -24,7 +24,7 @@ jobs:
       id-token: write
       packages: write
       security-events: write
-    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@3524cb02c2d89a0db44cbc4e14c13eb413440d9b # main
+    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@9c897f87d1244b61cd748cc2526e9bcf1b5fcc54 # main
     with:
       context: contexts/plex
       dist-tag: latest
