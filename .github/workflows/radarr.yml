@@ -17,7 +17,7 @@ concurrency:
 
 env:
   # renovate: datasource=github-releases depName=Radarr/Radarr versioning=loose
-  RADARR_VERSION: "6.3.0.10514"
+  RADARR_VERSION: "6.4.4.10685"
 
 jobs:
   versions:
