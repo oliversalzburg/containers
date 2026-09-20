@@ -17,7 +17,7 @@ concurrency:
 
 env:
   # renovate: datasource=github-releases depName=Whisparr/Whisparr-Eros versioning=loose
-  WHISPARR_VERSION: "3.6.0-release.1660"
+  WHISPARR_VERSION: "3.6.1-release.1708"
 
 jobs:
   versions:
