@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:26.04@sha256:3595d7fc4286a33fad0fd853a4063e654287a9c3787437d7937c94ca3f7a804e
+FROM docker.io/library/ubuntu:26.04@sha256:f144425ff09be612d6d9ad965196e9cdc23dae1f42110a8a11a3e9a8198759f7
 
 # Versions of core components.
 ARG QBITTORRENT_VERSION
@@ -124,7 +124,7 @@ RUN apt-get remove --purge --yes \
   && apt-get autoremove --yes \
   && apt-get clean
 
-FROM docker.io/library/ubuntu:26.04@sha256:3595d7fc4286a33fad0fd853a4063e654287a9c3787437d7937c94ca3f7a804e
+FROM docker.io/library/ubuntu:26.04@sha256:f144425ff09be612d6d9ad965196e9cdc23dae1f42110a8a11a3e9a8198759f7
 COPY --from=0 / /
 RUN ldconfig
 WORKDIR /config
