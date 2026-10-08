@@ -41,7 +41,7 @@ jobs:
       id-token: write
       packages: write
       security-events: write
-    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@bac08617d9619e6577922f33aa73b391702bda82 # main
+    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@32ea1895ff52f42ca31c9b844f6205c847e768cc # main
     with:
       build-args: |
         WHISPARR_VERSION=${{ needs.versions.outputs.WHISPARR_VERSION }}
