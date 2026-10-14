@@ -23,7 +23,6 @@ RUN apt-get update \
   tcpdump \
   traceroute \
   whois \
-  wireshark \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
