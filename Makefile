@@ -5,6 +5,15 @@ lidarr:
 		--build-arg LIDARR_VERSION=3.1.0.4875 \
 		--tag lidarr \
 		.
+
+net-tools:
+	cd contexts/net-tools; podman build \
+		--tag net-tools \
+		.
+run-net-tools:
+	podman run --interactive --rm --tty --entrypoint bash \
+		net-tools
+
 nzbget:
 	cd contexts/nzbget; podman build \
 		--build-arg NZBGET_VERSION=26.1 \

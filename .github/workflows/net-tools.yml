@@ -1,0 +1,40 @@
+name: Networking Tools
+
+on:
+  push:
+    paths:
+      - .github/workflows/net-tools.yml
+      - contexts/net-tools/*
+  pull_request:
+    paths:
+      - .github/workflows/net-tools.yml
+      - contexts/net-tools/*
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env: {}
+
+jobs:
+  build-publish:
+    name: Call Build
+    permissions:
+      attestations: write
+      contents: read
+      id-token: write
+      packages: write
+      security-events: write
+    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@325341174f99afad940752c94d48bb4d6d237ae6 # main
+    with:
+      context: contexts/net-tools
+      dist-tag: latest
+      image-description: Toolkit with various common networking tools
+      image-name: oliversalzburg/containers/net-tools
+      image-tag: v2026.1.0
+      image-title: Networking Tools
+      is-latest: true
+      push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+      with-sarif: false
+      with-sbom: false
