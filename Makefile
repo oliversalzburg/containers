@@ -10,7 +10,7 @@ net-tools:
 	cd contexts/net-tools; podman build \
 		--tag net-tools \
 		.
-run-net-tools:
+run-net-tools: net-tools
 	podman run --interactive --rm --tty --entrypoint bash \
 		net-tools
 

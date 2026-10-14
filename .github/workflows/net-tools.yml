@@ -32,7 +32,7 @@ jobs:
       dist-tag: latest
       image-description: Toolkit with various common networking tools
       image-name: oliversalzburg/containers/net-tools
-      image-tag: v2026.1.0
+      image-tag: v2026.1.1
       image-title: Networking Tools
       is-latest: true
       push: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
