@@ -41,7 +41,7 @@ jobs:
       id-token: write
       packages: write
       security-events: write
-    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@76e397cf0c8902090015b3d433a142e5c46653ba # main
+    uses: oliversalzburg/workflows/.github/workflows/publish-oci.yml@414c2237b5a22c0d3a384f65345d8d449cf0d2c0 # main
     with:
       build-args: |
         QBITTORRENT_VERSION=${{ needs.versions.outputs.QBITTORRENT_VERSION }}
